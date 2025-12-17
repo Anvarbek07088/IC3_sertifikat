@@ -1,684 +1,757 @@
-// Global state
-let currentLevel = null;
-let currentQuestions = [];
+// Dastur holati
 let currentQuestionIndex = 0;
+let userScore = 0;
 let userAnswers = [];
-let checkedAnswers = []; // Track which questions have been checked
-let currentScore = 0;
 let testStarted = false;
+let timeLeft = 2700; // 45 daqiqa soniyada
+let timerInterval = null;
+const MAX_SCORE = 840; // 84 savol * 10 ball
 
-// DOM elements
-const homePage = document.getElementById('home-page');
-const testPage = document.getElementById('test-page');
-const resultsPage = document.getElementById('results-page');
+// DOM elementlari
+const loginPage = document.getElementById('loginPage');
+const testInterface = document.getElementById('testInterface');
+const resultPage = document.getElementById('resultPage');
+const loginForm = document.getElementById('loginForm');
+const loginError = document.getElementById('loginError');
+const logoutBtn = document.getElementById('logoutBtn');
+const resultLogoutBtn = document.getElementById('resultLogoutBtn');
+const currentQuestionElement = document.getElementById('currentQuestion');
+const totalQuestionsElement = document.getElementById('totalQuestions');
+const currentScoreElement = document.getElementById('currentScore');
+const timerElement = document.getElementById('timer');
+const progressBar = document.getElementById('progressBar');
+const questionContainer = document.getElementById('questionContainer');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const checkAnswerBtn = document.getElementById('checkAnswerBtn');
+const restartBtn = document.getElementById('restartBtn');
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    initializeEventListeners();
+// Login ma'lumotlari
+const VALID_CREDENTIALS = {
+    username: 'ic3student',
+    password: 'digital2023'
+};
+
+// Dasturni ishga tushirish
+document.addEventListener('DOMContentLoaded', function() {
+    totalQuestionsElement.textContent = questions.length;
+    
+    // Login formasi
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if (username === VALID_CREDENTIALS.username && password === VALID_CREDENTIALS.password) {
+            loginError.style.display = 'none';
+            startTest();
+        } else {
+            loginError.style.display = 'block';
+        }
+    });
+    
+    // Chiqish tugmalari
+    logoutBtn.addEventListener('click', logout);
+    resultLogoutBtn.addEventListener('click', logout);
+    
+    // Navigatsiya tugmalari
+    prevBtn.addEventListener('click', goToPreviousQuestion);
+    nextBtn.addEventListener('click', goToNextQuestion);
+    checkAnswerBtn.addEventListener('click', checkAnswer);
+    restartBtn.addEventListener('click', restartTest);
+    
+    // Foydalanuvchi javoblari massivini ishga tushirish
+    userAnswers = new Array(questions.length).fill(null);
 });
 
-function initializeEventListeners() {
-    // Level selection buttons
-    document.querySelectorAll('.level-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const level = e.currentTarget.dataset.level;
-            startTest(level);
-        });
-    });
-
-    // Navigation buttons
-    document.getElementById('check-answer-btn').addEventListener('click', checkAnswer);
-    document.getElementById('next-btn').addEventListener('click', nextQuestion);
-    document.getElementById('prev-btn').addEventListener('click', prevQuestion);
-    document.getElementById('finish-btn').addEventListener('click', finishTest);
-    document.getElementById('restart-btn').addEventListener('click', restartTest);
-    document.getElementById('home-btn').addEventListener('click', goHome);
+// Testni boshlash
+function startTest() {
+    loginPage.style.display = 'none';
+    testInterface.style.display = 'block';
+    testStarted = true;
+    
+    // Taymerni boshlash
+    startTimer();
+    
+    // Birinchi savolni ko'rsatish
+    displayQuestion(currentQuestionIndex);
 }
 
-function startTest(level) {
-    currentLevel = level;
-    currentQuestions = tests.filter(test => test.level === level);
+// Taymerni boshlash
+function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            endTest();
+        }
+    }, 1000);
+}
+
+// Taymerni yangilash
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Savolni ko'rsatish
+function displayQuestion(index) {
+    const question = questions[index];
     
-    if (currentQuestions.length === 0) {
-        alert('Bu daraja uchun hozircha savollar mavjud emas. Iltimos, keyinroq qayta urinib ko\'ring.');
+    // Progressni yangilash
+    currentQuestionElement.textContent = index + 1;
+    progressBar.style.width = `${((index + 1) / questions.length) * 100}%`;
+    
+    // Oldingi savolni tozalash
+    questionContainer.innerHTML = '';
+    
+    // Savol HTML yaratish
+    let questionHTML = '';
+    
+    // Savol matnini ko'rsatish
+    if (Array.isArray(question.question)) {
+        questionHTML += `<div class="question-text">${question.question[0].savol || question.question[0].question || question.question[0]}</div>`;
+        if (question.question[1] && (question.question[1].imgSrc || question.question[1].imgScr)) {
+            const imgSrc = question.question[1].imgSrc || question.question[1].imgScr;
+            questionHTML += `<img src="${imgSrc}" alt="Savol rasmi" class="question-image">`;
+        }
+    } else {
+        questionHTML += `<div class="question-text">${question.question}</div>`;
+    }
+    
+    // Savol turiga qarab interfeys yaratish
+    if (question.options) {
+        // Ko'p tanlovli savol
+        questionHTML += '<div class="options-container">';
+        
+        // Agar bir nechta to'g'ri javob bo'lsa (correctKeys), checkbox, aks holda radio
+        const isMultipleChoice = question.correctKeys && question.correctKeys.length > 1;
+        const inputType = isMultipleChoice ? 'checkbox' : 'radio';
+        const inputName = isMultipleChoice ? `question_${index}` : `question_${index}_single`;
+        
+        question.options.forEach(option => {
+            const isSelected = userAnswers[index] && userAnswers[index].includes(option.key);
+            questionHTML += `
+                <div class="option">
+                    <input type="${inputType}" id="option_${index}_${option.key}" 
+                           name="${inputName}" value="${option.key}" 
+                           ${isSelected ? 'checked' : ''}>
+                    <label for="option_${index}_${option.key}" class="option-label">
+                        <div class="option-key">${option.key}</div>
+                        <div class="option-text">${option.text}</div>
+                    </label>
+                </div>
+            `;
+        });
+        questionHTML += '</div>';
+        
+        // Inputlarni qayta ishlash
+        setTimeout(() => {
+            document.querySelectorAll(`.option input`).forEach(input => {
+                input.addEventListener('change', function() {
+                    handleOptionSelection(this, index, isMultipleChoice);
+                });
+            });
+        }, 10);
+    } else if (question.statements) {
+        // To'g'ri/Noto'g'ri bayonotlar
+        questionHTML += '<div class="statements-container">';
+        question.statements.forEach((statement, i) => {
+            const userAnswer = userAnswers[index] ? userAnswers[index][i] : null;
+            questionHTML += `
+                <div class="statement">
+                    <div class="statement-text">${statement.text}</div>
+                    <div class="statement-options">
+                        <label class="true-false-label ${userAnswer === 'True' ? 'selected' : ''}">
+                            <input type="radio" name="statement_${index}_${i}" 
+                                   value="True" ${userAnswer === 'True' ? 'checked' : ''}>
+                            <span>True</span>
+                        </label>
+                        <label class="true-false-label ${userAnswer === 'False' ? 'selected' : ''}">
+                            <input type="radio" name="statement_${index}_${i}" 
+                                   value="False" ${userAnswer === 'False' ? 'checked' : ''}>
+                            <span>False</span>
+                        </label>
+                    </div>
+                </div>
+            `;
+        });
+        questionHTML += '</div>';
+        
+        // True/False radio buttonlari
+        setTimeout(() => {
+            document.querySelectorAll('.statement input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    handleStatementSelection(this, index);
+                });
+            });
+        }, 10);
+    } else if (question.steps) {
+        // Qadamlarni tartiblash
+        questionHTML += '<div class="steps-container">';
+        questionHTML += '<div class="steps-list" id="stepsList">';
+        
+        const stepsToShow = userAnswers[index] ? userAnswers[index] : [...question.steps];
+        
+        stepsToShow.forEach((step, i) => {
+            questionHTML += `
+                <div class="step">
+                    <div class="step-number">${i + 1}</div>
+                    <div class="step-text">${step}</div>
+                </div>
+            `;
+        });
+        questionHTML += '</div>';
+        if (question.note) {
+            questionHTML += `<p class="note-text">${question.note}</p>`;
+        }
+        questionHTML += '</div>';
+        
+        // Qadamlar uchun drag & drop
+        setTimeout(() => {
+            setupDragAndDrop(index);
+        }, 10);
+    } else if (question.fillInTheBlanks) {
+        // Bo'sh joylarni to'ldirish
+        questionHTML += '<div class="fill-blanks-container">';
+        question.fillInTheBlanks.forEach((fillBlank, i) => {
+            let sentence = fillBlank.sentence;
+            fillBlank.blanks.forEach((blank, j) => {
+                const userAnswer = userAnswers[index] ? userAnswers[index][i] && userAnswers[index][i][j] : null;
+                const optionsHTML = blank.options.map(opt => 
+                    `<option value="${opt}" ${userAnswer === opt ? 'selected' : ''}>${opt}</option>`
+                ).join('');
+                sentence = sentence.replace('_____', `<select class="blank-select" data-blank-index="${i}" data-option-index="${j}">${optionsHTML}</select>`);
+            });
+            questionHTML += `<div class="fill-sentence">${sentence}</div>`;
+        });
+        questionHTML += '</div>';
+        
+        // Dropdown o'zgarishlari
+        setTimeout(() => {
+            document.querySelectorAll('.blank-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    handleFillBlankSelection(this, index);
+                });
+            });
+        }, 10);
+    } else if (question.matching) {
+        // Moslashtirish savoli
+        questionHTML += '<div class="matching-container">';
+        if (question.matching && question.matching.items) {
+            question.matching.items.forEach((item, i) => {
+                const userAnswer = userAnswers[index] ? userAnswers[index][i] : null;
+                questionHTML += `
+                    <div class="matching-item">
+                        <div class="matching-tool">${item.tool}</div>
+                        <div class="matching-arrow">→</div>
+                        <select class="matching-select" data-item-index="${i}">
+                            <option value="">Select threat</option>
+                            ${question.matching.items.map(matchItem => 
+                                `<option value="${matchItem.threat}" ${userAnswer === matchItem.threat ? 'selected' : ''}>${matchItem.threat}</option>`
+                            ).join('')}
+                        </select>
+                    </div>
+                `;
+            });
+        }
+        questionHTML += '</div>';
+        
+        // Moslashtirish tanlash
+        setTimeout(() => {
+            document.querySelectorAll('.matching-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    handleMatchingSelection(this, index);
+                });
+            });
+        }, 10);
+    } else if (question.imageBased && question.questions) {
+        // Rasm asosidagi savollar
+        questionHTML += '<div class="image-question-container">';
+        if (question.imgSrc || (question.question && question.question[1] && question.question[1].imgSrc)) {
+            const imgSrc = question.imgSrc || question.question[1].imgSrc;
+            questionHTML += `<img src="${imgSrc}" alt="Savol rasmi" class="question-image">`;
+        }
+        question.questions.forEach((subQuestion, i) => {
+            const userAnswer = userAnswers[index] ? userAnswers[index][i] : null;
+            questionHTML += `<div class="sub-question">
+                <div class="sub-question-text">${subQuestion.question}</div>
+                <select class="sub-question-select" data-subquestion-index="${i}">
+                    <option value="">Select option</option>
+                    ${subQuestion.options.map(opt => 
+                        `<option value="${opt}" ${userAnswer === opt ? 'selected' : ''}>${opt}</option>`
+                    ).join('')}
+                </select>
+            </div>`;
+        });
+        questionHTML += '</div>';
+        
+        // Sub-savol tanlash
+        setTimeout(() => {
+            document.querySelectorAll('.sub-question-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    handleSubQuestionSelection(this, index);
+                });
+            });
+        }, 10);
+    }
+    
+    // HTML ni sahifaga qo'shish
+    questionContainer.innerHTML = questionHTML;
+    
+    // Tugma holatlarini yangilash
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === questions.length - 1;
+    
+    // Javob tekshirish tugmasini yangilash
+    if (userAnswers[index] !== null) {
+        checkAnswerBtn.textContent = '✓ Checked';
+        checkAnswerBtn.disabled = true;
+        checkAnswerBtn.style.backgroundColor = '#6c757d';
+    } else {
+        checkAnswerBtn.textContent = 'Check Answer';
+        checkAnswerBtn.disabled = false;
+        checkAnswerBtn.style.backgroundColor = '#2a5298';
+    }
+    
+    // Oxirgi savol bo'lsa
+    if (index === questions.length - 1) {
+        nextBtn.textContent = 'Finish Test';
+    } else {
+        nextBtn.textContent = 'Next';
+    }
+}
+
+// Variant tanlashni boshqarish
+function handleOptionSelection(inputElement, questionIndex, isMultipleChoice) {
+    if (isMultipleChoice) {
+        // Checkbox - bir nechta tanlash
+        const selectedCheckboxes = Array.from(
+            document.querySelectorAll(`.option input[type="checkbox"]:checked`)
+        ).map(cb => cb.value);
+        
+        userAnswers[questionIndex] = selectedCheckboxes;
+        
+        // UI ni yangilash
+        document.querySelectorAll('.option').forEach(option => {
+            const checkbox = option.querySelector('input[type="checkbox"]');
+            if (checkbox && checkbox.checked) {
+                option.classList.add('selected');
+            } else {
+                option.classList.remove('selected');
+            }
+        });
+    } else {
+        // Radio - bitta tanlash
+        const selectedValue = inputElement.value;
+        userAnswers[questionIndex] = [selectedValue];
+        
+        // UI ni yangilash
+        document.querySelectorAll('.option').forEach(option => {
+            const radio = option.querySelector('input[type="radio"]');
+            if (radio && radio.checked) {
+                option.classList.add('selected');
+            } else {
+                option.classList.remove('selected');
+            }
+        });
+    }
+}
+
+// Bayonot tanlashni boshqarish
+function handleStatementSelection(radioElement, questionIndex) {
+    const nameParts = radioElement.name.split('_');
+    const statementIndex = parseInt(nameParts[2]);
+    const value = radioElement.value;
+    
+    // Javoblarni saqlash
+    if (!userAnswers[questionIndex]) {
+        userAnswers[questionIndex] = [];
+    }
+    
+    userAnswers[questionIndex][statementIndex] = value;
+    
+    // UI ni yangilash
+    const statementDiv = radioElement.closest('.statement');
+    statementDiv.querySelectorAll('.true-false-label').forEach(label => {
+        label.classList.remove('selected');
+    });
+    radioElement.closest('.true-false-label').classList.add('selected');
+}
+
+// Drag and drop funksiyalari
+function setupDragAndDrop(questionIndex) {
+    const stepsList = document.getElementById('stepsList');
+    if (!stepsList) return;
+    
+    let draggedStep = null;
+    
+    // Drag boshlanishi
+    stepsList.querySelectorAll('.step').forEach(step => {
+        step.addEventListener('dragstart', function(e) {
+            draggedStep = this;
+            setTimeout(() => {
+                this.style.opacity = '0.4';
+            }, 0);
+        });
+        
+        step.addEventListener('dragend', function(e) {
+            setTimeout(() => {
+                if (draggedStep) {
+                    draggedStep.style.opacity = '1';
+                    draggedStep = null;
+                    updateStepsOrder(questionIndex);
+                }
+            }, 0);
+        });
+        
+        step.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+        
+        step.addEventListener('dragenter', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = '#e3ecff';
+        });
+        
+        step.addEventListener('dragleave', function(e) {
+            this.style.backgroundColor = '';
+        });
+        
+        step.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = '';
+            
+            if (draggedStep && draggedStep !== this) {
+                const allSteps = Array.from(stepsList.querySelectorAll('.step'));
+                const draggedIndex = allSteps.indexOf(draggedStep);
+                const dropIndex = allSteps.indexOf(this);
+                
+                if (draggedIndex < dropIndex) {
+                    this.parentNode.insertBefore(draggedStep, this.nextSibling);
+                } else {
+                    this.parentNode.insertBefore(draggedStep, this);
+                }
+                
+                updateStepsOrder(questionIndex);
+            }
+        });
+    });
+}
+
+// Qadamlar tartibini yangilash
+function updateStepsOrder(questionIndex) {
+    const steps = Array.from(document.querySelectorAll('.step')).map(step => {
+        return step.querySelector('.step-text').textContent;
+    });
+    
+    userAnswers[questionIndex] = steps;
+}
+
+// Bo'sh joyni to'ldirish
+function handleFillBlankSelection(selectElement, questionIndex) {
+    const blankIndex = parseInt(selectElement.getAttribute('data-blank-index'));
+    const optionIndex = parseInt(selectElement.getAttribute('data-option-index'));
+    const value = selectElement.value;
+    
+    if (!userAnswers[questionIndex]) {
+        userAnswers[questionIndex] = [];
+    }
+    if (!userAnswers[questionIndex][blankIndex]) {
+        userAnswers[questionIndex][blankIndex] = [];
+    }
+    
+    userAnswers[questionIndex][blankIndex][optionIndex] = value;
+}
+
+// Moslashtirish
+function handleMatchingSelection(selectElement, questionIndex) {
+    const itemIndex = parseInt(selectElement.getAttribute('data-item-index'));
+    const value = selectElement.value;
+    
+    if (!userAnswers[questionIndex]) {
+        userAnswers[questionIndex] = [];
+    }
+    
+    userAnswers[questionIndex][itemIndex] = value;
+}
+
+// Sub-savol tanlash
+function handleSubQuestionSelection(selectElement, questionIndex) {
+    const subQuestionIndex = parseInt(selectElement.getAttribute('data-subquestion-index'));
+    const value = selectElement.value;
+    
+    if (!userAnswers[questionIndex]) {
+        userAnswers[questionIndex] = [];
+    }
+    
+    userAnswers[questionIndex][subQuestionIndex] = value;
+}
+
+// Javobni tekshirish
+function checkAnswer() {
+    const question = questions[currentQuestionIndex];
+    const userAnswer = userAnswers[currentQuestionIndex];
+    
+    // Javob tanlanmaganligini tekshirish
+    if (!userAnswer || 
+        (Array.isArray(userAnswer) && userAnswer.length === 0) ||
+        (question.statements && userAnswer.some(a => a === undefined || a === null)) ||
+        (question.fillInTheBlanks && (!userAnswer[0] || userAnswer[0].some(a => !a))) ||
+        (question.matching && userAnswer.some(a => !a)) ||
+        (question.imageBased && question.questions && userAnswer.some(a => !a))) {
+        
+        alert('Please select an answer before checking.');
         return;
     }
-
-    currentQuestionIndex = 0;
-    userAnswers = new Array(currentQuestions.length).fill(null);
-    checkedAnswers = new Array(currentQuestions.length).fill(false);
-    currentScore = 0;
-    testStarted = true;
-
-    showPage('test-page');
-    renderQuestion();
-    updateProgress();
-    updateScore();
-}
-
-function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    document.getElementById(pageId).classList.add('active');
-}
-
-function renderQuestion() {
-    const question = currentQuestions[currentQuestionIndex];
-    if (!question) return;
-
-    // Update header
-    document.getElementById('current-level-name').textContent = question.level;
-    document.getElementById('current-question-num').textContent = currentQuestionIndex + 1;
-    document.getElementById('total-questions').textContent = currentQuestions.length;
-
-    // Update question text
-    document.getElementById('question-text').textContent = question.question;
-    const questionUz = document.getElementById('question-text-uz');
-    if (question.question_uz) {
-        questionUz.textContent = question.question_uz;
-        questionUz.style.display = 'block';
-    } else {
-        questionUz.style.display = 'none';
-    }
-
-    // Hide all containers
-    document.querySelectorAll('.answer-container').forEach(container => {
-        container.classList.add('hidden');
-    });
-
-    // Hide feedback
-    document.getElementById('answer-feedback').classList.add('hidden');
-
-    // Render based on question type
-    switch (question.type) {
-        case 'single':
-            renderSingleChoice(question);
-            break;
-        case 'multiple':
-            renderMultipleChoice(question);
-            break;
-        case 'image-hotspot':
-            renderImageHotspot(question);
-            break;
-        case 'true-false-list':
-            renderTrueFalseList(question);
-            break;
-    }
-
-    // Update navigation buttons
-    updateNavigationButtons();
     
-    // Show correct/incorrect indicators if already checked
-    if (checkedAnswers[currentQuestionIndex]) {
-        showAnswerFeedback(question);
-    }
-}
-
-function renderSingleChoice(question) {
-    const container = document.getElementById('single-choice-container');
-    const optionsList = document.getElementById('single-options');
-    optionsList.innerHTML = '';
-
-    question.options.forEach((option, index) => {
-        const optionItem = document.createElement('div');
-        optionItem.className = 'option-item';
-        if (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].includes(index)) {
-            optionItem.classList.add('selected');
-        }
-
-        const radio = document.createElement('input');
-        radio.type = 'radio';
-        radio.name = `question-${question.id}`;
-        radio.value = index;
-        radio.id = `option-${index}`;
-        radio.checked = userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].includes(index);
-
-        const label = document.createElement('label');
-        label.htmlFor = `option-${index}`;
-        label.textContent = option;
-
-        optionItem.appendChild(radio);
-        optionItem.appendChild(label);
-
-        optionItem.addEventListener('click', () => {
-            document.querySelectorAll(`input[name="question-${question.id}"]`).forEach(r => {
-                r.checked = false;
-                r.closest('.option-item').classList.remove('selected');
-            });
-            radio.checked = true;
-            optionItem.classList.add('selected');
-            userAnswers[currentQuestionIndex] = [index];
-        });
-
-        optionsList.appendChild(optionItem);
-    });
-
-    container.classList.remove('hidden');
-}
-
-function renderMultipleChoice(question) {
-    const container = document.getElementById('multiple-choice-container');
-    const optionsList = document.getElementById('multiple-options');
-    optionsList.innerHTML = '';
-
-    question.options.forEach((option, index) => {
-        const optionItem = document.createElement('div');
-        optionItem.className = 'option-item';
-        const isSelected = userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].includes(index);
-        if (isSelected) {
-            optionItem.classList.add('selected');
-        }
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = index;
-        checkbox.id = `option-${index}`;
-        checkbox.checked = isSelected;
-
-        const label = document.createElement('label');
-        label.htmlFor = `option-${index}`;
-        label.textContent = option;
-
-        optionItem.appendChild(checkbox);
-        optionItem.appendChild(label);
-
-        optionItem.addEventListener('click', () => {
-            checkbox.checked = !checkbox.checked;
-            if (checkbox.checked) {
-                optionItem.classList.add('selected');
-            } else {
-                optionItem.classList.remove('selected');
-            }
-            updateMultipleChoiceAnswer(question);
-        });
-
-        optionsList.appendChild(optionItem);
-    });
-
-    container.classList.remove('hidden');
-}
-
-function updateMultipleChoiceAnswer(question) {
-    const checkboxes = document.querySelectorAll(`#multiple-options input[type="checkbox"]:checked`);
-    const selected = Array.from(checkboxes).map(cb => parseInt(cb.value));
-    userAnswers[currentQuestionIndex] = selected.length > 0 ? selected : null;
-}
-
-function renderImageHotspot(question) {
-    const container = document.getElementById('image-hotspot-container');
-    const image = document.getElementById('hotspot-image');
-    const canvas = document.getElementById('hotspot-canvas');
-
-    // Use image URL from question data
-    if (question.image) {
-        image.src = question.image;
-    } else {
-        image.src = '';
-    }
-    image.onload = () => {
-        // Wait for image to be fully rendered
-        setTimeout(() => {
-            const imgWidth = image.naturalWidth || image.offsetWidth;
-            const imgHeight = image.naturalHeight || image.offsetHeight;
-            const displayWidth = image.offsetWidth;
-            const displayHeight = image.offsetHeight;
-            
-            canvas.width = displayWidth;
-            canvas.height = displayHeight;
-            canvas.style.width = displayWidth + 'px';
-            canvas.style.height = displayHeight + 'px';
-            
-            // Scale hotspots to match display size
-            const scaleX = displayWidth / imgWidth;
-            const scaleY = displayHeight / imgHeight;
-            
-            drawHotspots(question, canvas, scaleX, scaleY);
-        }, 100);
-    };
-
-    canvas.addEventListener('click', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        handleHotspotClick(question, x, y, canvas);
-    });
-
-    container.classList.remove('hidden');
-}
-
-function drawHotspots(question, canvas, scaleX = 1, scaleY = 1) {
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    question.hotspots.forEach(hotspot => {
-        const x = hotspot.x * scaleX;
-        const y = hotspot.y * scaleY;
-        const radius = hotspot.radius * Math.min(scaleX, scaleY);
-        
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, 2 * Math.PI);
-        ctx.fillStyle = hotspot.correct ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)';
-        ctx.fill();
-        ctx.strokeStyle = hotspot.correct ? '#10b981' : '#ef4444';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-    });
-}
-
-function handleHotspotClick(question, x, y, canvas) {
-    const image = document.getElementById('hotspot-image');
-    const imgWidth = image.naturalWidth || image.offsetWidth;
-    const imgHeight = image.naturalHeight || image.offsetHeight;
-    const displayWidth = image.offsetWidth;
-    const displayHeight = image.offsetHeight;
+    let isCorrect = false;
+    let correctAnswerText = '';
     
-    const scaleX = displayWidth / imgWidth;
-    const scaleY = displayHeight / imgHeight;
-    
-    // Convert click coordinates to original image coordinates
-    const origX = x / scaleX;
-    const origY = y / scaleY;
-    
-    let clickedHotspot = null;
-    let clickedCorrect = false;
-
-    question.hotspots.forEach(hotspot => {
-        const distance = Math.sqrt(Math.pow(origX - hotspot.x, 2) + Math.pow(origY - hotspot.y, 2));
-        if (distance <= hotspot.radius) {
-            clickedHotspot = hotspot.id;
-            clickedCorrect = hotspot.correct;
-        }
-    });
-
-    if (clickedHotspot) {
-        userAnswers[currentQuestionIndex] = {
-            hotspotId: clickedHotspot,
-            correct: clickedCorrect,
-            x: x,
-            y: y
-        };
-        
-        // Visual feedback
-        const ctx = canvas.getContext('2d');
-        ctx.beginPath();
-        ctx.arc(x, y, 15, 0, 2 * Math.PI);
-        ctx.fillStyle = clickedCorrect ? 'rgba(16, 185, 129, 0.5)' : 'rgba(239, 68, 68, 0.5)';
-        ctx.fill();
-        ctx.strokeStyle = clickedCorrect ? '#10b981' : '#ef4444';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        
-        // Redraw hotspots
-        setTimeout(() => drawHotspots(question, canvas, scaleX, scaleY), 500);
-    }
-}
-
-function renderTrueFalseList(question) {
-    const container = document.getElementById('true-false-container');
-    const itemsList = document.getElementById('true-false-items');
-    itemsList.innerHTML = '';
-
-    const savedAnswers = userAnswers[currentQuestionIndex] || {};
-
-    question.items.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'true-false-item';
-
-        const textDiv = document.createElement('div');
-        textDiv.className = 'item-text';
-        textDiv.textContent = item.text;
-
-        const buttonsDiv = document.createElement('div');
-        buttonsDiv.className = 'true-false-buttons';
-
-        const trueBtn = document.createElement('button');
-        trueBtn.className = 'true-false-btn true';
-        trueBtn.textContent = 'To\'g\'ri';
-        if (savedAnswers[index] === true) {
-            trueBtn.classList.add('selected');
-        }
-
-        const falseBtn = document.createElement('button');
-        falseBtn.className = 'true-false-btn false';
-        falseBtn.textContent = 'Noto\'g\'ri';
-        if (savedAnswers[index] === false) {
-            falseBtn.classList.add('selected');
-        }
-
-        trueBtn.addEventListener('click', () => {
-            if (savedAnswers[index] === true) {
-                delete savedAnswers[index];
-                trueBtn.classList.remove('selected');
-            } else {
-                savedAnswers[index] = true;
-                trueBtn.classList.add('selected');
-                falseBtn.classList.remove('selected');
-            }
-            userAnswers[currentQuestionIndex] = { ...savedAnswers };
-        });
-
-        falseBtn.addEventListener('click', () => {
-            if (savedAnswers[index] === false) {
-                delete savedAnswers[index];
-                falseBtn.classList.remove('selected');
-            } else {
-                savedAnswers[index] = false;
-                falseBtn.classList.add('selected');
-                trueBtn.classList.remove('selected');
-            }
-            userAnswers[currentQuestionIndex] = { ...savedAnswers };
-        });
-
-        buttonsDiv.appendChild(trueBtn);
-        buttonsDiv.appendChild(falseBtn);
-        itemDiv.appendChild(textDiv);
-        itemDiv.appendChild(buttonsDiv);
-        itemsList.appendChild(itemDiv);
-    });
-
-    container.classList.remove('hidden');
-}
-
-function updateNavigationButtons() {
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const finishBtn = document.getElementById('finish-btn');
-    const checkBtn = document.getElementById('check-answer-btn');
-    const isChecked = checkedAnswers[currentQuestionIndex];
-
-    // Previous button
-    if (currentQuestionIndex === 0) {
-        prevBtn.classList.add('hidden');
-    } else {
-        prevBtn.classList.remove('hidden');
-    }
-
-    // Check answer button
-    if (isChecked) {
-        checkBtn.classList.add('hidden');
-    } else {
-        checkBtn.classList.remove('hidden');
-    }
-
-    // Next/Finish button
-    if (isChecked) {
-        if (currentQuestionIndex === currentQuestions.length - 1) {
-            nextBtn.classList.add('hidden');
-            finishBtn.classList.remove('hidden');
+    // Savol turiga qarab tekshirish
+    if (question.correctKey) {
+        // Bitta to'g'ri javob
+        isCorrect = userAnswer[0] === question.correctKey;
+        correctAnswerText = `Correct answer: ${question.correctKey}`;
+    } else if (question.correctKeys) {
+        // Bir nechta to'g'ri javoblar
+        if (userAnswer.length !== question.correctKeys.length) {
+            isCorrect = false;
         } else {
-            nextBtn.classList.remove('hidden');
-            finishBtn.classList.add('hidden');
+            const sortedUserAnswers = [...userAnswer].sort();
+            const sortedCorrectAnswers = [...question.correctKeys].sort();
+            isCorrect = sortedUserAnswers.every((answer, index) => answer === sortedCorrectAnswers[index]);
         }
-    } else {
-        nextBtn.classList.add('hidden');
-        finishBtn.classList.add('hidden');
+        correctAnswerText = `Correct answers: ${question.correctKeys.join(', ')}`;
+    } else if (question.statements) {
+        // To'g'ri/Noto'g'ri bayonotlar
+        isCorrect = question.statements.every((statement, index) => {
+            return userAnswer[index] === statement.answer;
+        });
+        
+        // To'g'ri javoblarni yig'ish
+        const correctAnswers = question.statements.map((s, i) => 
+            `Statement ${i+1}: ${s.answer}`
+        ).join('<br>');
+        correctAnswerText = `Correct answers:<br>${correctAnswers}`;
+    } else if (question.fillInTheBlanks) {
+        // Bo'sh joylarni to'ldirish
+        isCorrect = question.fillInTheBlanks.every((fillBlank, i) => {
+            return fillBlank.blanks.every((blank, j) => {
+                return userAnswer[i] && userAnswer[i][j] === blank.correct;
+            });
+        });
+    } else if (question.matching) {
+        // Moslashtirish
+        isCorrect = question.matching.items.every((item, i) => {
+            return userAnswer[i] === item.threat;
+        });
+    } else if (question.steps) {
+        // Qadamlarni tartiblash - har qanday tartib qabul qilinadi
+        isCorrect = true;
+        correctAnswerText = "Any correct order is accepted";
+    } else if (question.imageBased && question.questions) {
+        // Rasm asosidagi savollar
+        isCorrect = question.questions.every((subQuestion, i) => {
+            return userAnswer[i] === subQuestion.correctAnswer;
+        });
+    }
+    
+    // Ball qo'shish
+    if (isCorrect) {
+        userScore += 10;
+        currentScoreElement.textContent = userScore;
+    }
+    
+    // Tugmani yangilash
+    checkAnswerBtn.textContent = isCorrect ? '✓ Correct! +10 points' : '✗ Incorrect';
+    checkAnswerBtn.disabled = true;
+    checkAnswerBtn.style.backgroundColor = isCorrect ? '#28a745' : '#dc3545';
+    
+    // Javobni rang bilan ajratish
+    highlightAnswerFeedback(isCorrect, correctAnswerText);
+}
+
+// Javob natijasini rang bilan ko'rsatish
+function highlightAnswerFeedback(isCorrect, correctAnswerText) {
+    const question = questions[currentQuestionIndex];
+    
+    if (question.options) {
+        // Variantlarni rang bilan ajratish
+        const isMultipleChoice = question.correctKeys && question.correctKeys.length > 1;
+        
+        document.querySelectorAll('.option').forEach(option => {
+            const input = option.querySelector('input');
+            const key = input ? input.value : null;
+            
+            if (isMultipleChoice) {
+                // Checkbox - bir nechta javob
+                if (question.correctKeys.includes(key)) {
+                    option.classList.add('correct-option');
+                } else if (input.checked && !question.correctKeys.includes(key)) {
+                    option.classList.add('incorrect-option');
+                }
+            } else {
+                // Radio - bitta javob
+                if (key === question.correctKey) {
+                    option.classList.add('correct-option');
+                } else if (input.checked && key !== question.correctKey) {
+                    option.classList.add('incorrect-option');
+                }
+            }
+            
+            // Inputni o'chirish
+            if (input) input.disabled = true;
+        });
+        
+        // To'g'ri javobni ko'rsatish
+        if (!isCorrect && correctAnswerText) {
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.className = 'answer-feedback';
+            feedbackDiv.innerHTML = `<p>${correctAnswerText}</p>`;
+            document.querySelector('.options-container').appendChild(feedbackDiv);
+        }
+    } else if (question.statements) {
+        // True/False bayonotlari
+        document.querySelectorAll('.statement').forEach((statement, index) => {
+            const correctAnswer = question.statements[index].answer;
+            const trueLabel = statement.querySelector('.true-false-label:first-child');
+            const falseLabel = statement.querySelector('.true-false-label:last-child');
+            
+            if (correctAnswer === 'True') {
+                trueLabel.classList.add('correct-tf');
+                if (userAnswers[currentQuestionIndex][index] === 'False') {
+                    falseLabel.classList.add('incorrect-tf');
+                }
+            } else {
+                falseLabel.classList.add('correct-tf');
+                if (userAnswers[currentQuestionIndex][index] === 'True') {
+                    trueLabel.classList.add('incorrect-tf');
+                }
+            }
+            
+            // Radio buttonlarni o'chirish
+            statement.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.disabled = true;
+            });
+        });
     }
 }
 
-function nextQuestion() {
-    if (currentQuestionIndex < currentQuestions.length - 1) {
-        currentQuestionIndex++;
-        renderQuestion();
-        updateProgress();
-    }
-}
-
-function prevQuestion() {
+// Oldingi savolga o'tish
+function goToPreviousQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
-        renderQuestion();
-        updateProgress();
+        displayQuestion(currentQuestionIndex);
     }
 }
 
-function updateProgress() {
-    const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
-    document.getElementById('progress-bar').style.width = progress + '%';
-}
-
-function updateScore() {
-    const maxPossible = currentQuestions.length * 10;
-    document.getElementById('current-score').textContent = currentScore;
-    document.getElementById('max-possible-score').textContent = maxPossible;
-}
-
-function checkAnswer() {
-    const question = currentQuestions[currentQuestionIndex];
-    if (!question) return;
-
-    const userAnswer = userAnswers[currentQuestionIndex];
-    if (!userAnswer || (Array.isArray(userAnswer) && userAnswer.length === 0) || 
-        (typeof userAnswer === 'object' && Object.keys(userAnswer).length === 0)) {
-        alert('Iltimos, javobni tanlang!');
-        return;
-    }
-
-    const isCorrect = checkAnswerCorrect(question, userAnswer);
-    checkedAnswers[currentQuestionIndex] = true;
-
-    if (isCorrect) {
-        currentScore += question.score || 10;
-    }
-
-    updateScore();
-    showAnswerFeedback(question, isCorrect);
-    updateNavigationButtons();
-    highlightCorrectAnswers(question, isCorrect);
-}
-
-function checkAnswerCorrect(question, userAnswer) {
-    switch (question.type) {
-        case 'single':
-            if (userAnswer && Array.isArray(userAnswer) && userAnswer.length === 1) {
-                return JSON.stringify(userAnswer.sort()) === JSON.stringify(question.correctAnswer.sort());
-            }
-            return false;
-
-        case 'multiple':
-            if (userAnswer && Array.isArray(userAnswer)) {
-                return JSON.stringify(userAnswer.sort()) === JSON.stringify(question.correctAnswer.sort());
-            }
-            return false;
-
-        case 'image-hotspot':
-            if (userAnswer && userAnswer.correct) {
-                return true;
-            }
-            return false;
-
-        case 'true-false-list':
-            if (userAnswer && typeof userAnswer === 'object') {
-                let allCorrect = true;
-                question.items.forEach((item, itemIndex) => {
-                    if (userAnswer[itemIndex] !== item.correct) {
-                        allCorrect = false;
-                    }
-                });
-                const allAnswered = question.items.every((item, itemIndex) => userAnswer.hasOwnProperty(itemIndex));
-                return allCorrect && allAnswered;
-            }
-            return false;
-
-        default:
-            return false;
-    }
-}
-
-function showAnswerFeedback(question, isCorrect = null) {
-    const feedbackDiv = document.getElementById('answer-feedback');
-    const feedbackIcon = document.getElementById('feedback-icon');
-    const feedbackText = document.getElementById('feedback-text');
-
-    if (isCorrect === null) {
-        // If already checked, determine correctness
-        isCorrect = checkAnswerCorrect(question, userAnswers[currentQuestionIndex]);
-    }
-
-    feedbackDiv.classList.remove('hidden');
-    feedbackDiv.classList.remove('correct', 'incorrect');
-    feedbackDiv.classList.add(isCorrect ? 'correct' : 'incorrect');
-
-    if (isCorrect) {
-        feedbackIcon.textContent = '✓';
-        feedbackIcon.className = 'feedback-icon correct-icon';
-        feedbackText.textContent = 'To\'g\'ri! +' + (question.score || 10) + ' ball';
+// Keyingi savolga o'tish
+function goToNextQuestion() {
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        displayQuestion(currentQuestionIndex);
     } else {
-        feedbackIcon.textContent = '✗';
-        feedbackIcon.className = 'feedback-icon incorrect-icon';
-        feedbackText.textContent = 'Noto\'g\'ri! 0 ball';
+        // Oxirgi savol - testni tugatish
+        endTest();
     }
 }
 
-function highlightCorrectAnswers(question, isCorrect) {
-    switch (question.type) {
-        case 'single':
-            const singleOptions = document.querySelectorAll('#single-options .option-item');
-            singleOptions.forEach((item, index) => {
-                const radio = item.querySelector('input[type="radio"]');
-                if (question.correctAnswer.includes(index)) {
-                    item.classList.add('correct-answer');
-                }
-                if (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].includes(index) && !isCorrect) {
-                    item.classList.add('wrong-answer');
-                }
-            });
-            break;
-
-        case 'multiple':
-            const multipleOptions = document.querySelectorAll('#multiple-options .option-item');
-            multipleOptions.forEach((item, index) => {
-                const checkbox = item.querySelector('input[type="checkbox"]');
-                if (question.correctAnswer.includes(index)) {
-                    item.classList.add('correct-answer');
-                }
-                if (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].includes(index) && !question.correctAnswer.includes(index)) {
-                    item.classList.add('wrong-answer');
-                }
-            });
-            break;
-
-        case 'true-false-list':
-            const trueFalseItems = document.querySelectorAll('#true-false-items .true-false-item');
-            trueFalseItems.forEach((item, index) => {
-                const correctAnswer = question.items[index].correct;
-                const userAnswer = userAnswers[currentQuestionIndex][index];
-                
-                if (correctAnswer === userAnswer) {
-                    item.classList.add('correct-answer');
-                } else {
-                    item.classList.add('wrong-answer');
-                    // Show correct answer
-                    const buttons = item.querySelectorAll('.true-false-btn');
-                    buttons.forEach(btn => {
-                        if ((btn.classList.contains('true') && correctAnswer === true) ||
-                            (btn.classList.contains('false') && correctAnswer === false)) {
-                            btn.classList.add('show-correct');
-                        }
-                    });
-                }
-            });
-            break;
-    }
+// Testni tugatish
+function endTest() {
+    clearInterval(timerInterval);
+    
+    testInterface.style.display = 'none';
+    resultPage.style.display = 'block';
+    
+    // Natijalarni hisoblash
+    const correctCount = Math.floor(userScore / 10);
+    const incorrectCount = questions.length - correctCount;
+    const percentage = Math.round((userScore / MAX_SCORE) * 100);
+    
+    // Natijalarni ko'rsatish
+    document.getElementById('finalScore').textContent = userScore;
+    document.getElementById('resultTotalQuestions').textContent = questions.length;
+    document.getElementById('resultCorrectAnswers').textContent = correctCount;
+    document.getElementById('resultIncorrectAnswers').textContent = incorrectCount;
+    document.getElementById('resultPercentage').textContent = `${percentage}%`;
+    document.getElementById('resultTimeTaken').textContent = timerElement.textContent;
+    
+    // Ball aylanasi
+    const scoreCircle = document.querySelector('.score-circle');
+    const percentageForCircle = Math.min(percentage, 100);
+    scoreCircle.style.background = `conic-gradient(#2a5298 0% ${percentageForCircle}%, #e0e0e0 ${percentageForCircle}% 100%)`;
 }
 
-function finishTest() {
-    const results = calculateResults();
-    showResults(results);
-}
-
-function calculateResults() {
-    let correctCount = 0;
-    let totalScore = 0;
-    const maxScore = currentQuestions.length * 10;
-
-    currentQuestions.forEach((question, index) => {
-        const userAnswer = userAnswers[index];
-        let isCorrect = false;
-
-        switch (question.type) {
-            case 'single':
-                if (userAnswer && Array.isArray(userAnswer) && userAnswer.length === 1) {
-                    isCorrect = JSON.stringify(userAnswer.sort()) === JSON.stringify(question.correctAnswer.sort());
-                }
-                break;
-
-            case 'multiple':
-                if (userAnswer && Array.isArray(userAnswer)) {
-                    isCorrect = JSON.stringify(userAnswer.sort()) === JSON.stringify(question.correctAnswer.sort());
-                }
-                break;
-
-            case 'image-hotspot':
-                if (userAnswer && userAnswer.correct) {
-                    isCorrect = true;
-                }
-                break;
-
-            case 'true-false-list':
-                if (userAnswer && typeof userAnswer === 'object') {
-                    let allCorrect = true;
-                    question.items.forEach((item, itemIndex) => {
-                        if (userAnswer[itemIndex] !== item.correct) {
-                            allCorrect = false;
-                        }
-                    });
-                    // Check if all items have answers
-                    const allAnswered = question.items.every((item, itemIndex) => userAnswer.hasOwnProperty(itemIndex));
-                    isCorrect = allCorrect && allAnswered;
-                }
-                break;
-        }
-
-        if (isCorrect) {
-            correctCount++;
-            totalScore += question.score || 10;
-        }
-    });
-
-    return {
-        score: totalScore,
-        maxScore: maxScore,
-        correctCount: correctCount,
-        incorrectCount: currentQuestions.length - correctCount,
-        totalQuestions: currentQuestions.length,
-        percentage: Math.round((totalScore / maxScore) * 100)
-    };
-}
-
-function showResults(results) {
-    showPage('results-page');
-
-    // Update level badge
-    document.getElementById('results-level-name').textContent = currentLevel;
-
-    // Update score
-    document.getElementById('score-value').textContent = results.score;
-    document.getElementById('max-score').textContent = results.maxScore;
-    document.getElementById('score-percent').textContent = results.percentage + '%';
-
-    // Update stats
-    document.getElementById('correct-count').textContent = results.correctCount;
-    document.getElementById('incorrect-count').textContent = results.incorrectCount;
-    document.getElementById('total-count').textContent = results.totalQuestions;
-
-    // Update circular progress
-    const circumference = 2 * Math.PI * 90;
-    const offset = circumference - (results.percentage / 100) * circumference;
-    const scoreCircle = document.getElementById('score-circle');
-    scoreCircle.style.strokeDashoffset = offset;
-}
-
+// Testni qayta boshlash
 function restartTest() {
-    startTest(currentLevel);
-}
-
-function goHome() {
-    showPage('home-page');
-    currentLevel = null;
-    currentQuestions = [];
     currentQuestionIndex = 0;
-    userAnswers = [];
-    testStarted = false;
+    userScore = 0;
+    userAnswers = new Array(questions.length).fill(null);
+    timeLeft = 2700;
+    
+    currentScoreElement.textContent = '0';
+    resultPage.style.display = 'none';
+    testInterface.style.display = 'block';
+    
+    startTimer();
+    displayQuestion(currentQuestionIndex);
 }
 
+// Chiqish
+function logout() {
+    currentQuestionIndex = 0;
+    userScore = 0;
+    userAnswers = new Array(questions.length).fill(null);
+    timeLeft = 2700;
+    
+    clearInterval(timerInterval);
+    
+    loginPage.style.display = 'flex';
+    testInterface.style.display = 'none';
+    resultPage.style.display = 'none';
+    
+    loginForm.reset();
+    loginError.style.display = 'none';
+}
+
+// Himoya funksiyalari
+document.addEventListener('contextmenu', function(e) {
+    if (testStarted) {
+        e.preventDefault();
+        alert('Copying test content is prohibited.');
+        return false;
+    }
+});
+
+document.addEventListener('selectstart', function(e) {
+    if (testStarted) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (testStarted) {
+        if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'a' || e.key === 'x')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+    }
+});
+
+window.addEventListener('beforeunload', function(e) {
+    if (testStarted) {
+        e.preventDefault();
+        e.returnValue = 'Test is in progress. Are you sure you want to leave?';
+    }
+});

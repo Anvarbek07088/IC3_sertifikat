@@ -1,174 +1,201 @@
 <!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IC3 Test Tizimi</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Home Page -->
-    <div id="home-page" class="page active">
-        <div class="container">
-            <header>
-                <h1>IC3 Test Tizimi</h1>
-                <p class="subtitle">3 darajali test tizimi</p>
-            </header>
-            
-            <div class="info-section">
-                <h2>Test haqida</h2>
-                <p>Bu test tizimi 3 ta asosiy darajadan iborat. Har bir darajada turli xil savollar mavjud bo'lib, sizning bilimingizni tekshiradi.</p>
-                <ul class="info-list">
-                    <li>Har bir savol 10 ballga baholanadi</li>
-                    <li>To'g'ri javoblar soni bo'yicha ball to'planadi</li>
-                    <li>Test yakunida batafsil natija ko'rsatiladi</li>
-                </ul>
-            </div>
-
-            <div class="levels-section">
-                <h2>Test darajalarini tanlang</h2>
-                <div class="levels-grid">
-                    <button class="level-btn" data-level="Computing Fundamentals">
-                        <div class="level-icon">💻</div>
-                        <div class="level-title">Computing Fundamentals</div>
-                        <div class="level-desc">Asosiy kompyuter bilimlari</div>
-                    </button>
-                    <button class="level-btn" data-level="Key Applications">
-                        <div class="level-icon">📱</div>
-                        <div class="level-title">Key Applications</div>
-                        <div class="level-desc">Asosiy dasturlar</div>
-                    </button>
-                    <button class="level-btn" data-level="Living Online">
-                        <div class="level-icon">🌐</div>
-                        <div class="level-title">Living Online</div>
-                        <div class="level-desc">Internet va onlayn hayot</div>
-                    </button>
-                </div>
-            </div>
-        </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IC3 Digital Literacy Certification - Module 1</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+      <div class="login-box">
+        <h2 class="login-title">
+          <i class="fas fa-lock"></i> IC3 Certification Login
+        </h2>
+        <form id="loginForm" class="login-form">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" class="login-btn">Login to Start Test</button>
+          <div class="login-error" id="loginError">
+            Invalid username or password. Please try again.
+          </div>
+          <div
+            style="
+              margin-top: 20px;
+              font-size: 14px;
+              color: #666;
+              text-align: center;
+            "
+          >
+            <p>
+              Use username: <strong>ic3student</strong> and password:
+              <strong>digital2023</strong>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <!-- Test Page -->
-    <div id="test-page" class="page">
-        <div class="container">
-            <div class="test-header">
-                <div class="test-info">
-                    <h2 id="current-level-name"></h2>
-                    <div class="progress-info">
-                        <span id="current-question-num">1</span> / <span id="total-questions">0</span>
-                    </div>
-                    <div class="score-display">
-                        <span class="score-label">Ball:</span>
-                        <span id="current-score">0</span> / <span id="max-possible-score">0</span>
-                    </div>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
+    <!-- Test Interface (Initially Hidden) -->
+    <div id="testInterface" style="display: none">
+      <header>
+        <div class="container header-content">
+          <div class="logo">
+            <i class="fas fa-laptop-code"></i>
+            <h1>IC3 Digital Literacy - Module 1</h1>
+          </div>
+          <div class="user-info">
+            <div class="score-display">
+              Score: <span id="currentScore">0</span> / 840
             </div>
-
-            <div class="question-container">
-                <div class="question-header">
-                    <h3 id="question-text"></h3>
-                    <p id="question-text-uz" class="question-uz"></p>
-                </div>
-
-                <!-- Single Choice -->
-                <div id="single-choice-container" class="answer-container hidden">
-                    <div class="options-list" id="single-options"></div>
-                </div>
-
-                <!-- Multiple Choice -->
-                <div id="multiple-choice-container" class="answer-container hidden">
-                    <div class="options-list" id="multiple-options"></div>
-                </div>
-
-                <!-- Image Hotspot -->
-                <div id="image-hotspot-container" class="answer-container hidden">
-                    <div class="image-wrapper">
-                        <img id="hotspot-image" src="" alt="Test image">
-                        <canvas id="hotspot-canvas"></canvas>
-                    </div>
-                    <p class="hotspot-hint">Rasm ustida to'g'ri joyga bosing</p>
-                </div>
-
-                <!-- True/False List -->
-                <div id="true-false-container" class="answer-container hidden">
-                    <div class="true-false-list" id="true-false-items"></div>
-                </div>
-
-                <!-- Answer Feedback -->
-                <div id="answer-feedback" class="answer-feedback hidden">
-                    <div class="feedback-content">
-                        <div class="feedback-icon" id="feedback-icon"></div>
-                        <div class="feedback-text" id="feedback-text"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="test-navigation">
-                <button id="prev-btn" class="btn btn-secondary hidden">Oldingi</button>
-                <button id="check-answer-btn" class="btn btn-primary">Javobni tekshirish</button>
-                <button id="next-btn" class="btn btn-primary hidden">Keyingi savol</button>
-                <button id="finish-btn" class="btn btn-success hidden">Testni yakunlash</button>
-            </div>
+            <button class="logout-btn" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
         </div>
+      </header>
+
+      <div class="container main-content">
+        <div class="test-info">
+          <div class="question-counter">
+            <div>
+              Question <span id="currentQuestion">1</span> of
+              <span id="totalQuestions">84</span>
+            </div>
+            <div>Time: <span id="timer">45:00</span></div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+          </div>
+          <p>
+            Read each question carefully and select the best answer. Each
+            question is worth 10 points.
+          </p>
+        </div>
+
+        <div class="question-container" id="questionContainer">
+          <!-- Question will be dynamically inserted here -->
+        </div>
+
+        <div class="button-container">
+          <button class="btn btn-secondary" id="prevBtn" disabled>
+            <i class="fas fa-arrow-left"></i> Previous
+          </button>
+          <button class="btn btn-primary" id="checkAnswerBtn">
+            Check Answer <i class="fas fa-check"></i>
+          </button>
+          <button class="btn btn-primary" id="nextBtn">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        <div class="container footer-content">
+          <div class="copyright">
+            &copy; 2023 IC3 Digital Literacy Certification. All rights reserved.
+          </div>
+          <div class="security-notice">
+            <i class="fas fa-shield-alt"></i> Copying test content is prohibited
+            and violates certification policies.
+          </div>
+        </div>
+      </footer>
     </div>
 
-    <!-- Results Page -->
-    <div id="results-page" class="page">
-        <div class="container">
-            <div class="results-header">
-                <h1>Test natijalari</h1>
-                <div class="level-badge" id="results-level-name"></div>
-            </div>
-
-            <div class="results-content">
-                <div class="score-circle">
-                    <svg class="score-svg" viewBox="0 0 200 200">
-                        <circle class="score-bg" cx="100" cy="100" r="90"></circle>
-                        <circle class="score-progress" cx="100" cy="100" r="90" id="score-circle"></circle>
-                    </svg>
-                    <div class="score-text">
-                        <div class="score-value" id="score-value">0</div>
-                        <div class="score-max">/ <span id="max-score">0</span></div>
-                        <div class="score-percent" id="score-percent">0%</div>
-                    </div>
-                </div>
-
-                <div class="results-stats">
-                    <div class="stat-card correct">
-                        <div class="stat-icon">✓</div>
-                        <div class="stat-info">
-                            <div class="stat-label">To'g'ri javoblar</div>
-                            <div class="stat-value" id="correct-count">0</div>
-                        </div>
-                    </div>
-                    <div class="stat-card incorrect">
-                        <div class="stat-icon">✗</div>
-                        <div class="stat-info">
-                            <div class="stat-label">Noto'g'ri javoblar</div>
-                            <div class="stat-value" id="incorrect-count">0</div>
-                        </div>
-                    </div>
-                    <div class="stat-card total">
-                        <div class="stat-icon">📊</div>
-                        <div class="stat-info">
-                            <div class="stat-label">Jami savollar</div>
-                            <div class="stat-value" id="total-count">0</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="results-actions">
-                <button id="restart-btn" class="btn btn-primary">Qayta topshirish</button>
-                <button id="home-btn" class="btn btn-secondary">Bosh sahifaga qaytish</button>
-            </div>
+    <!-- Result Page (Initially Hidden) -->
+    <div id="resultPage" style="display: none">
+      <header>
+        <div class="container header-content">
+          <div class="logo">
+            <i class="fas fa-trophy"></i>
+            <h1>Test Results - IC3 Digital Literacy</h1>
+          </div>
+          <button class="logout-btn" id="resultLogoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
         </div>
+      </header>
+
+      <div class="container">
+        <div class="result-container">
+          <div class="result-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h2 class="result-title">Test Completed!</h2>
+
+          <div class="score-circle">
+            <div class="score-circle-inner">
+              <div class="score-value" id="finalScore">0</div>
+              <div class="score-total">/ 840</div>
+            </div>
+          </div>
+
+          <div class="result-details">
+            <h3>Your Performance</h3>
+            <div class="detail-item">
+              <span>Total Questions:</span>
+              <span id="resultTotalQuestions">84</span>
+            </div>
+            <div class="detail-item">
+              <span>Correct Answers:</span>
+              <span id="resultCorrectAnswers">0</span>
+            </div>
+            <div class="detail-item">
+              <span>Incorrect Answers:</span>
+              <span id="resultIncorrectAnswers">0</span>
+            </div>
+            <div class="detail-item">
+              <span>Score Percentage:</span>
+              <span id="resultPercentage">0%</span>
+            </div>
+            <div class="detail-item">
+              <span>Time Taken:</span>
+              <span id="resultTimeTaken">45:00</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary restart-btn" id="restartBtn">
+            <i class="fas fa-redo"></i> Restart Test
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        <div class="container footer-content">
+          <div class="copyright">
+            &copy; 2023 IC3 Digital Literacy Certification. All rights reserved.
+          </div>
+          <div class="security-notice">
+            <i class="fas fa-shield-alt"></i> Copying test content is prohibited
+            and violates certification policies.
+          </div>
+        </div>
+      </footer>
     </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
