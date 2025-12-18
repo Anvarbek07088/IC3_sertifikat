@@ -50,7 +50,7 @@
           >
             <p>
               Use username: <strong>ic3student</strong> and password:
-              <strong>digital2023</strong>
+              <strong>admin123</strong>
             </p>
           </div>
         </form>
@@ -125,6 +125,7 @@
     </div>
 
     <!-- Result Page (Initially Hidden) -->
+    <!-- Result Page -->
     <div id="resultPage" style="display: none">
       <header>
         <div class="container header-content">
@@ -140,45 +141,79 @@
 
       <div class="container">
         <div class="result-container">
-          <div class="result-icon">
-            <i class="fas fa-medal"></i>
+          <div class="result-header">
+            <div class="result-icon">
+              <i class="fas fa-medal"></i>
+            </div>
+            <h2 class="result-title">Test Completed!</h2>
+            <p class="result-subtitle">Here are your results</p>
           </div>
-          <h2 class="result-title">Test Completed!</h2>
 
-          <div class="score-circle">
-            <div class="score-circle-inner">
-              <div class="score-value" id="finalScore">0</div>
-              <div class="score-total">/ 840</div>
+          <!-- Score Summary -->
+          <div class="score-summary">
+            <div class="score-circle">
+              <div class="score-circle-inner">
+                <div class="score-value" id="finalScore">0</div>
+                <div class="score-total">/ 840</div>
+              </div>
+            </div>
+
+            <div class="certificate-info">
+              <div class="certificate-status" id="certificateStatus">
+                <!-- Certificate status will be inserted here -->
+              </div>
             </div>
           </div>
 
+          <!-- Detailed Results -->
           <div class="result-details">
-            <h3>Your Performance</h3>
-            <div class="detail-item">
-              <span>Total Questions:</span>
-              <span id="resultTotalQuestions">84</span>
-            </div>
-            <div class="detail-item">
-              <span>Correct Answers:</span>
-              <span id="resultCorrectAnswers">0</span>
-            </div>
-            <div class="detail-item">
-              <span>Incorrect Answers:</span>
-              <span id="resultIncorrectAnswers">0</span>
-            </div>
-            <div class="detail-item">
-              <span>Score Percentage:</span>
-              <span id="resultPercentage">0%</span>
-            </div>
-            <div class="detail-item">
-              <span>Time Taken:</span>
-              <span id="resultTimeTaken">45:00</span>
+            <h3>Performance Summary</h3>
+            <div class="details-grid">
+              <div class="detail-item">
+                <span class="detail-label">Total Questions:</span>
+                <span class="detail-value" id="resultTotalQuestions">0</span>
+              </div>
+              <div class="detail-item correct">
+                <span class="detail-label">Correct Answers:</span>
+                <span class="detail-value" id="resultCorrectAnswers">0</span>
+              </div>
+              <div class="detail-item incorrect">
+                <span class="detail-label">Incorrect Answers:</span>
+                <span class="detail-value" id="resultIncorrectAnswers">0</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Score Percentage:</span>
+                <span class="detail-value percentage" id="resultPercentage"
+                  >0%</span
+                >
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Time Taken:</span>
+                <span class="detail-value" id="resultTimeTaken">00:00</span>
+              </div>
             </div>
           </div>
 
-          <button class="btn btn-primary restart-btn" id="restartBtn">
-            <i class="fas fa-redo"></i> Restart Test
-          </button>
+          <!-- Results Table -->
+          <div class="results-table-container">
+            <h3>Question-by-Question Results</h3>
+            <div id="resultsTable" class="results-table-wrapper">
+              <!-- Results table will be inserted here -->
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="result-actions">
+            <button class="btn btn-primary restart-btn" id="restartBtn">
+              <i class="fas fa-redo"></i> Restart Test
+            </button>
+            <button class="btn btn-secondary" id="printResultsBtn">
+              <i class="fas fa-print"></i> Print Results
+            </button>
+            <button class="btn btn-secondary" id="downloadResultsBtn">
+              <i class="fas fa-download"></i> Download Results
+            </button>
+          </div>
         </div>
       </div>
 
@@ -188,8 +223,7 @@
             &copy; 2023 IC3 Digital Literacy Certification. All rights reserved.
           </div>
           <div class="security-notice">
-            <i class="fas fa-shield-alt"></i> Copying test content is prohibited
-            and violates certification policies.
+            <i class="fas fa-shield-alt"></i> Test results are confidential.
           </div>
         </div>
       </footer>
