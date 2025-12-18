@@ -901,3 +901,207 @@ select:disabled {
 .option.selected .option-key {
     background-color: #2a5298;
 }
+
+/* Steps container */
+.steps-container {
+    margin-top: 20px;
+}
+
+.instruction {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.steps-list {
+    min-height: 300px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    margin-bottom: 15px;
+}
+
+/* Step item */
+.step {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: move;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.step:hover {
+    border-color: #2a5298;
+    box-shadow: 0 2px 8px rgba(42, 82, 152, 0.1);
+}
+
+.step.dragging {
+    opacity: 0.5;
+    transform: scale(1.02);
+    border-color: #2a5298;
+    background-color: #e3ecff;
+}
+
+.step.drag-over {
+    border-color: #2a5298;
+    border-style: dashed;
+    background-color: #f0f5ff;
+}
+
+/* Step handle */
+.step-handle {
+    margin-right: 10px;
+    color: #6c757d;
+    cursor: grab;
+    padding: 5px;
+}
+
+.step-handle:hover {
+    color: #2a5298;
+}
+
+.step-handle:active {
+    cursor: grabbing;
+}
+
+/* Step number */
+.step-number {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a5298;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+/* Step content */
+.step-content {
+    flex: 1;
+}
+
+.step-text {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Correct and incorrect steps */
+.step-correct {
+    border-color: #28a745 !important;
+    background-color: rgba(40, 167, 69, 0.05) !important;
+}
+
+.step-correct .step-number {
+    background-color: #28a745 !important;
+}
+
+.step-incorrect {
+    border-color: #dc3545 !important;
+    background-color: rgba(220, 53, 69, 0.05) !important;
+}
+
+.step-incorrect .step-number {
+    background-color: #dc3545 !important;
+}
+
+/* Correct position hint */
+.correct-position {
+    font-size: 12px;
+    color: #28a745;
+    margin-top: 5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    background-color: rgba(40, 167, 69, 0.1);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Steps actions */
+.steps-actions {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.steps-actions .btn {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+/* Steps feedback */
+.steps-feedback {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e3ecff;
+    border-radius: 8px;
+    border-left: 4px solid #2a5298;
+}
+
+.steps-feedback p {
+    margin: 0;
+    font-weight: 600;
+    color: #2a5298;
+}
+
+/* Correct order display */
+.correct-order {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    text-align: center;
+}
+
+/* Note text */
+.note-text {
+    font-style: italic;
+    color: #6c757d;
+    margin-top: 10px;
+    font-size: 14px;
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 4px solid #ffc107;
+}
+
+/* Answer feedback */
+.answer-feedback {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2a5298;
+}
+
+.answer-feedback p {
+    margin: 0;
+    font-weight: 600;
+    color: #2a5298;
+}
+
+/* Correct answer hint */
+.correct-answer-hint {
+    display: block;
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: rgba(40, 167, 69, 0.1);
+    border-radius: 4px;
+    border-left: 3px solid #28a745;
+}

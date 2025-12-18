@@ -1,3 +1,13 @@
+// Massivni tasodifiy tartiblash funksiyasi (Fisher-Yates algoritmi)
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
 // Dastur holati
 let currentQuestionIndex = 0;
 let userScore = 0;
@@ -70,11 +80,24 @@ function startTest() {
     testInterface.style.display = 'block';
     testStarted = true;
     
+    // Barcha savollarning variantlarini tasodifiy tartiblash
+    shuffleAllQuestions();
+    
     // Taymerni boshlash
     startTimer();
     
     // Birinchi savolni ko'rsatish
     displayQuestion(currentQuestionIndex);
+}
+
+// Barcha savollarning variantlarini tasodifiy tartiblash
+function shuffleAllQuestions() {
+    questions.forEach(question => {
+        if (question.options) {
+            // Har bir savol uchun alohida tasodifiy tartib yaratish
+            question.displayOptions = shuffleArray([...question.options]);
+        }
+    });
 }
 
 // Taymerni boshlash
@@ -125,6 +148,9 @@ function displayQuestion(index) {
     
     // Savol turiga qarab interfeys yaratish
     if (question.options) {
+        // Tasodifiy tartiblangan variantlardan foydalanish
+        const optionsToShow = question.displayOptions || shuffleArray([...question.options]);
+        
         // Ko'p tanlovli savol
         questionHTML += '<div class="options-container">';
         
@@ -133,7 +159,7 @@ function displayQuestion(index) {
         const inputType = isMultipleChoice ? 'checkbox' : 'radio';
         const inputName = isMultipleChoice ? `question_${index}` : `question_${index}_single`;
         
-        question.options.forEach(option => {
+        optionsToShow.forEach(option => {
             const isSelected = userAnswers[index] && userAnswers[index].includes(option.key);
             questionHTML += `
                 <div class="option">
@@ -199,7 +225,7 @@ function displayQuestion(index) {
         
         stepsToShow.forEach((step, i) => {
             questionHTML += `
-                <div class="step">
+                <div class="step" draggable="true">
                     <div class="step-number">${i + 1}</div>
                     <div class="step-text">${step}</div>
                 </div>
@@ -243,7 +269,10 @@ function displayQuestion(index) {
         // Moslashtirish savoli
         questionHTML += '<div class="matching-container">';
         if (question.matching && question.matching.items) {
-            question.matching.items.forEach((item, i) => {
+            // Moslashtirish elementlarini tasodifiy tartiblash
+            const shuffledItems = shuffleArray([...question.matching.items]);
+            
+            shuffledItems.forEach((item, i) => {
                 const userAnswer = userAnswers[index] ? userAnswers[index][i] : null;
                 questionHTML += `
                     <div class="matching-item">
@@ -251,7 +280,7 @@ function displayQuestion(index) {
                         <div class="matching-arrow">→</div>
                         <select class="matching-select" data-item-index="${i}">
                             <option value="">Select threat</option>
-                            ${question.matching.items.map(matchItem => 
+                            ${shuffledItems.map(matchItem => 
                                 `<option value="${matchItem.threat}" ${userAnswer === matchItem.threat ? 'selected' : ''}>${matchItem.threat}</option>`
                             ).join('')}
                         </select>
@@ -437,9 +466,22 @@ function setupDragAndDrop(questionIndex) {
                     this.parentNode.insertBefore(draggedStep, this);
                 }
                 
+                // Qadam raqamlarini yangilash
+                updateStepNumbers();
                 updateStepsOrder(questionIndex);
             }
         });
+    });
+}
+
+// Qadam raqamlarini yangilash
+function updateStepNumbers() {
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+        const stepNumber = step.querySelector('.step-number');
+        if (stepNumber) {
+            stepNumber.textContent = index + 1;
+        }
     });
 }
 
@@ -514,14 +556,15 @@ function checkAnswer() {
     
     // Savol turiga qarab tekshirish
     if (question.correctKey) {
-        // Bitta to'g'ri javob
+        // Bitta to'g'ri javob - variantlar tartibi o'zgargan bo'lsa ham
         isCorrect = userAnswer[0] === question.correctKey;
         correctAnswerText = `Correct answer: ${question.correctKey}`;
     } else if (question.correctKeys) {
-        // Bir nechta to'g'ri javoblar
+        // Bir nechta to'g'ri javoblar - variantlar tartibi o'zgargan bo'lsa ham
         if (userAnswer.length !== question.correctKeys.length) {
             isCorrect = false;
         } else {
+            // Tartib o'zgarganda ham to'g'ri tekshirish
             const sortedUserAnswers = [...userAnswer].sort();
             const sortedCorrectAnswers = [...question.correctKeys].sort();
             isCorrect = sortedUserAnswers.every((answer, index) => answer === sortedCorrectAnswers[index]);
@@ -592,14 +635,14 @@ function highlightAnswerFeedback(isCorrect, correctAnswerText) {
                 // Checkbox - bir nechta javob
                 if (question.correctKeys.includes(key)) {
                     option.classList.add('correct-option');
-                } else if (input.checked && !question.correctKeys.includes(key)) {
+                } else if (input && input.checked && !question.correctKeys.includes(key)) {
                     option.classList.add('incorrect-option');
                 }
             } else {
                 // Radio - bitta javob
                 if (key === question.correctKey) {
                     option.classList.add('correct-option');
-                } else if (input.checked && key !== question.correctKey) {
+                } else if (input && input.checked && key !== question.correctKey) {
                     option.classList.add('incorrect-option');
                 }
             }
@@ -638,6 +681,52 @@ function highlightAnswerFeedback(isCorrect, correctAnswerText) {
             statement.querySelectorAll('input[type="radio"]').forEach(radio => {
                 radio.disabled = true;
             });
+        });
+    } else if (question.fillInTheBlanks) {
+        // Bo'sh joylarni to'ldirish natijalari
+        document.querySelectorAll('.blank-select').forEach(select => {
+            const blankIndex = parseInt(select.getAttribute('data-blank-index'));
+            const optionIndex = parseInt(select.getAttribute('data-option-index'));
+            const correctAnswer = question.fillInTheBlanks[blankIndex].blanks[optionIndex].correct;
+            
+            if (select.value === correctAnswer) {
+                select.style.backgroundColor = '#d4edda';
+                select.style.borderColor = '#28a745';
+                select.style.color = '#155724';
+            } else {
+                select.style.backgroundColor = '#f8d7da';
+                select.style.borderColor = '#dc3545';
+                select.style.color = '#721c24';
+                
+                // To'g'ri javobni ko'rsatish
+                const correctOption = Array.from(select.options).find(opt => opt.value === correctAnswer);
+                if (correctOption) {
+                    select.insertAdjacentHTML('afterend', 
+                        `<small class="correct-answer-hint">Correct: ${correctAnswer}</small>`);
+                }
+            }
+            
+            select.disabled = true;
+        });
+    } else if (question.matching) {
+        // Moslashtirish natijalari
+        document.querySelectorAll('.matching-select').forEach(select => {
+            const itemIndex = parseInt(select.getAttribute('data-item-index'));
+            const correctAnswer = question.matching.items[itemIndex].threat;
+            
+            if (select.value === correctAnswer) {
+                select.style.backgroundColor = '#d4edda';
+                select.style.borderColor = '#28a745';
+            } else {
+                select.style.backgroundColor = '#f8d7da';
+                select.style.borderColor = '#dc3545';
+                
+                // To'g'ri javobni ko'rsatish
+                select.insertAdjacentHTML('afterend', 
+                    `<small class="correct-answer-hint">Correct match: ${correctAnswer}</small>`);
+            }
+            
+            select.disabled = true;
         });
     }
 }
@@ -698,6 +787,9 @@ function restartTest() {
     resultPage.style.display = 'none';
     testInterface.style.display = 'block';
     
+    // Yangi tasodifiy tartiblash
+    shuffleAllQuestions();
+    
     startTimer();
     displayQuestion(currentQuestionIndex);
 }
@@ -743,6 +835,11 @@ document.addEventListener('keydown', function(e) {
         }
         
         if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (e.key === 'PrintScreen') {
             e.preventDefault();
             return false;
         }
