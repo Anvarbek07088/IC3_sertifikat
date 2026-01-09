@@ -286,6 +286,11 @@ const questions = [
       "From the Format dialog box, click Start.",
     ],
     note: "There is more than one correct order. You will receive credit for any correct order.",
+    correctKeys:["Insert the flash drive into a USB port.",
+      "Open File Explorer.",
+      "Click This PC.",
+      "Right-click the USB disk icon, and then click Format.",
+      "From the Format dialog box, click Start.",]
   },
   {
     id: 18,

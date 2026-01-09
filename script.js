@@ -55,9 +55,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (
       username === VALID_CREDENTIALS.username &&
       password === VALID_CREDENTIALS.password
+
     ) {
       loginError.style.display = "none";
       startTest();
+
+      
     } else {
       loginError.style.display = "block";
     }
