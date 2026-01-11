@@ -275,24 +275,6 @@ const questions = [
     correctKeys: ["A", "C"],
   },
   {
-    id: 17,
-    question:
-      "You need to reformat a flash drive. In which order should you perform the actions?",
-    steps: [
-      "Insert the flash drive into a USB port.",
-      "Open File Explorer.",
-      "Click This PC.",
-      "Right-click the USB disk icon, and then click Format.",
-      "From the Format dialog box, click Start.",
-    ],
-    note: "There is more than one correct order. You will receive credit for any correct order.",
-    correctKeys:["Insert the flash drive into a USB port.",
-      "Open File Explorer.",
-      "Click This PC.",
-      "Right-click the USB disk icon, and then click Format.",
-      "From the Format dialog box, click Start.",]
-  },
-  {
     id: 18,
     question: "Which statement accurately describes online backups?",
     options: [
@@ -786,25 +768,7 @@ const questions = [
       },
     ],
   },
-  {
-    id: 45,
-    question: [
-      {
-        savol:
-          "What should you configure to add a button for Print Preview to the title bar?",
-      },
-      {
-        imgScr: "img/1.jpg",
-      },
-    ],
-    options: [
-      { key: "6", text: "Quick Access Toolbar" },
-      { key: "5", text: "Ribbon Display Options" },
-      { key: "4", text: "Customize Ribbon" },
-      { key: "3", text: "File > Options > Advanced" },
-    ],
-    correctKey: "6",
-  },
+  
   {
     id: 46,
     question:
@@ -1040,11 +1004,11 @@ const questions = [
         sentence:
           "In File Explorer, the _____ menu of a file provides the specific commands and can be accessed by _____ the file.",
         blanks: [
-          { options: ["context", "main", "view", "edit"], correct: "context" },
+          { options: [ "main","context", "view", "edit"], correct: "context" },
           {
             options: [
-              "right-clicking",
-              "double-clicking",
+              
+              "double-clicking","right-clicking",
               "dragging",
               "renaming",
             ],
@@ -1072,7 +1036,7 @@ const questions = [
       },
       {
         text: "Microsoft OneDrive is using 103 MB of cloud storage.",
-        answer: "True",
+        answer: "False",
       },
       {
         text: "Microsoft Office 365 was installed or updated on April 19, 2018.",
@@ -1103,18 +1067,6 @@ const questions = [
       },
     ],
     correctKeys: ["B", "E"],
-  },
-  {
-    id: 62,
-    question:
-      "You need to change the desktop background from a picture. The picture must use all the available space on the desktop. Which four actions should you perform in sequence?",
-    steps: [
-      "Right-click the desktop",
-      "Click 'Personalize' or 'Display settings'",
-      "Click 'Browse' to select a picture",
-      "Set 'Choose a fit' to 'Stretch' or 'Fill'",
-    ],
-    note: "There is more than one correct order. You will receive credit for any correct order.",
   },
   {
     id: 63,
@@ -1413,18 +1365,6 @@ const questions = [
       },
     ],
     correctKey: "C",
-  },
-  {
-    id: 81,
-    question:
-      "Move the appropriate tool from the list on the left to detect or prevent the threat on the right.",
-    matching: {
-      items: [
-        { tool: "Firewall", threat: "Hackers" },
-        { tool: "SSL Encryption", threat: "Credit card number theft" },
-        { tool: "Anti-Virus Software", threat: "Trojans" },
-      ],
-    },
   },
   {
     id: 82,
