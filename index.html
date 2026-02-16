@@ -1,236 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IC3 Digital Literacy Certification - Module 1</title>
+    <title>IC3 GS6 Level 1 Test Platform</title>
     <link rel="stylesheet" href="styles.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
   <body>
-    <!-- Login Page -->
-    <div id="loginPage" class="login-container">
-      <div class="login-box">
-        <h2 class="login-title">
-          <i class="fas fa-lock"></i> IC3 Certification Compyuting Fundamentals
-          Login
-        </h2>
-        <form id="loginForm" class="login-form">
-          <div class="input-group">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter your username"
-              required
-            />
-          </div>
-          <div class="input-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
-          <button type="submit" class="login-btn">Login to Start Test</button>
-          <div class="login-error" id="loginError">
-            Invalid username or password. Please try again.
-          </div>
-          <div
-            style="
-              margin-top: 20px;
-              font-size: 14px;
-              color: #666;
-              text-align: center;
-            "
-          >
-            <p>
-              Use username: <strong>*********</strong> and password:
-              <strong>********</strong>
-            </p>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Test Interface (Initially Hidden) -->
-    <div id="testInterface" style="display: none">
-      <header>
-        <div class="container header-content">
-          <div class="logo">
-            <i class="fas fa-laptop-code"></i>
-            <h1>IC3 Digital Literacy - Module 1 - Compyuting Fundamentals</h1>
-          </div>
-          <div class="user-info">
-            <div class="score-display">
-              Score: <span id="currentScore">0</span> / 840
+    <div id="app">
+      <!-- Login Section -->
+      <div id="login-section" class="section active">
+        <div class="container">
+          <div class="login-card">
+            <div class="logo">
+              <i class="fas fa-laptop-code"></i>
+              <h1>IC3 GS6 Level 1</h1>
             </div>
-            <button class="logout-btn" id="logoutBtn">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-          </div>
-        </div>
-      </header>
+            <p class="subtitle">Test Platformasiga Xush Kelibsiz</p>
 
-      <div class="container main-content">
-        <div class="test-info">
-          <div class="question-counter">
-            <div>
-              Question <span id="currentQuestion">1</span> of
-              <span id="totalQuestions">84</span>
-            </div>
-            <div>Time: <span id="timer">50:00</span></div>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" id="progressBar"></div>
-          </div>
-          <p>
-            Read each question carefully and select the best answer. Each
-            question is worth 10 points.
-          </p>
-        </div>
-
-        <div class="question-container" id="questionContainer">
-          <!-- Question will be dynamically inserted here -->
-        </div>
-
-        <div class="button-container">
-          <button class="btn btn-secondary" id="prevBtn" disabled>
-            <i class="fas fa-arrow-left"></i> Previous
-          </button>
-          <button class="btn btn-primary" id="checkAnswerBtn">
-            Check Answer <i class="fas fa-check"></i>
-          </button>
-          <button class="btn btn-primary" id="nextBtn">
-            Next <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <footer>
-        <div class="container footer-content">
-          <div class="copyright">
-            &copy; 2023 IC3 Digital Literacy Certification. All rights reserved.
-          </div>
-          <div class="security-notice">
-            <i class="fas fa-shield-alt"></i> Copying test content is prohibited
-            and violates certification policies.
-          </div>
-        </div>
-      </footer>
-    </div>
-
-    <!-- Result Page (Initially Hidden) -->
-    <!-- Result Page -->
-    <div id="resultPage" style="display: none">
-      <header>
-        <div class="container header-content">
-          <div class="logo">
-            <i class="fas fa-trophy"></i>
-            <h1>Test Results - IC3 Digital Literacy-Compyuting Fundamentals</h1>
-          </div>
-          <button class="logout-btn" id="resultLogoutBtn">
-            <i class="fas fa-sign-out-alt"></i> Logout
-          </button>
-        </div>
-      </header>
-
-      <div class="container">
-        <div class="result-container">
-          <div class="result-header">
-            <div class="result-icon">
-              <i class="fas fa-medal"></i>
-            </div>
-            <h2 class="result-title">Test Completed!</h2>
-            <p class="result-subtitle">Here are your results</p>
-          </div>
-
-          <!-- Score Summary -->
-          <div class="score-summary">
-            <div class="score-circle">
-              <div class="score-circle-inner">
-                <div class="score-value" id="finalScore">0</div>
-                <div class="score-total">/ 840</div>
-              </div>
+            <div class="device-info">
+              <i class="fas fa-info-circle"></i>
+              <span id="device-id-display">Qurilma ID aniqlanmoqda...</span>
             </div>
 
-            <div class="certificate-info">
-              <div class="certificate-status" id="certificateStatus">
-                <!-- Certificate status will be inserted here -->
+            <form id="login-form">
+              <div class="form-group">
+                <label for="username">
+                  <i class="fas fa-user"></i>
+                  Login
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Loginni kiriting"
+                  required
+                />
               </div>
-            </div>
-          </div>
 
-          <!-- Detailed Results -->
-          <div class="result-details">
-            <h3>Performance Summary</h3>
-            <div class="details-grid">
-              <div class="detail-item">
-                <span class="detail-label">Total Questions:</span>
-                <span class="detail-value" id="resultTotalQuestions">0</span>
+              <div class="form-group">
+                <label for="password">
+                  <i class="fas fa-lock"></i>
+                  Parol
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Parolni kiriting"
+                  required
+                />
               </div>
-              <div class="detail-item correct">
-                <span class="detail-label">Correct Answers:</span>
-                <span class="detail-value" id="resultCorrectAnswers">0</span>
-              </div>
-              <div class="detail-item incorrect">
-                <span class="detail-label">Incorrect Answers:</span>
-                <span class="detail-value" id="resultIncorrectAnswers">0</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Score Percentage:</span>
-                <span class="detail-value percentage" id="resultPercentage"
-                  >0%</span
-                >
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Time Taken:</span>
-                <span class="detail-value" id="resultTimeTaken">00:00</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Results Table -->
-          <div class="results-table-container">
-            <h3>Question-by-Question Results</h3>
-            <div id="resultsTable" class="results-table-wrapper">
-              <!-- Results table will be inserted here -->
-            </div>
-          </div>
+              <button type="submit" id="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Kirish
+              </button>
+            </form>
 
-          <!-- Action Buttons -->
-          <div class="result-actions">
-            <button class="btn btn-primary restart-btn" id="restartBtn">
-              <i class="fas fa-redo"></i> Restart Test
-            </button>
-            <button class="btn btn-secondary" id="printResultsBtn">
-              <i class="fas fa-print"></i> Print Results
-            </button>
-            <button class="btn btn-secondary" id="downloadResultsBtn">
-              <i class="fas fa-download"></i> Download Results
-            </button>
+            <div id="login-error" class="error-message"></div>
+
+            <div class="demo-credentials">
+              <p><i class="fas fa-info-circle"></i> Demo ma'lumotlar:</p>
+              <p>
+                Login: <strong>student</strong> | Parol: <strong>ic3gs6</strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <footer>
-        <div class="container footer-content">
-          <div class="copyright">
-            &copy; 2023 IC3 Digital Literacy Certification. All rights reserved.
+      <!-- Level Selection Section -->
+      <div id="level-section" class="section">
+        <div class="container">
+          <div class="header">
+            <h1><i class="fas fa-layer-group"></i> Test Levelini Tanlang</h1>
+            <button id="logout-btn" class="logout-btn">
+              <i class="fas fa-sign-out-alt"></i>
+              Chiqish
+            </button>
           </div>
-          <div class="security-notice">
-            <i class="fas fa-shield-alt"></i> Test results are confidential.
+
+          <div class="level-grid">
+            <div class="level-card" data-level="1">
+              <div class="level-icon level-1">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h2>Level 1</h2>
+              <p>Asosiy tushunchalar va xavfsizlik</p>
+              <ul class="level-features">
+                <li><i class="fas fa-check"></i> 20 ta savol</li>
+                <li><i class="fas fa-check"></i> Internet xavfsizligi</li>
+                <li><i class="fas fa-check"></i> Shaxsiy ma'lumotlar</li>
+              </ul>
+              <button class="start-level-btn" data-level="1">
+                <i class="fas fa-play"></i>
+                Boshlash
+              </button>
+            </div>
+
+            <div class="level-card" data-level="2">
+              <div class="level-icon level-2">
+                <i class="fas fa-print"></i>
+              </div>
+              <h2>Level 2</h2>
+              <p>Ilovalar va printerlar</p>
+              <ul class="level-features">
+                <li><i class="fas fa-check"></i> 15 ta savol</li>
+                <li><i class="fas fa-check"></i> Printer sozlamalari</li>
+                <li><i class="fas fa-check"></i> Ilova boshqaruvi</li>
+              </ul>
+              <button class="start-level-btn" data-level="2">
+                <i class="fas fa-play"></i>
+                Boshlash
+              </button>
+            </div>
+
+            <div class="level-card" data-level="3">
+              <div class="level-icon level-3">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <h2>Level 3</h2>
+              <p>Bulutli texnologiyalar</p>
+              <ul class="level-features">
+                <li><i class="fas fa-check"></i> 18 ta savol</li>
+                <li><i class="fas fa-check"></i> Cloud xizmatlar</li>
+                <li><i class="fas fa-check"></i> Ma'lumotlarni zaxiralash</li>
+              </ul>
+              <button class="start-level-btn" data-level="3">
+                <i class="fas fa-play"></i>
+                Boshlash
+              </button>
+            </div>
           </div>
         </div>
-      </footer>
+      </div>
+
+      <!-- Test Section -->
+      <div id="test-section" class="section">
+        <div class="container">
+          <div class="test-header">
+            <div class="level-indicator">
+              <h2 id="current-level-title">
+                Level <span id="level-number">1</span>
+              </h2>
+              <span id="question-category" class="question-category"></span>
+              <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+              </div>
+              <span id="question-counter">1/20</span>
+            </div>
+            <!-- <div class="level-indicator">
+              <h2 id="current-level-title">
+                Level <span id="level-number">1</span>
+              </h2>
+              <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+              </div>
+              
+            </div> -->
+            <button id="back-to-levels" class="back-btn">
+              <i class="fas fa-arrow-left"></i>
+              Levellarga qaytish
+            </button>
+          </div>
+
+          <div class="question-card">
+            <div id="question-type-icon" class="question-type">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <p id="question-text" class="question-text">Savol yuklanmoqda...</p>
+
+            <!-- Image container for image questions -->
+            <div
+              id="question-image"
+              class="question-image"
+              style="display: none"
+            >
+              <img src="" alt="Question image" />
+            </div>
+
+            <!-- Options container -->
+            <div id="options-container" class="options-container">
+              <!-- Options will be dynamically inserted here -->
+            </div>
+
+            <!-- Matching container -->
+            <div
+              id="matching-container"
+              class="matching-container"
+              style="display: none"
+            >
+              <div class="matching-column left-column"></div>
+              <div class="matching-column right-column"></div>
+            </div>
+
+            <!-- Ordering container -->
+            <div
+              id="ordering-container"
+              class="ordering-container"
+              style="display: none"
+            ></div>
+
+            <!-- Fill blank container -->
+            <div
+              id="fillblank-container"
+              class="fillblank-container"
+              style="display: none"
+            ></div>
+
+            <!-- <div id="feedback-message" class="feedback-message"></div> -->
+
+            <div class="navigation-buttons">
+              <button id="prev-btn" class="nav-btn" disabled>
+                <i class="fas fa-arrow-left"></i>
+                Oldingi
+              </button>
+              <button id="check-btn" class="check-btn" disabled>
+                <i class="fas fa-check"></i>
+                Javobni tekshirish
+              </button>
+              <button id="next-btn" class="nav-btn" disabled>
+                Keyingi
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
