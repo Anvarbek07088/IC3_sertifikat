@@ -16,7 +16,7 @@
     "chrome-windows-001",
     "firefox-mac-002",
     "device_1765658529081_fgn1uvpnj",
-    "device-103fafd",
+    "device-103fafd","device-9fb74da"
   ];
 
   const VALID_CREDENTIALS = {
