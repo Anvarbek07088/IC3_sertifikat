@@ -1,7 +1,7 @@
 // script.js - IC3 GS6 Test Platformasi asosiy dastur kodi
 
 // ==================== XAVFSIZLIK MODULI ====================
-
+// import { questions } from "questions";
 class SecurityManager {
   constructor() {
     this.authorizedDevices = [

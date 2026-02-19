@@ -1,5 +1,5 @@
 // Test.js - IC3 GS6 Test Platformasi uchun savol turlarini boshqarish moduli
-
+// import { questions } from "questions";
 class TestManager {
     constructor() {
         this.currentQuestion = null;
