@@ -106,6 +106,7 @@ const questions = {
       id: 61,
       type: 3,
       question: "For each statement about copyright, select True or False.",
+    //   img:"./img/e4.jpg",
       statements: [
         "Work must be registered with the copyright office to be protected by copyright",
         "Copyright laws protect the right to reproduce the copyrighted work",
@@ -405,6 +406,7 @@ const questions = {
       type: 5,
       question:
         "Move each computer hardware element from the list on the left to the corresponding image on the right.",
+        img:"./img/e9.jpg",
       items: [
         "Motherboard",
         "Solid-state drive (SSD)",
@@ -442,6 +444,7 @@ const questions = {
       type: 5,
       question:
         "Move each cable from the list on the left to the best connection on the right.",
+        img:"img/e10.jpg",
       items: ["Lightning", "USB-C", "USB A", "Micro USB"],
       targets: ["USB A", "USB-C", "Lightning", "Micro USB"],
       correct: {
@@ -871,7 +874,8 @@ const questions = {
       type: 3,
       question:
         "Refer to the image. For each statement, select Yes if the hardware component matches the description or No if it does not.",
-      statements: [
+      img:"img/e3.jpg",
+        statements: [
         "Image A is a Solid State Drive (SSD).",
         "Image B is memory.",
         "Image C is a Central Processing Unit (CPU).",
@@ -939,7 +943,8 @@ const questions = {
       type: 3,
       question:
         "Refer to the image. For each statement, select Yes if the type of USB matches the image or No if it does not.",
-      statements: [
+      img:"img/abcde.jpg",
+        statements: [
         "Image A is a USB-C typically used on newer devices.",
         "Image B is a Micro USB typically used on phones, headphones, Bluetooth devices, and power banks.",
         "Image C is a Firewire connector used with iPhones.",
@@ -1120,8 +1125,14 @@ const questions = {
       type: 1,
       question:
         "You are editing a document that you previously wrote. Now you want to save your changes. Click on the feature that will save the changes you made to this document.",
-      note: "The correct feature is the 'Save' icon (floppy disk) or 'Save' button in the toolbar (typically in the top-left or quick access toolbar in Microsoft Word).",
-      correct: "Save icon/button",
+      img:"img/e7.jpg",
+         options: [
+        "1",
+        "2",
+        "3",
+        "4",
+      ],
+      correct: "3",
     },
     {
       id: 14,
@@ -1175,8 +1186,14 @@ const questions = {
       type: 1,
       question:
         "You suspect that your favorite password has been compromised on one of your social media sites. You use the same password on multiple sites, including your banking site, so you want to reset your password. Click on the feature that will allow you to reset your password.",
-      note: "The correct feature is the 'Forgot Password' or 'Reset Password' link/button on the login page.",
-      correct: "Forgot Password / Reset Password link",
+      img:"img/e5.jpg",
+         options: [
+        "1",
+        "2",
+        "3",
+        "4",
+      ],
+      correct: "3",
     },
     {
       id: 9,
