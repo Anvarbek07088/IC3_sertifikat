@@ -9,9 +9,10 @@ class SecurityManager {
     this.authorizedDevices = [
       "DEV-2B993BDD",
       "DEV-9F8D1980",
-      "DEV-003",
-      "DEV-004",
-      "DEV-005",
+      "DEV-7B01FD17",
+      "DEV-96C81FA7",
+      "DEV-9238A357",
+       "DEV-D6D235C3",
     ];
     this.currentDevice = this.getPermanentDeviceId();
     this.devtoolsOpen = false;
