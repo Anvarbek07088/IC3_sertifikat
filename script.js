@@ -12,6 +12,7 @@ class SecurityManager {
       "Device-768537",
       "Device-885750",
       "Device-209982",
+      "Device-447536",
     ];
     this.currentDevice = this.generateDeviceId();
     this.devtoolsOpen = false;
