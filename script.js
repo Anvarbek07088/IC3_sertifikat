@@ -4,7 +4,7 @@
 
 class SecurityManager {
     constructor() {
-        this.authorizedDevices = ['Device-001', 'Device-002', 'Device-003',"Device-209982","Device-768537"];
+        this.authorizedDevices = ['Device-132545', 'Device-191277', 'Device-166446',"Device-194764","Device-768537",'Device-885750'];
         this.currentDevice = this.generateDeviceId();
         this.devtoolsOpen = false;
         this.init();
