@@ -8,7 +8,7 @@ class SecurityManager {
   constructor() {
     this.authorizedDevices = [
       "DEV-2B993BDD",
-      "DEV-002",
+      "DEV-9F8D1980",
       "DEV-003",
       "DEV-004",
       "DEV-005",
