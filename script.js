@@ -2,81 +2,194 @@
 
 // ==================== XAVFSIZLIK MODULI ====================
 // import { questions } from "questions";
+// ==================== SECURITY MANAGER - DOIMIY DEVICE ID ====================
+
 class SecurityManager {
   constructor() {
     this.authorizedDevices = [
-      "Device-132545",
-      "Device-191277",
-      "Device-166446",
-      "Device-194764",
-      "Device-768537",
-      "Device-885750",
-      "Device-209982",
-      "Device-447536",
-      "Device-606639",
+      "DEV-2B993BDD",
+      "DEV-002",
+      "DEV-003",
+      "DEV-004",
+      "DEV-005",
     ];
-    this.currentDevice = this.generateDeviceId();
+    this.currentDevice = this.getPermanentDeviceId();
     this.devtoolsOpen = false;
     this.init();
+
+    console.log("📱 Device ID:", this.currentDevice);
   }
 
-  generateDeviceId() {
-    // Generate a simple device ID
-    const navigatorInfo =
-      navigator.userAgent +
-      navigator.language +
-      screen.width +
-      "x" +
-      screen.height;
-    let hash = 0;
-    for (let i = 0; i < navigatorInfo.length; i++) {
-      hash = (hash << 5) - hash + navigatorInfo.charCodeAt(i);
-      hash |= 0; // Convert to 32bit integer
+  /**
+   * DOIMIY, O'ZGARMAYDIGAN DEVICE ID yaratish
+   * Brauzerni o'chirib yoqsangiz ham, localStorage tozalanmasa ham o'zgarmaydi
+   */
+  getPermanentDeviceId() {
+    // 1. localStorage dan tekshirish
+    let deviceId = localStorage.getItem("permanent_device_id");
+
+    if (deviceId) {
+      console.log("✅ Device ID localStorage dan topildi:", deviceId);
+      return deviceId;
     }
-    return "Device-" + Math.abs(hash).toString().substring(0, 6);
+
+    // 2. cookie dan tekshirish (backup)
+    deviceId = this.getCookie("permanent_device_id");
+    if (deviceId) {
+      console.log("✅ Device ID cookie dan topildi:", deviceId);
+      localStorage.setItem("permanent_device_id", deviceId); // localStorage ga qayta yozish
+      return deviceId;
+    }
+
+    // 3. Yangi DOIMIY ID yaratish (brauzer fingerprint asosida)
+    deviceId = this.generatePermanentDeviceId();
+
+    // 4. localStorage va cookie ga saqlash (abadiy)
+    localStorage.setItem("permanent_device_id", deviceId);
+    this.setCookie("permanent_device_id", deviceId, 365 * 10); // 10 yil amal qiladi
+
+    console.log("🆕 Yangi Device ID yaratildi:", deviceId);
+    return deviceId;
   }
+
+  /**
+   * BRAUZER FINGERPRINT asosida DOIMIY ID yaratish
+   * Bu ID brauzer va qurilma ma'lumotlariga asoslanadi
+   */
+  generatePermanentDeviceId() {
+    // Barqaror (o'zgarmas) ma'lumotlarni yig'ish
+    const fingerprint = [
+      navigator.userAgent, // Brauzer ma'lumoti
+      navigator.language, // Til
+      screen.width + "x" + screen.height, // Ekran o'lchami
+      screen.colorDepth, // Rang chuqurligi
+      navigator.platform, // Platforma (Windows, Mac, Linux)
+      navigator.hardwareConcurrency || "unknown", // CPU yadrolari soni
+      navigator.deviceMemory || "unknown", // RAM (agar mavjud bo'lsa)
+      new Date().getTimezoneOffset(), // Vaqt mintaqasi
+      Intl.DateTimeFormat().resolvedOptions().timeZone, // Timezone nomi
+      navigator.maxTouchPoints || 0, // Touch screen
+      !!window.chrome, // Chrome brauzer?
+      navigator.vendor || "", // Vendor
+      navigator.plugins.length, // Pluginlar soni
+    ].join("||");
+
+    // Fingerprint ni hash qilish
+    let hash = this.hashString(fingerprint);
+
+    // O'qishli format: DEV- + 8 belgili hash
+    return "DEV-" + hash.substring(0, 8).toUpperCase();
+  }
+
+  /**
+   * String ni hash qilish (x86 va x64 da bir xil ishlaydi)
+   */
+  hashString(str) {
+    let hash1 = 5381;
+    let hash2 = 52711;
+
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash1 = (hash1 * 33) ^ char;
+      hash2 = (hash2 * 33) ^ char;
+    }
+
+    // 32-bit integer ga o'tkazish (barcha platformalarda bir xil)
+    hash1 = hash1 >>> 0;
+    hash2 = hash2 >>> 0;
+
+    // Hexadecimal ko'rinish
+    return (hash1.toString(16) + hash2.toString(16)).substring(0, 16);
+  }
+
+  /**
+   * Cookie olish
+   */
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+    return null;
+  }
+
+  /**
+   * Cookie o'rnatish
+   */
+  setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Strict`;
+  }
+
+  /**
+   * Device ID ni tekshirish
+   */
+  checkDeviceAuthorization() {
+    const isAuthorized = this.authorizedDevices.includes(this.currentDevice);
+
+    if (!isAuthorized) {
+      console.warn("🚫 Ruxsat berilmagan qurilma:", this.currentDevice);
+      console.log(
+        "✅ Ruxsat berilgan qurilmalar:",
+        this.authorizedDevices.join(", "),
+      );
+    } else {
+      console.log("✅ Ruxsat berilgan qurilma:", this.currentDevice);
+    }
+
+    return isAuthorized;
+  }
+
+  /**
+   * Device ID ni qo'lda o'zgartirish (agar kerak bo'lsa)
+   * Bu funksiyani faqat admin panel orqali chaqirish mumkin
+   */
+  resetDeviceId() {
+    if (confirm("Device ID ni qayta tiklashni xohlaysizmi?")) {
+      localStorage.removeItem("permanent_device_id");
+      this.setCookie("permanent_device_id", "", -1); // o'chirish
+      this.currentDevice = this.getPermanentDeviceId();
+      console.log("🔄 Yangi Device ID:", this.currentDevice);
+      location.reload(); // sahifani qayta yuklash
+    }
+  }
+
+  // ========== QOLGAN XAVFSIZLIK METODLARI ==========
 
   init() {
-    // Disable right click
     document.addEventListener("contextmenu", (e) => e.preventDefault());
-
-    // Disable copy/paste
     document.addEventListener("copy", (e) => e.preventDefault());
     document.addEventListener("cut", (e) => e.preventDefault());
     document.addEventListener("paste", (e) => e.preventDefault());
 
-    // Disable keyboard shortcuts
     document.addEventListener("keydown", (e) => {
-      // Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+S, Ctrl+P
       if (
         e.ctrlKey &&
-        ["c", "v", "x", "s", "p"].includes(e.key.toLowerCase())
+        ["c", "v", "x", "s", "p", "i"].includes(e.key.toLowerCase())
       ) {
         e.preventDefault();
+        this.showWarning("This action is disabled during test");
         return false;
       }
 
-      // Print Screen
-      if (e.key === "PrintScreen") {
-        e.preventDefault();
-        this.showWarning("Print Screen is disabled during test");
-        return false;
-      }
-
-      // F12
-      if (e.key === "F12") {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
         e.preventDefault();
         this.showWarning("Developer tools are disabled");
         return false;
       }
+
+      if (e.key === "PrintScreen") {
+        e.preventDefault();
+        this.showWarning("Screenshot is disabled");
+        return false;
+      }
     });
 
-    // Detect DevTools
     this.detectDevTools();
   }
 
   detectDevTools() {
-    // Method 1: Check console
     const element = new Image();
     Object.defineProperty(element, "id", {
       get: () => {
@@ -86,7 +199,6 @@ class SecurityManager {
     });
     console.log("%c", element);
 
-    // Method 2: Check window size
     setInterval(() => {
       const widthThreshold = window.outerWidth - window.innerWidth > 200;
       const heightThreshold = window.outerHeight - window.innerHeight > 200;
@@ -106,7 +218,6 @@ class SecurityManager {
   }
 
   showWarning(message) {
-    // Create temporary warning
     const warning = document.createElement("div");
     warning.className = "security-warning";
     warning.textContent = message;
@@ -114,11 +225,13 @@ class SecurityManager {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--incorrect-color);
+            background: #EF4444;
             color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
             z-index: 9999;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
             animation: slideIn 0.3s ease;
         `;
     document.body.appendChild(warning);
@@ -127,12 +240,7 @@ class SecurityManager {
       warning.remove();
     }, 3000);
   }
-
-  checkDeviceAuthorization() {
-    return this.authorizedDevices.includes(this.currentDevice);
-  }
 }
-
 // ==================== AUTENTIFIKATSIYA MODULI ====================
 
 class AuthManager {
