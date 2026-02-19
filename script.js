@@ -13,6 +13,7 @@ class SecurityManager {
       "DEV-96C81FA7",
       "DEV-9238A357",
        "DEV-D6D235C3",
+       'DEV-9138D298'
     ];
     this.currentDevice = this.getPermanentDeviceId();
     this.devtoolsOpen = false;
