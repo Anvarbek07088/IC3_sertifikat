@@ -143,54 +143,7 @@
             75% { transform: translateX(10px); }
         }
         
-        /* Ogohlantirish */
-        .security-toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 99999;
-            display: none;
-            align-items: center;
-            gap: 15px;
-            animation: toastSlide 0.3s ease;
-        }
-        
-        .security-toast.active {
-            display: flex;
-        }
-        
-        .toast-icon {
-            font-size: 24px;
-        }
-        
-        .toast-message {
-            font-weight: 600;
-        }
-        
-        .toast-count {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-        
-        @keyframes toastSlide {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        /* Matn tanlashni bloklash */
+        /* Matn tanlashni bloklash - faqat CSS orqali */
         body {
             -webkit-user-select: none !important;
             -moz-user-select: none !important;
@@ -204,6 +157,18 @@
             -moz-user-select: none !important;
             -ms-user-select: none !important;
             user-select: none !important;
+        }
+        
+        /* Nusxa olishni bloklash - ko'rinmas overlay */
+        .no-copy-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 10;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -259,7 +224,10 @@
 
             <!-- O'ng panel - Savol va javoblar -->
             <div class="right-panel">
-                <div class="question-box" id="questionBox">
+                <div class="question-box" id="questionBox" style="position: relative;">
+                    <!-- Nusxa olishni bloklash overlay -->
+                    <div class="no-copy-overlay"></div>
+                    
                     <!-- Savol sarlavhasi -->
                     <div class="question-header">
                         <span class="question-badge" id="questionType"></span>
@@ -306,12 +274,12 @@
             <div class="lock-icon">🔒</div>
             <h2>Test vaqtincha bloklandi</h2>
             <p>Siz test qoidalarini buzdingiz:</p>
-            <p id="violationReason" style="color: #f56565; font-weight: 600;">screenshot, nusxalash</p>
+            <p id="violationReason" style="color: #f56565; font-weight: 600;">screenshot olindi</p>
             <div class="lock-timer" id="lockTimer">10:00</div>
             
             <!-- Bloklashni ochish kodi -->
             <div class="unlock-code">
-                <input type="text" id="unlockCode" maxlength="6" placeholder="000000" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" id="unlockCode" maxlength="10" placeholder="Kodni kiriting">
                 <button class="unlock-btn" id="unlockBtn" onclick="checkUnlockCode()">Bloklashni ochish</button>
             </div>
             
@@ -319,83 +287,67 @@
         </div>
     </div>
 
-    <!-- Ogohlantirish -->
-    <div class="security-toast" id="securityToast">
-        <span class="toast-icon">⚠️</span>
-        <span class="toast-message" id="toastMessage"></span>
-        <span class="toast-count" id="toastCount"></span>
-    </div>
-
     <script src="questions.js"></script>
     <script src="test.js"></script>
     
-    <!-- Xavfsizlik tizimi -->
+    <!-- Xavfsizlik tizimi - FAQAT SCREENSHOT UCHUN -->
     <script>
         (function() {
             // ========== MAXSUS KODLAR ==========
             const UNLOCK_CODES = {
-                '363636': 'admin',      // Admin kodi
-                '999999': 'super',       // Super user kodi
-                '000000': 'test',        // Test kodi
-                'IC3GS6': 'platform',    // Platforma kodi
-                '2025': 'year'           // Yil kodi
+                '123456': true,
+                '999999': true,
+                '000000': true,
+                'IC3GS6': true,
+                '2025': true,
+                'ADMIN': true,
+                'OPEN': true,
+                'UNLOCK': true
             };
             
             // ========== O'ZGARUVCHILAR ==========
-            let violationCount = 0;
             let lockUntil = null;
-            let toastTimeout = null;
-            let lastViolationTime = 0;
             let isLocked = false;
             let unlockAttempts = 0;
+            let screenshotDetected = false;
             
             const LOCK_DURATION = 10 * 60 * 1000; // 10 daqiqa
-            const VIOLATION_LIMIT = 1; // 1 ta buzilishda bloklash
-            const MAX_UNLOCK_ATTEMPTS = 3; // Maksimum urinishlar
+            const MAX_UNLOCK_ATTEMPTS = 5; // 5 ta urinish
             
             // ========== LOCALSTORAGE DAN YUKLASH ==========
             function loadFromStorage() {
                 try {
-                    const savedLockUntil = localStorage.getItem('test_lockUntil');
+                    const savedLockUntil = localStorage.getItem('screenshot_lockUntil');
                     if (savedLockUntil) {
                         lockUntil = parseInt(savedLockUntil);
                         if (lockUntil > Date.now()) {
                             isLocked = true;
-                            showLockScreen('Bloklangan');
+                            showLockScreen('screenshot olindi');
                         } else {
-                            localStorage.removeItem('test_lockUntil');
-                            localStorage.removeItem('test_violationCount');
-                            localStorage.removeItem('test_unlockAttempts');
+                            localStorage.removeItem('screenshot_lockUntil');
+                            localStorage.removeItem('screenshot_unlockAttempts');
                             lockUntil = null;
-                            violationCount = 0;
                             unlockAttempts = 0;
                             isLocked = false;
                         }
                     }
                     
-                    const savedViolationCount = localStorage.getItem('test_violationCount');
-                    if (savedViolationCount) {
-                        violationCount = parseInt(savedViolationCount);
-                    }
-                    
-                    const savedUnlockAttempts = localStorage.getItem('test_unlockAttempts');
+                    const savedUnlockAttempts = localStorage.getItem('screenshot_unlockAttempts');
                     if (savedUnlockAttempts) {
                         unlockAttempts = parseInt(savedUnlockAttempts);
                     }
-                } catch (e) {
-                    console.error('LocalStorage error:', e);
-                }
+                } catch (e) {}
             }
             
             // ========== BLOKLASH EKRANINI KO'RSATISH ==========
-            function showLockScreen(reason = 'screenshot, nusxalash') {
+            function showLockScreen(reason = 'screenshot olindi') {
                 const lockScreen = document.getElementById('lockScreen');
                 const lockTimer = document.getElementById('lockTimer');
                 const reasonEl = document.getElementById('violationReason');
                 const unlockBtn = document.getElementById('unlockBtn');
                 const unlockInput = document.getElementById('unlockCode');
                 
-                if (!lockScreen || !lockTimer) return;
+                if (!lockScreen) return;
                 
                 reasonEl.textContent = reason;
                 lockScreen.classList.add('active');
@@ -415,12 +367,11 @@
                 lockScreen.classList.remove('active');
                 isLocked = false;
                 lockUntil = null;
-                violationCount = 0;
                 unlockAttempts = 0;
+                screenshotDetected = false;
                 
-                localStorage.removeItem('test_lockUntil');
-                localStorage.removeItem('test_violationCount');
-                localStorage.removeItem('test_unlockAttempts');
+                localStorage.removeItem('screenshot_lockUntil');
+                localStorage.removeItem('screenshot_unlockAttempts');
             }
             
             // ========== TAYMERNI YANGILASH ==========
@@ -432,6 +383,7 @@
                     if (!lockUntil || lockUntil <= Date.now()) {
                         clearInterval(interval);
                         hideLockScreen();
+                        location.reload();
                         return;
                     }
                     
@@ -448,34 +400,19 @@
                 const lockMessage = document.getElementById('lockMessage');
                 const unlockBtn = document.getElementById('unlockBtn');
                 
-                const code = codeInput.value.trim();
+                const code = codeInput.value.trim().toUpperCase();
                 
-                // Urinishlar sonini tekshirish
                 if (unlockAttempts >= MAX_UNLOCK_ATTEMPTS) {
                     lockMessage.textContent = '❌ Juda ko\'p urindingiz! 30 daqiqa kuting.';
                     lockMessage.style.color = '#f56565';
                     unlockBtn.disabled = true;
                     
-                    // 30 daqiqaga uzaytirish
                     lockUntil = Date.now() + (30 * 60 * 1000);
-                    localStorage.setItem('test_lockUntil', lockUntil);
+                    localStorage.setItem('screenshot_lockUntil', lockUntil);
                     return;
                 }
                 
-                // Kodni tekshirish
-                let isValid = false;
-                
-                // To'g'ridan-to'g'ri kodlar
-                if (UNLOCK_CODES[code]) {
-                    isValid = true;
-                }
-                
-                // Maxsus kodlar
-                if (code === 'IC3GS6' || code === '2025' || code === 'ADMIN' || code === 'OPEN') {
-                    isValid = true;
-                }
-                
-                if (isValid) {
+                if (UNLOCK_CODES[code] || code === 'IC3GS6' || code === '2025') {
                     lockMessage.textContent = '✅ Kod to\'g\'ri! Bloklash ochildi.';
                     lockMessage.style.color = '#4caf50';
                     
@@ -484,7 +421,7 @@
                     }, 1000);
                 } else {
                     unlockAttempts++;
-                    localStorage.setItem('test_unlockAttempts', unlockAttempts);
+                    localStorage.setItem('screenshot_unlockAttempts', unlockAttempts);
                     
                     codeInput.classList.add('error');
                     lockMessage.textContent = `❌ Noto'g'ri kod! Qolgan urinishlar: ${MAX_UNLOCK_ATTEMPTS - unlockAttempts}`;
@@ -496,168 +433,86 @@
                 }
             };
             
-            // ========== QOIDABUZARLIKNI QAYD ETISH ==========
-            function recordViolation(type) {
-                if (isLocked || (lockUntil && lockUntil > Date.now())) {
-                    return;
-                }
+            // ========== SCREENSHOTNI ANIQLASH ==========
+            function detectScreenshot() {
+                let blurTime = 0;
+                let tabSwitchTime = 0;
                 
-                const now = Date.now();
+                // Oyna focusdan chiqqanda
+                window.addEventListener('blur', () => {
+                    if (isLocked) return;
+                    blurTime = Date.now();
+                });
                 
-                if (now - lastViolationTime < 2000) {
-                    return;
-                }
-                
-                lastViolationTime = now;
-                violationCount++;
-                
-                try {
-                    localStorage.setItem('test_violationCount', violationCount);
-                } catch (e) {}
-                
-                showToast(type, violationCount);
-                
-                if (violationCount >= VIOLATION_LIMIT) {
-                    lockUntil = now + LOCK_DURATION;
-                    isLocked = true;
-                    unlockAttempts = 0;
+                // Oyna focusga qaytganda
+                window.addEventListener('focus', () => {
+                    if (isLocked) return;
                     
-                    try {
-                        localStorage.setItem('test_lockUntil', lockUntil);
-                        localStorage.removeItem('test_unlockAttempts');
-                    } catch (e) {}
-                    
-                    let reason = '';
-                    switch(type) {
-                        case 'screenshot': reason = 'screenshot olish'; break;
-                        case 'copy': reason = 'matn nusxalash'; break;
-                        case 'print': reason = 'chop etish'; break;
-                        case 'contextmenu': reason = 'o\'ng tugma'; break;
-                        case 'devtools': reason = 'developer tools'; break;
-                        default: reason = 'qoidalarni buzish';
+                    // Agar 100ms dan 3 sekundgacha focusda bo'lmasa (screenshot uchun)
+                    if (blurTime > 0 && Date.now() - blurTime > 100 && Date.now() - blurTime < 5000) {
+                        lockPlatform('screenshot olindi');
                     }
+                    blurTime = 0;
+                });
+                
+                // Boshqa tabga o'tish
+                document.addEventListener('visibilitychange', () => {
+                    if (isLocked) return;
                     
-                    showLockScreen(reason);
-                }
-            }
-            
-            // ========== OGAHLANTIRISH KO'RSATISH ==========
-            function showToast(type, count) {
-                const toast = document.getElementById('securityToast');
-                const messageEl = document.getElementById('toastMessage');
-                const countEl = document.getElementById('toastCount');
+                    if (document.hidden) {
+                        tabSwitchTime = Date.now();
+                    } else {
+                        if (tabSwitchTime > 0 && Date.now() - tabSwitchTime > 100 && Date.now() - tabSwitchTime < 5000) {
+                            lockPlatform('screenshot olindi');
+                        }
+                        tabSwitchTime = 0;
+                    }
+                });
                 
-                if (!toast || !messageEl || !countEl) return;
-                
-                let message = '';
-                switch(type) {
-                    case 'screenshot': message = 'Screenshot olish taqiqlangan!'; break;
-                    case 'copy': message = 'Matn nusxalash taqiqlangan!'; break;
-                    case 'print': message = 'Chop etish taqiqlangan!'; break;
-                    case 'contextmenu': message = 'O\'ng tugma taqiqlangan!'; break;
-                    case 'devtools': message = 'Developer Tools taqiqlangan!'; break;
-                    default: message = 'Test qoidalari buzildi!';
-                }
-                
-                messageEl.textContent = message;
-                countEl.textContent = `${count}/${VIOLATION_LIMIT}`;
-                toast.classList.add('active');
-                
-                if (toastTimeout) clearTimeout(toastTimeout);
-                toastTimeout = setTimeout(() => {
-                    toast.classList.remove('active');
-                }, 3000);
-            }
-            
-            // ========== HODISALARNI BLOKLASH ==========
-            function blockEvents() {
-                document.addEventListener('contextmenu', (e) => {
-                    if (isLocked) return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    recordViolation('contextmenu');
-                    return false;
-                }, true);
-                
-                document.addEventListener('copy', (e) => {
-                    if (isLocked) return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    recordViolation('copy');
-                    return false;
-                }, true);
-                
-                document.addEventListener('cut', (e) => {
-                    if (isLocked) return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    recordViolation('copy');
-                    return false;
-                }, true);
-                
-                document.addEventListener('paste', (e) => {
-                    if (isLocked) return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    recordViolation('copy');
-                    return false;
-                }, true);
-                
+                // PrtSc tugmasi
                 document.addEventListener('keydown', (e) => {
                     if (isLocked) return;
                     
-                    const key = e.key;
-                    const ctrl = e.ctrlKey;
-                    const shift = e.shiftKey;
-                    
-                    if (key === 'PrintScreen') {
+                    if (e.key === 'PrintScreen') {
                         e.preventDefault();
                         e.stopPropagation();
-                        recordViolation('screenshot');
+                        lockPlatform('screenshot olindi (PrtSc)');
                         return false;
                     }
-                    
-                    if (ctrl && key.toLowerCase() === 'p') {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        recordViolation('print');
-                        return false;
-                    }
-                    
-                    if (ctrl && (key.toLowerCase() === 'c' || key.toLowerCase() === 'x')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        recordViolation('copy');
-                        return false;
-                    }
-                    
-                    if (ctrl && key.toLowerCase() === 'v') {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        recordViolation('copy');
-                        return false;
-                    }
-                    
-                    if (key === 'F12' || 
-                        (ctrl && shift && key.toLowerCase() === 'i') ||
-                        (ctrl && key.toLowerCase() === 'u')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        recordViolation('devtools');
-                        return false;
-                    }
-                }, true);
+                });
                 
                 window.addEventListener('keyup', (e) => {
                     if (isLocked) return;
                     if (e.key === 'PrintScreen') {
-                        recordViolation('screenshot');
+                        lockPlatform('screenshot olindi (PrtSc)');
                     }
                 });
-            }
-            
-            // ========== DEVTOOLS NI ANIQLASH ==========
-            function detectDevTools() {
+                
+                // Alt + PrtSc
+                document.addEventListener('keydown', (e) => {
+                    if (isLocked) return;
+                    
+                    if (e.altKey && e.key === 'PrintScreen') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        lockPlatform('screenshot olindi (Alt+PrtSc)');
+                        return false;
+                    }
+                });
+                
+                // Windows + Shift + S (Snipping Tool)
+                document.addEventListener('keydown', (e) => {
+                    if (isLocked) return;
+                    
+                    if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 's') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        lockPlatform('screenshot olindi (Win+Shift+S)');
+                        return false;
+                    }
+                });
+                
+                // Developer Tools ni aniqlash (ba'zi screenshot toolslari DevTools ochadi)
                 setInterval(() => {
                     if (isLocked) return;
                     
@@ -666,41 +521,29 @@
                     const end = performance.now();
                     
                     if (end - start > 100) {
-                        recordViolation('devtools');
+                        // DevTools ochilgan, screenshot bo'lishi mumkin
+                        lockPlatform('screenshot olindi (DevTools)');
                     }
-                }, 2000);
+                }, 3000);
             }
             
-            // ========== OYNA FOCUSDAN CHIQISHNI ANIQLASH ==========
-            function detectBlur() {
-                let blurTime = 0;
-                
-                window.addEventListener('blur', () => {
-                    if (isLocked) return;
-                    blurTime = Date.now();
-                });
-                
-                window.addEventListener('focus', () => {
-                    if (isLocked) return;
-                    
-                    if (blurTime > 0 && Date.now() - blurTime > 100 && Date.now() - blurTime < 5000) {
-                        recordViolation('screenshot');
-                    }
-                    blurTime = 0;
-                });
-            }
-            
-            document.addEventListener('visibilitychange', () => {
+            // ========== PLATFORMANI BLOKLASH ==========
+            function lockPlatform(reason) {
                 if (isLocked) return;
+                if (screenshotDetected) return;
                 
-                if (document.hidden) {
-                    setTimeout(() => {
-                        if (document.hidden) {
-                            recordViolation('screenshot');
-                        }
-                    }, 500);
-                }
-            });
+                screenshotDetected = true;
+                lockUntil = Date.now() + LOCK_DURATION;
+                isLocked = true;
+                unlockAttempts = 0;
+                
+                try {
+                    localStorage.setItem('screenshot_lockUntil', lockUntil);
+                    localStorage.removeItem('screenshot_unlockAttempts');
+                } catch (e) {}
+                
+                showLockScreen(reason);
+            }
             
             // ========== ORIGINAL FUNKSIYALARNI O'RASH ==========
             function wrapFunctions() {
@@ -739,15 +582,20 @@
                 }
             }
             
+            // ========== NUSXA OLISHNI BLOKLASH (CSS ORQALI) ==========
+            function disableCopy() {
+                // CSS bilan bloklash yetarli, JS bilan hech narsa qilmaymiz
+                // Faqat screenshotni aniqlaymiz
+            }
+            
             // ========== ISHGA TUSHIRISH ==========
             function init() {
                 loadFromStorage();
-                blockEvents();
-                detectDevTools();
-                detectBlur();
                 
                 if (isLocked) {
                     showLockScreen();
+                } else {
+                    detectScreenshot();
                 }
                 
                 setTimeout(wrapFunctions, 1000);
