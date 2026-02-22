@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IC3 GS6 - Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="test.css">
+    <style>
+        /* Bloklash ekrani */
+        .lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .lock-screen.active {
+            display: flex;
+        }
+        
+        .lock-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: lockPulse 0.5s ease;
+        }
+        
+        .lock-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: lockShake 0.5s ease;
+        }
+        
+        .lock-content h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .lock-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .lock-timer {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .unlock-code {
+            margin: 25px 0;
+        }
+        
+        .unlock-code input {
+            width: 100%;
+            padding: 15px;
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: monospace;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .unlock-code input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .unlock-code input.error {
+            border-color: #ff4757;
+            animation: shake 0.3s ease;
+        }
+        
+        .unlock-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .unlock-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .lock-message {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        @keyframes lockPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes lockShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        /* Ogohlantirish */
+        .security-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            animation: toastSlide 0.3s ease;
+        }
+        
+        .security-toast.active {
+            display: flex;
+        }
+        
+        .toast-icon {
+            font-size: 24px;
+        }
+        
+        .toast-message {
+            font-weight: 600;
+        }
+        
+        .toast-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        @keyframes toastSlide {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Matn tanlashni bloklash */
+        body {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        
+        .question-box, .options-container, .truefalse-container,
+        .matching-container, .ranking-container {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-wrapper">
+        <!-- Header qismi -->
+        <div class="header">
+            <div class="header-left">
+                <h1>IC3 GS6</h1>
+            </div>
+            <div class="header-center">
+                <button class="level-btn active" data-level="level1">Level 1</button>
+                <button class="level-btn" data-level="level2">Level 2</button>
+                <button class="level-btn" data-level="level3">Level 3</button>
+            </div>
+            <div class="header-right">
+                <span id="userDisplay"></span>
+                <button onclick="logout()" class="logout-btn">Chiqish</button>
+            </div>
+        </div>
+
+        <!-- Asosiy kontent -->
+        <div class="main-content">
+            <!-- Chap panel - Statistika va savollar -->
+            <div class="left-panel">
+                <!-- Statistika -->
+                <div class="stats-panel">
+                    <h3>Statistika</h3>
+                    <div class="stats-item">
+                        <span>Jami savollar:</span>
+                        <span id="totalQuestions">0</span>
+                    </div>
+                    <div class="stats-item">
+                        <span>Javob berilgan:</span>
+                        <span id="answeredCount">0</span>
+                    </div>
+                    <div class="stats-item">
+                        <span>To'g'ri javoblar:</span>
+                        <span id="correctCount">0</span>
+                    </div>
+                    <div class="stats-item">
+                        <span>Qolgan savollar:</span>
+                        <span id="remainingCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Savollar navigatsiyasi -->
+                <div class="questions-nav">
+                    <h3>Savollar</h3>
+                    <div class="question-grid" id="questionGrid"></div>
+                </div>
+            </div>
+
+            <!-- O'ng panel - Savol va javoblar -->
+            <div class="right-panel">
+                <div class="question-box" id="questionBox">
+                    <!-- Savol sarlavhasi -->
+                    <div class="question-header">
+                        <span class="question-badge" id="questionType"></span>
+                        <span class="question-id" id="questionId"></span>
+                    </div>
+
+                    <!-- Savol matni -->
+                    <div class="question-text" id="questionText"></div>
+
+                    <!-- Javoblar maydoni -->
+                    <div class="answer-area" id="answerArea"></div>
+
+                    <!-- Navigatsiya tugmalari -->
+                    <div class="nav-buttons">
+                        <button class="prev-btn" onclick="changeQuestion('prev')">Oldingi</button>
+                        <button class="check-btn" onclick="checkAnswer()">Tekshirish</button>
+                        <button class="next-btn" onclick="changeQuestion('next')">Keyingi</button>
+                    </div>
+
+                    <!-- Javob natijasi -->
+                    <div class="result-message" id="resultMessage"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Natijalar modal oynasi -->
+        <div class="modal" id="resultsModal">
+            <div class="modal-content">
+                <h2>Test natijalari</h2>
+                <div class="results-summary">
+                    <p>Jami savollar: <span id="resultTotal">0</span></p>
+                    <p>To'g'ri javoblar: <span id="resultCorrect">0</span></p>
+                    <p>Noto'g'ri javoblar: <span id="resultWrong">0</span></p>
+                    <p>Foiz: <span id="resultPercent">0%</span></p>
+                </div>
+                <button class="close-modal" onclick="closeModal()">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bloklash ekrani -->
+    <div class="lock-screen" id="lockScreen">
+        <div class="lock-content">
+            <div class="lock-icon">🔒</div>
+            <h2>Test vaqtincha bloklandi</h2>
+            <p>Siz test qoidalarini buzdingiz:</p>
+            <p id="violationReason" style="color: #f56565; font-weight: 600;">screenshot, nusxalash</p>
+            <div class="lock-timer" id="lockTimer">10:00</div>
+            
+            <!-- Bloklashni ochish kodi -->
+            <div class="unlock-code">
+                <input type="text" id="unlockCode" maxlength="6" placeholder="000000" inputmode="numeric" pattern="[0-9]*">
+                <button class="unlock-btn" id="unlockBtn" onclick="checkUnlockCode()">Bloklashni ochish</button>
+            </div>
+            
+            <p class="lock-message" id="lockMessage">Bloklashni ochish uchun maxsus kodni kiriting</p>
+        </div>
+    </div>
+
+    <!-- Ogohlantirish -->
+    <div class="security-toast" id="securityToast">
+        <span class="toast-icon">⚠️</span>
+        <span class="toast-message" id="toastMessage"></span>
+        <span class="toast-count" id="toastCount"></span>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="test.js"></script>
+    
+    <!-- Xavfsizlik tizimi -->
+    <script>
+        (function() {
+            // ========== MAXSUS KODLAR ==========
+            const UNLOCK_CODES = {
+                '363636': 'admin',      // Admin kodi
+                '999999': 'super',       // Super user kodi
+                '000000': 'test',        // Test kodi
+                'IC3GS6': 'platform',    // Platforma kodi
+                '2025': 'year'           // Yil kodi
+            };
+            
+            // ========== O'ZGARUVCHILAR ==========
+            let violationCount = 0;
+            let lockUntil = null;
+            let toastTimeout = null;
+            let lastViolationTime = 0;
+            let isLocked = false;
+            let unlockAttempts = 0;
+            
+            const LOCK_DURATION = 10 * 60 * 1000; // 10 daqiqa
+            const VIOLATION_LIMIT = 1; // 1 ta buzilishda bloklash
+            const MAX_UNLOCK_ATTEMPTS = 3; // Maksimum urinishlar
+            
+            // ========== LOCALSTORAGE DAN YUKLASH ==========
+            function loadFromStorage() {
+                try {
+                    const savedLockUntil = localStorage.getItem('test_lockUntil');
+                    if (savedLockUntil) {
+                        lockUntil = parseInt(savedLockUntil);
+                        if (lockUntil > Date.now()) {
+                            isLocked = true;
+                            showLockScreen('Bloklangan');
+                        } else {
+                            localStorage.removeItem('test_lockUntil');
+                            localStorage.removeItem('test_violationCount');
+                            localStorage.removeItem('test_unlockAttempts');
+                            lockUntil = null;
+                            violationCount = 0;
+                            unlockAttempts = 0;
+                            isLocked = false;
+                        }
+                    }
+                    
+                    const savedViolationCount = localStorage.getItem('test_violationCount');
+                    if (savedViolationCount) {
+                        violationCount = parseInt(savedViolationCount);
+                    }
+                    
+                    const savedUnlockAttempts = localStorage.getItem('test_unlockAttempts');
+                    if (savedUnlockAttempts) {
+                        unlockAttempts = parseInt(savedUnlockAttempts);
+                    }
+                } catch (e) {
+                    console.error('LocalStorage error:', e);
+                }
+            }
+            
+            // ========== BLOKLASH EKRANINI KO'RSATISH ==========
+            function showLockScreen(reason = 'screenshot, nusxalash') {
+                const lockScreen = document.getElementById('lockScreen');
+                const lockTimer = document.getElementById('lockTimer');
+                const reasonEl = document.getElementById('violationReason');
+                const unlockBtn = document.getElementById('unlockBtn');
+                const unlockInput = document.getElementById('unlockCode');
+                
+                if (!lockScreen || !lockTimer) return;
+                
+                reasonEl.textContent = reason;
+                lockScreen.classList.add('active');
+                
+                if (unlockBtn) unlockBtn.disabled = false;
+                if (unlockInput) {
+                    unlockInput.value = '';
+                    unlockInput.classList.remove('error');
+                }
+                
+                updateLockTimer();
+            }
+            
+            // ========== BLOKLASHNI YOPISH ==========
+            function hideLockScreen() {
+                const lockScreen = document.getElementById('lockScreen');
+                lockScreen.classList.remove('active');
+                isLocked = false;
+                lockUntil = null;
+                violationCount = 0;
+                unlockAttempts = 0;
+                
+                localStorage.removeItem('test_lockUntil');
+                localStorage.removeItem('test_violationCount');
+                localStorage.removeItem('test_unlockAttempts');
+            }
+            
+            // ========== TAYMERNI YANGILASH ==========
+            function updateLockTimer() {
+                const timerElement = document.getElementById('lockTimer');
+                if (!timerElement) return;
+                
+                const interval = setInterval(() => {
+                    if (!lockUntil || lockUntil <= Date.now()) {
+                        clearInterval(interval);
+                        hideLockScreen();
+                        return;
+                    }
+                    
+                    const remaining = lockUntil - Date.now();
+                    const minutes = Math.floor(remaining / 1000 / 60);
+                    const seconds = Math.floor((remaining / 1000) % 60);
+                    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }, 1000);
+            }
+            
+            // ========== KODNI TEKSHIRISH ==========
+            window.checkUnlockCode = function() {
+                const codeInput = document.getElementById('unlockCode');
+                const lockMessage = document.getElementById('lockMessage');
+                const unlockBtn = document.getElementById('unlockBtn');
+                
+                const code = codeInput.value.trim();
+                
+                // Urinishlar sonini tekshirish
+                if (unlockAttempts >= MAX_UNLOCK_ATTEMPTS) {
+                    lockMessage.textContent = '❌ Juda ko\'p urindingiz! 30 daqiqa kuting.';
+                    lockMessage.style.color = '#f56565';
+                    unlockBtn.disabled = true;
+                    
+                    // 30 daqiqaga uzaytirish
+                    lockUntil = Date.now() + (30 * 60 * 1000);
+                    localStorage.setItem('test_lockUntil', lockUntil);
+                    return;
+                }
+                
+                // Kodni tekshirish
+                let isValid = false;
+                
+                // To'g'ridan-to'g'ri kodlar
+                if (UNLOCK_CODES[code]) {
+                    isValid = true;
+                }
+                
+                // Maxsus kodlar
+                if (code === 'IC3GS6' || code === '2025' || code === 'ADMIN' || code === 'OPEN') {
+                    isValid = true;
+                }
+                
+                if (isValid) {
+                    lockMessage.textContent = '✅ Kod to\'g\'ri! Bloklash ochildi.';
+                    lockMessage.style.color = '#4caf50';
+                    
+                    setTimeout(() => {
+                        hideLockScreen();
+                    }, 1000);
+                } else {
+                    unlockAttempts++;
+                    localStorage.setItem('test_unlockAttempts', unlockAttempts);
+                    
+                    codeInput.classList.add('error');
+                    lockMessage.textContent = `❌ Noto'g'ri kod! Qolgan urinishlar: ${MAX_UNLOCK_ATTEMPTS - unlockAttempts}`;
+                    lockMessage.style.color = '#f56565';
+                    
+                    setTimeout(() => {
+                        codeInput.classList.remove('error');
+                    }, 500);
+                }
+            };
+            
+            // ========== QOIDABUZARLIKNI QAYD ETISH ==========
+            function recordViolation(type) {
+                if (isLocked || (lockUntil && lockUntil > Date.now())) {
+                    return;
+                }
+                
+                const now = Date.now();
+                
+                if (now - lastViolationTime < 2000) {
+                    return;
+                }
+                
+                lastViolationTime = now;
+                violationCount++;
+                
+                try {
+                    localStorage.setItem('test_violationCount', violationCount);
+                } catch (e) {}
+                
+                showToast(type, violationCount);
+                
+                if (violationCount >= VIOLATION_LIMIT) {
+                    lockUntil = now + LOCK_DURATION;
+                    isLocked = true;
+                    unlockAttempts = 0;
+                    
+                    try {
+                        localStorage.setItem('test_lockUntil', lockUntil);
+                        localStorage.removeItem('test_unlockAttempts');
+                    } catch (e) {}
+                    
+                    let reason = '';
+                    switch(type) {
+                        case 'screenshot': reason = 'screenshot olish'; break;
+                        case 'copy': reason = 'matn nusxalash'; break;
+                        case 'print': reason = 'chop etish'; break;
+                        case 'contextmenu': reason = 'o\'ng tugma'; break;
+                        case 'devtools': reason = 'developer tools'; break;
+                        default: reason = 'qoidalarni buzish';
+                    }
+                    
+                    showLockScreen(reason);
+                }
+            }
+            
+            // ========== OGAHLANTIRISH KO'RSATISH ==========
+            function showToast(type, count) {
+                const toast = document.getElementById('securityToast');
+                const messageEl = document.getElementById('toastMessage');
+                const countEl = document.getElementById('toastCount');
+                
+                if (!toast || !messageEl || !countEl) return;
+                
+                let message = '';
+                switch(type) {
+                    case 'screenshot': message = 'Screenshot olish taqiqlangan!'; break;
+                    case 'copy': message = 'Matn nusxalash taqiqlangan!'; break;
+                    case 'print': message = 'Chop etish taqiqlangan!'; break;
+                    case 'contextmenu': message = 'O\'ng tugma taqiqlangan!'; break;
+                    case 'devtools': message = 'Developer Tools taqiqlangan!'; break;
+                    default: message = 'Test qoidalari buzildi!';
+                }
+                
+                messageEl.textContent = message;
+                countEl.textContent = `${count}/${VIOLATION_LIMIT}`;
+                toast.classList.add('active');
+                
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('active');
+                }, 3000);
+            }
+            
+            // ========== HODISALARNI BLOKLASH ==========
+            function blockEvents() {
+                document.addEventListener('contextmenu', (e) => {
+                    if (isLocked) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    recordViolation('contextmenu');
+                    return false;
+                }, true);
+                
+                document.addEventListener('copy', (e) => {
+                    if (isLocked) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    recordViolation('copy');
+                    return false;
+                }, true);
+                
+                document.addEventListener('cut', (e) => {
+                    if (isLocked) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    recordViolation('copy');
+                    return false;
+                }, true);
+                
+                document.addEventListener('paste', (e) => {
+                    if (isLocked) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    recordViolation('copy');
+                    return false;
+                }, true);
+                
+                document.addEventListener('keydown', (e) => {
+                    if (isLocked) return;
+                    
+                    const key = e.key;
+                    const ctrl = e.ctrlKey;
+                    const shift = e.shiftKey;
+                    
+                    if (key === 'PrintScreen') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        recordViolation('screenshot');
+                        return false;
+                    }
+                    
+                    if (ctrl && key.toLowerCase() === 'p') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        recordViolation('print');
+                        return false;
+                    }
+                    
+                    if (ctrl && (key.toLowerCase() === 'c' || key.toLowerCase() === 'x')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        recordViolation('copy');
+                        return false;
+                    }
+                    
+                    if (ctrl && key.toLowerCase() === 'v') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        recordViolation('copy');
+                        return false;
+                    }
+                    
+                    if (key === 'F12' || 
+                        (ctrl && shift && key.toLowerCase() === 'i') ||
+                        (ctrl && key.toLowerCase() === 'u')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        recordViolation('devtools');
+                        return false;
+                    }
+                }, true);
+                
+                window.addEventListener('keyup', (e) => {
+                    if (isLocked) return;
+                    if (e.key === 'PrintScreen') {
+                        recordViolation('screenshot');
+                    }
+                });
+            }
+            
+            // ========== DEVTOOLS NI ANIQLASH ==========
+            function detectDevTools() {
+                setInterval(() => {
+                    if (isLocked) return;
+                    
+                    const start = performance.now();
+                    debugger;
+                    const end = performance.now();
+                    
+                    if (end - start > 100) {
+                        recordViolation('devtools');
+                    }
+                }, 2000);
+            }
+            
+            // ========== OYNA FOCUSDAN CHIQISHNI ANIQLASH ==========
+            function detectBlur() {
+                let blurTime = 0;
+                
+                window.addEventListener('blur', () => {
+                    if (isLocked) return;
+                    blurTime = Date.now();
+                });
+                
+                window.addEventListener('focus', () => {
+                    if (isLocked) return;
+                    
+                    if (blurTime > 0 && Date.now() - blurTime > 100 && Date.now() - blurTime < 5000) {
+                        recordViolation('screenshot');
+                    }
+                    blurTime = 0;
+                });
+            }
+            
+            document.addEventListener('visibilitychange', () => {
+                if (isLocked) return;
+                
+                if (document.hidden) {
+                    setTimeout(() => {
+                        if (document.hidden) {
+                            recordViolation('screenshot');
+                        }
+                    }, 500);
+                }
+            });
+            
+            // ========== ORIGINAL FUNKSIYALARNI O'RASH ==========
+            function wrapFunctions() {
+                const originalCheck = window.checkAnswer;
+                const originalChange = window.changeQuestion;
+                const originalGoTo = window.goToQuestion;
+                
+                if (originalCheck) {
+                    window.checkAnswer = function() {
+                        if (isLocked) {
+                            showLockScreen();
+                            return;
+                        }
+                        return originalCheck();
+                    };
+                }
+                
+                if (originalChange) {
+                    window.changeQuestion = function(d) {
+                        if (isLocked) {
+                            showLockScreen();
+                            return;
+                        }
+                        return originalChange(d);
+                    };
+                }
+                
+                if (originalGoTo) {
+                    window.goToQuestion = function(i) {
+                        if (isLocked) {
+                            showLockScreen();
+                            return;
+                        }
+                        return originalGoTo(i);
+                    };
+                }
+            }
+            
+            // ========== ISHGA TUSHIRISH ==========
+            function init() {
+                loadFromStorage();
+                blockEvents();
+                detectDevTools();
+                detectBlur();
+                
+                if (isLocked) {
+                    showLockScreen();
+                }
+                
+                setTimeout(wrapFunctions, 1000);
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>

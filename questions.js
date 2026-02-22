@@ -1,4 +1,4 @@
-const questions = {
+window.questionsData = {
   level1: [
     {
       id: 80,
@@ -10,7 +10,7 @@ const questions = {
         "C. Ignoring software update notifications",
         "D. Downloading files from unknown websites.",
       ],
-      correct: "B",
+      correct: 1,
     },
     {
       id: 77,
@@ -18,7 +18,7 @@ const questions = {
       question:
         "For each item, select Yes if it is a valid Google search filter option, and No if it is not.",
       statements: ["Language", "File type", "Color", "Dates"],
-      correct: [true, true, false, true],
+      correct: [1, 1, 0, 1],
     },
     {
       id: 54,
@@ -26,7 +26,7 @@ const questions = {
       question:
         "Which two connections can be used to connect a monitor to a computer? (Choose two.)",
       options: ["A. HDMI", "B. Ethernet", "C. USB-C"],
-      correct: ["A", "C"],
+      correct: [0, 2],
     },
     {
       id: 58,
@@ -38,7 +38,7 @@ const questions = {
         "Helps facilitate the sharing and discovery of creative works on the web",
         "Provides tools that allow creators to dedicate their works to the public domain",
       ],
-      correct: [false, true, true],
+      correct: [0, 1, 1],
     },
     {
       id: 72,
@@ -51,7 +51,7 @@ const questions = {
         "C. USB flash drive",
         "D. Hard disk drive",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 74,
@@ -63,7 +63,7 @@ const questions = {
         "An intranet connection is more secure than an internet connection",
         "An intranet has an unlimited number of users and can be accessed by anyone",
       ],
-      correct: [false, true, false],
+      correct: [0, 1, 0],
     },
     {
       id: 73,
@@ -75,7 +75,7 @@ const questions = {
         "Password-management program",
         "Anti-tracking browser extension",
       ],
-      correct: [false, true, true],
+      correct: [0, 1, 1],
     },
     {
       id: 70,
@@ -88,7 +88,7 @@ const questions = {
         "Eye strain",
         "Frequent headaches",
       ],
-      correct: [true, false, true, true],
+      correct: [1, 0, 1, 1],
     },
     {
       id: 59,
@@ -97,22 +97,21 @@ const questions = {
       options: [
         "A. Use your name and birthday",
         "B. Use your favorite movie title",
-        'C. Use a mix of letters, numbers, and symbols, like "12345" or "p@ssword"',
-        'D. Use something easy to remember, like "password"',
+        "C. Use a mix of letters, numbers, and symbols",
+        'D. Use something easy to remember, like "password" like "12345" or "p@ssword"',
       ],
-      correct: "C",
+      correct: 2,
     },
     {
       id: 61,
       type: 3,
       question: "For each statement about copyright, select True or False.",
-    //   img:"./img/e4.jpg",
       statements: [
         "Work must be registered with the copyright office to be protected by copyright",
         "Copyright laws protect the right to reproduce the copyrighted work",
         "Copyright laws protect only works of art, such as paintings and sculptures",
       ],
-      correct: [false, true, false],
+      correct: [0, 1, 0],
     },
     {
       id: 68,
@@ -125,7 +124,7 @@ const questions = {
         "If you paraphrase someone else's work, you must cite the source",
         "You should place quotation marks around phrases that you quote from someone else's work",
       ],
-      correct: [true, true, true, true],
+      correct: [1, 1, 1, 1],
     },
     {
       id: 65,
@@ -138,7 +137,7 @@ const questions = {
         "C. Peer reviewing",
         "D. Fact checking",
       ],
-      correct: "C",
+      correct: 2,
     },
     {
       id: 57,
@@ -153,7 +152,7 @@ const questions = {
         "E. Use complex passwords and record them in a notebook that you keep with you at all times.",
         "F. Use a different password for each account.",
       ],
-      correct: ["A", "C", "F"],
+      correct: [0, 2, 5],
     },
     {
       id: 63,
@@ -165,7 +164,7 @@ const questions = {
         "The webpage text is written objectively",
         "The webpage includes a list of references",
       ],
-      correct: [false, true, true],
+      correct: [0, 1, 1],
     },
     {
       id: 66,
@@ -177,7 +176,7 @@ const questions = {
         "C. Your web browser doesn't retain cookies",
         "D. Your web browser blocks advertisements.",
       ],
-      correct: "C",
+      correct: 2,
     },
     {
       id: 69,
@@ -190,7 +189,7 @@ const questions = {
         "C. SaaaamGreeey<project#1>V3.docx",
         "D. SamGreyProject1v3.docx",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 79,
@@ -202,7 +201,7 @@ const questions = {
         "C. A program that installs itself on your system without your knowledge and tracks your computer usage",
         "D. A program that can copy itself and spread to other computers",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 62,
@@ -215,7 +214,7 @@ const questions = {
         "C. The answer to a specific Question related to the article topic",
         "D. Related comments on social media sites",
       ],
-      correct: "B",
+      correct: 1,
     },
     {
       id: 71,
@@ -228,7 +227,7 @@ const questions = {
         "C. Use an ergonomic keyboard so your wrists are in a more natural position",
         "D. Take frequent short breaks during which you walk around",
       ],
-      correct: ["C", "D"],
+      correct: [2, 3],
     },
     {
       id: 60,
@@ -240,7 +239,7 @@ const questions = {
         "C. Before you can use a web application, you must install it on your computer",
         "D. You must have an internet connection to use a web application.",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 78,
@@ -253,7 +252,7 @@ const questions = {
         "C. It gives credit to the people who did the research you're referencing",
         "D. It provides financial payment to the people who performed the research.",
       ],
-      correct: ["A", "C"],
+      correct: [0, 2],
     },
     {
       id: 67,
@@ -265,7 +264,7 @@ const questions = {
         "The artwork is protected by copyright (Произведение защищено авторским правом)",
         "The copyright owner dedicated the artwork to the public domain (Владелец авторских прав передал произведение в общественное достояние)",
       ],
-      correct: [false, false, true],
+      correct: [0, 0, 1],
     },
     {
       id: 64,
@@ -277,7 +276,7 @@ const questions = {
         "Share large files from a cloud storage location instead of attaching them to email messages",
         "Apply the same standards and values to online interactions that you do to face-to-face interactions",
       ],
-      correct: [true, true, true],
+      correct: [1, 1, 1],
     },
     {
       id: 76,
@@ -289,7 +288,7 @@ const questions = {
         "Respectful language conveys prejudices such as stereotypes, expectations and limitations",
         "Culture is a constantly changing concept that may not completely reflect someone's identity",
       ],
-      correct: [false, false, true],
+      correct: [0, 0, 1],
     },
     {
       id: 55,
@@ -302,7 +301,7 @@ const questions = {
         "C. The length of the article and the details it covers",
         "D. The news outlet's reputation and trustworthiness",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 56,
@@ -315,7 +314,7 @@ const questions = {
         "C. Reviewing the article's publication date and checking for recent updates",
         "D. Confirming the author's popularity on social media",
       ],
-      correct: "C",
+      correct: 2,
     },
     {
       id: 51,
@@ -323,7 +322,7 @@ const questions = {
       question:
         "You need to collaborate with your peers and share your class journal. Which digital platform is appropriate for this classroom activity?",
       options: ["A. Google Docs", "B. Facebook", "C. Instagram", "D. Twitter"],
-      correct: "A",
+      correct: 0,
     },
     {
       id: 52,
@@ -335,7 +334,7 @@ const questions = {
         "Potential employers can find images and messages posted on social media by applicants under the age of 18",
         "Companies with which you share personal data in exchange for apps and services are not allowed to give the data to anyone else",
       ],
-      correct: [false, false, true, false],
+      correct: [0, 0, 1, 0],
     },
     {
       id: 47,
@@ -348,7 +347,7 @@ const questions = {
         "You can only change the paper size from the Page Setup options",
         "To preserve file formatting when electronically distributing a document, print the document to a PDF file",
       ],
-      correct: [false, true, false, true],
+      correct: [0, 1, 0, 1],
     },
     {
       id: 49,
@@ -361,7 +360,7 @@ const questions = {
         "C. Simultaneous",
         "D. Asynchronous",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 46,
@@ -373,7 +372,7 @@ const questions = {
         "C. Keeping files only on your computer's hard drive",
         "D. Using both cloud storage and an external hard drive",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 53,
@@ -386,7 +385,7 @@ const questions = {
         "C. Setting her social media location map to 'public'",
         "D. Waiting until she returns home to post vacation photos",
       ],
-      correct: "D",
+      correct: 3,
     },
     {
       id: 44,
@@ -399,31 +398,26 @@ const questions = {
         "C. In private/incognito browsing",
         "D. VPN tunneling",
       ],
-      correct: ["A", "B"],
+      correct: [0, 1],
     },
     {
       id: 48,
       type: 5,
       question:
         "Move each computer hardware element from the list on the left to the corresponding image on the right.",
-        img:"./img/e9.jpg",
+      img: "./img/e11.jpg",
       items: [
         "Motherboard",
         "Solid-state drive (SSD)",
         "Hard disk drive (HDD)",
         "Central processing unit (CPU)",
       ],
-      targets: [
-        "Motherboard → image of motherboard (blue circuit board with slots)",
-        "Solid-state drive (SSD) → image of SSD (green circuit board with chips)",
-        "Hard disk drive (HDD) → image of HDD (black box with disk inside)",
-        "Central processing unit (CPU) → image of CPU (small square chip with pins)",
-      ],
+      targets: ["1-image", "2-image", "3-image", "4-image"],
       correct: {
-        Motherboard: "motherboard image",
-        "Solid-state drive (SSD)": "SSD image",
-        "Hard disk drive (HDD)": "HDD image",
-        "Central processing unit (CPU)": "CPU image",
+        Motherboard: "1-image",
+        "Solid-state drive (SSD)": "2-image",
+        "Hard disk drive (HDD)": "3-image",
+        "Central processing unit (CPU)": "4-image",
       },
     },
     {
@@ -437,21 +431,21 @@ const questions = {
         "C. Remain on camera throughout the conference",
         "D. Introduce themselves by name when they speak",
       ],
-      correct: "B",
+      correct: 1,
     },
     {
       id: 37,
       type: 5,
       question:
         "Move each cable from the list on the left to the best connection on the right.",
-        img:"img/e10.jpg",
+      img: "img/e12.jpg",
       items: ["Lightning", "USB-C", "USB A", "Micro USB"],
-      targets: ["USB A", "USB-C", "Lightning", "Micro USB"],
+      targets: ["1", "4", "2", "3"],
       correct: {
-        Lightning: "Lightning connector (Apple)",
-        "USB-C": "USB-C connector",
-        "USB A": "USB A connector",
-        "Micro USB": "Micro USB connector",
+        Lightning: "1",
+        "USB-C": "4",
+        "USB A": "2",
+        "Micro USB": "3",
       },
       note: "Match the cable heads to the port shapes shown (from images: left side cables to right side ports)",
     },
@@ -459,13 +453,13 @@ const questions = {
       id: 45,
       type: 3,
       question:
-        "You are searching the web for information about how to grow your own vegetables. ... select Yes if the page is relevant ... or No if it is not.",
+        "You are searching the web for information about how to grow your own vegetables. You scan through several pages of result. ... select Yes if the page is relevant ... or No if it is not.",
       statements: [
         "A tabloid magazine article about celebrity gardens",
         "A how-to article published by a prestigious university",
         "An ad for a popular gardening blog",
       ],
-      correct: [false, true, false],
+      correct: [0, 1, 0],
     },
     {
       id: 43,
@@ -477,7 +471,7 @@ const questions = {
         "C. Improved muscle tone",
         "D. Increased flexibility in joints",
       ],
-      correct: "A",
+      correct: 0,
     },
     {
       id: 39,
@@ -492,20 +486,20 @@ const questions = {
         "E. Trademark status",
         "F. Author name",
       ],
-      correct: ["A", "B", "F"],
+      correct: [0, 1, 5],
     },
     {
       id: 38,
       type: 3,
       question:
-        "You need to identify the functions that are managed by a computer operating system (not by an app). ... select OS if it is managed by the operating system and App if it is not.",
+        "You need to identify the functions that are managed by a computer operating system (not by an app). For each task, select OS if it is managed by the operating system and App if it is not. App=true, OS=false",
       statements: [
         "Edits text files",
         "Searches the internet",
         "Allocates hardware resources",
         "Communicates with peripheral devices",
       ],
-      correct: ["App", "App", "OS", "OS"],
+      correct: [1, 1, 0, 0],
     },
     {
       id: 40,
@@ -518,7 +512,7 @@ const questions = {
         "You pull a paragraph from a webpage",
         "You paraphrase content from a magazine article",
       ],
-      correct: [true, false, true, true],
+      correct: [1, 0, 1, 1],
     },
     {
       id: 36,
@@ -531,7 +525,7 @@ const questions = {
         "C. Collaborators can work with others from any geographic location",
         "D. Confidential data is safer from theft and intrusion",
       ],
-      correct: ["B", "C"],
+      correct: [1, 2],
     },
     {
       id: 42,
@@ -544,7 +538,7 @@ const questions = {
         "C. Sync her phone to cloud storage",
         "D. Delete only the photos she doesn't want to use",
       ],
-      correct: "C",
+      correct: 2,
     },
     {
       id: 32,
@@ -557,7 +551,7 @@ const questions = {
         "C. Use only your school email to send private information",
         "D. Turn off GPS on your devices when you are not actively using it",
       ],
-      correct: ["A", "D"],
+      correct: [0, 3],
     },
     {
       id: 33,
@@ -569,7 +563,7 @@ const questions = {
         "Communication through emojis reproduces social constructs such as stereotypes, prejudices, and limitations",
         "Emojis are a constantly changing concept that may not universally reflect sources of study",
       ],
-      correct: [false, true, true],
+      correct: [0, 1, 1],
     },
     {
       id: 34,
@@ -589,10 +583,14 @@ const questions = {
         "Hard disk drive",
       ],
       correct: {
-        "A compact, lightweight external...": "USB flash drive",
-        "An external data storage device powered...": "Portable hard drive",
-        "An internal data storage device that stores...": "Solid-state drive",
-        "An internal electromechanical...": "Hard disk drive",
+        "A compact, lightweight external data storage device that uses flash memory":
+          "USB flash drive",
+        "An external data storage device powered through the USB port of the computer":
+          "Portable hard drive",
+        "An internal data storage device that stores and retrieves data using flash memory":
+          "Solid-state drive",
+        "An internal electromechanical data storage device that stores and retrieves data using a rapidly rotating platter":
+          "Hard disk drive",
       },
     },
     {
@@ -606,7 +604,7 @@ const questions = {
         "Duplex printing",
         "Printing with a gutter for binding books",
       ],
-      correct: "Duplex printing",
+      correct: 2,
     },
     {
       id: 9,
@@ -619,8 +617,7 @@ const questions = {
         "Allows you to search for contents within a file",
         "Allows you to launch programs or view any program that is currently open",
       ],
-      correct:
-        "Allows you to launch programs or view any program that is currently open",
+      correct: 3,
     },
     {
       id: 41,
@@ -633,7 +630,7 @@ const questions = {
         "Pages per sheet",
         "Printing two lines at a time",
       ],
-      correct: ["Slides per page", "Pages per sheet"],
+      correct: [2, 3],
     },
     {
       id: 24,
@@ -646,8 +643,7 @@ const questions = {
         "It helps the authors and creators maintain their copyrights.",
         "The more attributions and references an author or creator has, the more money they receive.",
       ],
-      correct:
-        "The purpose is to acknowledge the authors and creators of work that didn't originate from you.",
+      correct: 0,
     },
     {
       id: 45,
@@ -660,7 +656,7 @@ const questions = {
         "Your online identity is formed by what you post.",
         "It is illegal.",
       ],
-      correct: "Your online identity is formed by what you post.",
+      correct: 2,
     },
     {
       id: 6,
@@ -681,8 +677,7 @@ const questions = {
         "Search for the information online and try to find the original source.",
         "If lots of people are sharing and commenting, the information must be true.",
       ],
-      correct:
-        "Search for the information online and try to find the original source.",
+      correct: 2,
     },
     {
       id: 4,
@@ -697,11 +692,7 @@ const questions = {
         "Find a computer",
         "Establish a schedule",
       ],
-      correct: [
-        "Identify available resources",
-        "Identify the topic or goal",
-        "Establish a schedule",
-      ],
+      correct: [0, 1, 5],
     },
     {
       id: 39,
@@ -713,7 +704,7 @@ const questions = {
         "A biometric used to log in to an account",
         "Personal information about you, such as name, birth date, and phone number.",
       ],
-      correct: "Comments, images, and other information you post online",
+      correct: 0,
     },
     {
       id: 2,
@@ -727,7 +718,7 @@ const questions = {
         "You cannot number files.",
         "Do not write the entire file name in all capital letters.",
       ],
-      correct: [false, true, true, false, true],
+      correct: [0, 1, 1, 0, 1],
     },
     {
       id: 43,
@@ -739,8 +730,7 @@ const questions = {
         "Posting songs of your favorite artists online and charging your friends money to download them.",
         "Helping a friend by posting researched articles about bullying to their blog.",
       ],
-      correct:
-        "Stealing someone's password and pretending to be that person while tweeting or posting things online.",
+      correct: 1,
     },
     {
       id: 19,
@@ -754,10 +744,7 @@ const questions = {
         "You want to pretend to be someone else.",
         "You want to comment in a way which you normally wouldn't in person.",
       ],
-      correct: [
-        "You have a common name, and an alias can set you apart from others.",
-        "You are trying to keep your personal identity and business identities separate.",
-      ],
+      correct: [0, 2],
     },
     {
       id: 10,
@@ -783,12 +770,12 @@ const questions = {
       question:
         "You are participating in a virtual class meeting using a video technology. On the video, you can see your teacher and classmates, and they can all see you. Which of the following behaviors should you be careful about expressing?",
       options: [
-        "Smiling too much that promotes your favorite sports team",
+        "Smiling too much ",
         "Wearing clothing that promotes your favorite sports team",
         "Spelling and handwriting",
         "Facial expressions and body language",
       ],
-      correct: "Facial expressions and body language",
+      correct: 3,
     },
     {
       id: 8,
@@ -801,7 +788,7 @@ const questions = {
         "Anti-tracking browser extension",
         "Clearing your browser history",
       ],
-      correct: "Anti-tracking browser extension",
+      correct: 2,
     },
     {
       id: 5,
@@ -836,7 +823,7 @@ const questions = {
         "Acceptable Use Policies for adults are identical to policies for minors.",
         "Acceptable Use Policies cannot restrict you from posting whatever you want because you have 1st Amendment rights.",
       ],
-      correct: [true, true, true, true, false, false],
+      correct: [1, 1, 1, 1, 0, 0],
     },
     {
       id: 3,
@@ -851,10 +838,7 @@ const questions = {
         "Attribution is giving credit to the creator of an image or other material.",
         "Referencing is when the creator of a work specifies how they want you to give them credit for their work.",
       ],
-      correct: [
-        "Referencing is acknowledging your source in the body of your work and linking your citations to a bibliography.",
-        "Attribution is giving credit to the creator of an image or other material.",
-      ],
+      correct: [1, 4],
     },
     {
       id: 1,
@@ -864,23 +848,22 @@ const questions = {
       statements: [
         "The web page has poor English grammar and states several unrealistic claims.",
         "The web page has a .gov or a .edu domain.",
-        "The web page has a .com or a .org domain.",
         "The references on the web page go to similar websites of references instead of the original source of information.",
       ],
-      correct: [false, true, false, false],
+      correct: [0, 1, 0],
     },
     {
       id: 42,
       type: 3,
       question:
         "Refer to the image. For each statement, select Yes if the hardware component matches the description or No if it does not.",
-      img:"img/e3.jpg",
-        statements: [
+      img: "img/e3.jpg",
+      statements: [
         "Image A is a Solid State Drive (SSD).",
         "Image B is memory.",
         "Image C is a Central Processing Unit (CPU).",
       ],
-      correct: [false, true, true],
+      correct: [0, 1, 1],
     },
     {
       id: 37,
@@ -917,7 +900,7 @@ const questions = {
         "Allows anyone to access the network from anywhere",
         "Supports anonymous logins",
       ],
-      correct: "Easily scales the network as the student population grows",
+      correct: 0,
     },
     {
       id: 33,
@@ -932,26 +915,22 @@ const questions = {
         "Flash ROM",
         "RAM",
       ],
-      correct: [
-        "Hard Disk Drive (HDD)",
-        "Solid State Drive (SSD)",
-        "USB Flash Drive",
-      ],
+      correct: [0, 2, 3],
     },
     {
       id: 36,
       type: 3,
       question:
         "Refer to the image. For each statement, select Yes if the type of USB matches the image or No if it does not.",
-      img:"img/abcde.jpg",
-        statements: [
+      img: "img/abcde.jpg",
+      statements: [
         "Image A is a USB-C typically used on newer devices.",
         "Image B is a Micro USB typically used on phones, headphones, Bluetooth devices, and power banks.",
         "Image C is a Firewire connector used with iPhones.",
         "Image D is a Lightning connector used with Apple products.",
         "Image E is a USB-C typically used on newer devices.",
       ],
-      correct: [false, true, false, true, true],
+      correct: [0, 1, 0, 1, 1],
     },
     {
       id: 34,
@@ -964,7 +943,7 @@ const questions = {
         "Web browsers are software applications that retrieve and present information from the World Wide Web.",
         "Web browsers use URLs to connect to resources such as web pages, images, and videos.",
       ],
-      correct: [false, false, true, true],
+      correct: [0, 0, 1, 1],
     },
     {
       id: 32,
@@ -979,11 +958,7 @@ const questions = {
         "Topic you were searching",
         "Date you accessed the website",
       ],
-      correct: [
-        "Name of the website",
-        "URL or web address of the site",
-        "Date you accessed the website",
-      ],
+      correct: [2, 3, 5],
     },
     {
       id: 30,
@@ -991,7 +966,7 @@ const questions = {
       question:
         "You have a smartphone. Your friends have discovered an app that can show on a map where the smartphone of each friend is located. They want you to download the same app so they can know your location at all times. What technology is used by an app that can map the location of your smartphone?",
       options: ["Navigation Tracking", "Spyware", "Social Media", "Mapping"],
-      correct: "Navigation Tracking",
+      correct: 0,
     },
     {
       id: 35,
@@ -1006,7 +981,7 @@ const questions = {
         "Proprietary software generally has technical support.",
         "Open-source software usually has no technical support or is only supported by community forums.",
       ],
-      correct: [true, true, false, false, true, true],
+      correct: [1, 1, 0, 0, 1, 1],
     },
     {
       id: 7,
@@ -1019,7 +994,7 @@ const questions = {
         "Print to an email",
         "Print to a DVD",
       ],
-      correct: ["Printing to a PDF file", "Printing from the web"],
+      correct: [0, 1],
     },
     {
       id: 22,
@@ -1032,20 +1007,7 @@ const questions = {
         "Hey, girlfriends! Where are we meeting?",
         "Hi, guys! Where are we meeting?",
       ],
-      correct: "Hey, everyone! Where are we meeting?",
-    },
-    {
-      id: 16,
-      type: 1,
-      question:
-        "Why should you avoid posting derogatory memes on social media?",
-      options: [
-        "Not everyone shares your sense of humor.",
-        "Negative effects remain permanently available online.",
-        "It violates copyright.",
-        "It is against social media Acceptable Use Policies.",
-      ],
-      correct: "Negative effects remain permanently available online.",
+      correct: 1,
     },
     {
       id: 20,
@@ -1058,7 +1020,7 @@ const questions = {
         "Download a Speedtest app",
         "Try saving a file",
       ],
-      correct: "Open a browser",
+      correct: 0,
     },
     {
       id: 29,
@@ -1073,26 +1035,7 @@ const questions = {
         "Your profile",
         "Using Twitter and Snapchat instead of Facebook",
       ],
-      correct: [
-        "Media posted by other people that you share with your friends",
-        "Comments you post or tweet",
-        "Your profile",
-      ],
-    },
-    {
-      id: 4,
-      type: 2,
-      question:
-        "You just received a new smartphone and want to ensure that any personal files won't be lost if your phone becomes lost or damaged. You decide to enable auto backup using the cloud service that came with your phone. (choose three)",
-      options: [
-        "Text messages",
-        "Apps",
-        "Photos",
-        "Contacts",
-        "SIM card",
-        "Operating system",
-      ],
-      correct: ["Text messages", "Photos", "Contacts"],
+      correct: [1, 2, 4],
     },
     {
       id: 24,
@@ -1105,7 +1048,7 @@ const questions = {
         "You describe a current event you saw on the news.",
         "You quote lyrics from a song.",
       ],
-      correct: [false, true, false, true],
+      correct: [0, 1, 0, 1],
     },
     {
       id: 3,
@@ -1118,21 +1061,16 @@ const questions = {
         "Search engines",
         "Social media sites",
       ],
-      correct: "Search engines",
+      correct: 2,
     },
     {
       id: 28,
       type: 1,
       question:
         "You are editing a document that you previously wrote. Now you want to save your changes. Click on the feature that will save the changes you made to this document.",
-      img:"img/e7.jpg",
-         options: [
-        "1",
-        "2",
-        "3",
-        "4",
-      ],
-      correct: "3",
+      img: "img/e7.jpg",
+      options: ["1", "2", "3", "4"],
+      correct: 2,
     },
     {
       id: 14,
@@ -1186,14 +1124,9 @@ const questions = {
       type: 1,
       question:
         "You suspect that your favorite password has been compromised on one of your social media sites. You use the same password on multiple sites, including your banking site, so you want to reset your password. Click on the feature that will allow you to reset your password.",
-      img:"img/e5.jpg",
-         options: [
-        "1",
-        "2",
-        "3",
-        "4",
-      ],
-      correct: "3",
+      img: "img/e5.jpg",
+      options: ["1", "2", "3", "4"],
+      correct: 2,
     },
     {
       id: 9,
@@ -1206,8 +1139,7 @@ const questions = {
         "Displaying a photograph in a classroom presentation without obtaining permission from the photographer.",
         "Writing your own opinion and submitting it to a community blog.",
       ],
-      correct:
-        "Writing your own opinion and submitting it to a community blog.",
+      correct: 2,
     },
     {
       id: 27,
@@ -1219,7 +1151,7 @@ const questions = {
         "Internet Explorer (PC) or Safari (MacOS) can search content in an unopened file on your hard drive.",
         "Any user on the Internet can locate content information in a file stored on your computer.",
       ],
-      correct: [true, false, false],
+      correct: [1, 0, 0],
     },
     {
       id: 8,
@@ -1232,7 +1164,7 @@ const questions = {
         "Digital collaboration makes it easier to involve people.",
         "Digital collaboration is less flexible than face-to-face meetings.",
       ],
-      correct: [true, false, true, false],
+      correct: [1, 0, 1, 0],
     },
     {
       id: 23,
@@ -1247,11 +1179,7 @@ const questions = {
         "Manage telephone and messaging services",
         "Provide video gaming",
       ],
-      correct: [
-        "Provide services for application software",
-        "Manage resources, such as CPU, memory, disk drives, and peripherals",
-        "Provide a user interface",
-      ],
+      correct: [0, 2, 3],
     },
     {
       id: 18,
@@ -1264,8 +1192,7 @@ const questions = {
         "The mascot of your favorite sports team to make it easy to remember.",
         "At least 8 characters of numbers, symbols, and a mix of uppercase and lowercase letters.",
       ],
-      correct:
-        "At least 8 characters of numbers, symbols, and a mix of uppercase and lowercase letters.",
+      correct: 3,
     },
     {
       id: 21,
@@ -1278,8 +1205,7 @@ const questions = {
         "The packets sent/received across your school network cannot be seen.",
         "Your name is kept private.",
       ],
-      correct:
-        "No history, cookies, passwords, or temporary files are recorded on the computer.",
+      correct: 0,
     },
     {
       id: 2,
@@ -1291,7 +1217,7 @@ const questions = {
         "A photograph you want to use was created 100 years ago by a photographer who died 10 years later.",
         "The lyrics to a song you want to use were not registered as a copyright.",
       ],
-      correct: [false, true, false],
+      correct: [0, 1, 0],
     },
     {
       id: 15,
@@ -1304,7 +1230,7 @@ const questions = {
         "Apps for iOS tends to have fewer security issues than apps for Android.",
         "The operating system on approximately 30% of the world's mobile devices is iOS.",
       ],
-      correct: [true, false, true, true],
+      correct: [1, 0, 1, 1],
     },
     {
       id: 26,
@@ -1318,10 +1244,7 @@ const questions = {
         "Posting to a blog",
         "Playing online games",
       ],
-      correct: [
-        "Posting location information with a selfie you just photographed on social media sites",
-        "Checking in your physical location on social media sites",
-      ],
+      correct: [1, 2],
     },
     {
       id: 10,
@@ -1335,10 +1258,7 @@ const questions = {
         "All social media sites have the same guidelines you must follow.",
         "Each social media site has its own guidelines you must follow.",
       ],
-      correct: [
-        "Minimum age requirements may differ on each social media site.",
-        "Each social media site has its own guidelines you must follow.",
-      ],
+      correct: [1, 4],
     },
     {
       id: 13,
@@ -1353,7 +1273,7 @@ const questions = {
         "In Snapchat, pictures and messages are only available for a short time before becoming inaccessible.",
         "You can only share on Pinterest if you upload an image.",
       ],
-      correct: [true, false, false, true, true, true],
+      correct: [1, 0, 0, 1, 1, 1],
     },
     {
       id: 5,
@@ -1393,11 +1313,7 @@ const questions = {
         "Credentials are stored on Amazon, Facebook, and Google.",
         "SSO is government owned and operated.",
       ],
-      correct: [
-        "After signing on, you can access your email, document storage, apps, and other sites with full access.",
-        "You only need to remember one set of login details.",
-        "You have stronger security.",
-      ],
+      correct: [0, 1, 2],
     },
     {
       id: 17,
@@ -1412,11 +1328,7 @@ const questions = {
         "Don't make your birth year public.",
         "Use a fake name and location.",
       ],
-      correct: [
-        "Don't post your street address.",
-        "If the site requires your phone number, make sure it will be kept private.",
-        "Don't make your birth year public.",
-      ],
+      correct: [0, 3, 4],
     },
     {
       id: 1,
@@ -1453,6 +1365,38 @@ const questions = {
       },
     },
   ],
-  level2: [],
-  level3: [],
+  level2: [
+    {
+      id: 13,
+      type: 3,
+      question:
+        "For each statement regarding where you can post or share in the digital world, select Yes if the statement is true and No if the statement is false.",
+      statements: [
+        "Facebook is the most popular social media website for posting and sharing content.",
+        "There are no minimum age requirements to have an account on YouTube.",
+        "Instagram is only available to Apple iOS users.",
+        "WeChat has been described as China's 'app for everything.'",
+        "In Snapchat, pictures and messages are only available for a short time before becoming inaccessible.",
+        "You can only share on Pinterest if you upload an image.",
+      ],
+      correct: [1, 0, 0, 1, 1, 1],
+    },
+  ],
+  level3: [
+    {
+      id: 13,
+      type: 3,
+      question:
+        "For each statement regarding where you can post or share in the digital world, select Yes if the statement is true and No if the statement is false.",
+      statements: [
+        "Facebook is the most popular social media website for posting and sharing content.",
+        "There are no minimum age requirements to have an account on YouTube.",
+        "Instagram is only available to Apple iOS users.",
+        "WeChat has been described as China's 'app for everything.'",
+        "In Snapchat, pictures and messages are only available for a short time before becoming inaccessible.",
+        "You can only share on Pinterest if you upload an image.",
+      ],
+      correct: [1, 0, 0, 1, 1, 1],
+    },
+  ],
 };

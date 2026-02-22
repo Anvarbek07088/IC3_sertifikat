@@ -1,195 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IC3 GS6 Certification Practice Platform</title>
+    <title>IC3 GS6 - Kirish</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Anti-copy styles */
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .no-copy {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-    </style>
 </head>
-<body class="no-copy">
-    <div class="app-container">
-        <!-- Login Screen -->
-        <div id="login-screen" class="screen active">
-            <div class="login-container">
-                <div class="login-header">
-                    <h1>IC3 GS6</h1>
-                    <p>Certification Practice Platform</p>
-                </div>
-                <div class="login-form">
-                    <div class="device-id">
-                        <span class="device-label">Device ID:</span>
-                        <span id="device-id-display"></span>
-                    </div>
-                    <div class="input-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" placeholder="Enter username" autocomplete="off">
-                    </div>
-                    <div class="input-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter password" autocomplete="off">
-                    </div>
-                    <button id="login-btn" class="login-btn">Login</button>
-                    <div id="login-error" class="error-message"></div>
-                </div>
-                <div class="devices-list">
-                    <h4>Authorized Devices:</h4>
-                    <ul id="authorized-devices">
-                        <li>Device-001 (Main Computer)</li>
-                        <li>Device-002 (Lab Computer)</li>
-                    </ul>
-                </div>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="logo">
+                <h1>IC3 GS6</h1>
+                <p>Global Standard 6</p>
             </div>
-        </div>
-
-        <!-- Level Selection Screen -->
-        <div id="level-screen" class="screen">
-            <div class="level-container">
-                <div class="user-info">
-                    <span id="logged-user"></span>
-                    <button id="logout-btn" class="logout-btn">Logout</button>
+            <form id="loginForm">
+                <h2>Kirish</h2>
+                <div class="input-group">
+                    <label for="username">Login:</label>
+                    <input type="text" id="username" name="username" required>
                 </div>
-                <h2>Select Your Level</h2>
-                <div class="level-cards">
-                    <div class="level-card" data-level="1">
-                        <div class="level-icon">🌱</div>
-                        <h3>Level 1</h3>
-                        <p>Basic</p>
-                        <span class="question-count">49 Questions</span>
-                        <button class="start-level" data-level="1">Start</button>
-                    </div>
-                    <div class="level-card disabled" data-level="2">
-                        <div class="level-icon">📚</div>
-                        <h3>Level 2</h3>
-                        <p>Intermediate</p>
-                        <span class="question-count">Coming Soon</span>
-                        <button class="start-level" disabled>Locked</button>
-                    </div>
-                    <div class="level-card disabled" data-level="3">
-                        <div class="level-icon">🎯</div>
-                        <h3>Level 3</h3>
-                        <p>Advanced</p>
-                        <span class="question-count">Coming Soon</span>
-                        <button class="start-level" disabled>Locked</button>
-                    </div>
+                <div class="input-group">
+                    <label for="password">Parol:</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
-                <div class="progress-summary">
-                    <h4>Your Progress</h4>
-                    <div class="level-progress">
-                        <div class="progress-item">
-                            <span>Level 1:</span>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="level1-progress" style="width: 0%"></div>
-                            </div>
-                            <span id="level1-stats">0/49</span>
-                        </div>
-                    </div>
+                <button type="submit" class="login-btn">Kirish</button>
+                <div class="demo-info">
+                    <p>Demo: ****** / *****</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Test Screen -->
-        <div id="test-screen" class="screen">
-            <div class="test-container">
-                <!-- Header -->
-                <div class="test-header">
-                    <div class="test-info">
-                        <h2>Level <span id="current-level">1</span></h2>
-                        <div class="timer" id="timer">00:00</div>
-                    </div>
-                    <div class="stats">
-                        <div class="stat correct">✓ <span id="correct-count">0</span></div>
-                        <div class="stat incorrect">✗ <span id="incorrect-count">0</span></div>
-                        <div class="stat percent"><span id="percent">0</span>%</div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar-test" id="test-progress"></div>
-                    </div>
-                </div>
-
-                <!-- Question Area -->
-                <div class="question-area">
-                    <div class="question-header">
-                        <span class="question-number" id="question-number">Question 1/49</span>
-                        <span class="question-type" id="question-type">Type 1</span>
-                    </div>
-                    <div class="question-text" id="question-text"></div>
-                    
-                    <!-- Dynamic Question Content -->
-                    <div id="question-content" class="question-content"></div>
-                    
-                    <!-- Image Container (for type 5 questions) -->
-                    <div id="question-image" class="question-image hidden"></div>
-                </div>
-
-                <!-- Navigation -->
-                <div class="navigation">
-                    <button id="prev-btn" class="nav-btn" disabled>⬅ Previous</button>
-                    <button id="check-btn" class="check-btn">✔ Check Answer</button>
-                    <button id="next-btn" class="nav-btn" disabled>Next ➡</button>
-                </div>
-
-                <!-- Feedback -->
-                <div id="feedback" class="feedback hidden"></div>
-            </div>
-        </div>
-
-        <!-- Results Screen -->
-        <div id="results-screen" class="screen">
-            <div class="results-container">
-                <h2>Test Complete!</h2>
-                <div class="final-stats">
-                    <div class="final-stat-card">
-                        <div class="stat-value" id="final-correct">0</div>
-                        <div class="stat-label">Correct</div>
-                    </div>
-                    <div class="final-stat-card">
-                        <div class="stat-value" id="final-incorrect">0</div>
-                        <div class="stat-label">Incorrect</div>
-                    </div>
-                    <div class="final-stat-card">
-                        <div class="stat-value" id="final-percent">0%</div>
-                        <div class="stat-label">Score</div>
-                    </div>
-                </div>
-                <div class="certificate-status" id="certificate-status"></div>
-                <div class="mistakes-list" id="mistakes-list"></div>
-                <div class="results-actions">
-                    <button id="review-btn" class="results-btn">Review Mistakes</button>
-                    <button id="retake-btn" class="results-btn">Retake Test</button>
-                    <button id="back-to-levels-btn" class="results-btn">Back to Levels</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-
-    <!-- Warning Modal for DevTools -->
-    <div id="devtools-warning" class="modal hidden">
-        <div class="modal-content">
-            <h3>⚠️ Warning</h3>
-            <p>Developer tools are not allowed during the test. Please close them to continue.</p>
-            <button id="close-warning">OK</button>
-        </div>
-    </div>
-
-    <script src="questions.js"></script>
-    <script src="test.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
