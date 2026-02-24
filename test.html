@@ -143,7 +143,7 @@
             75% { transform: translateX(10px); }
         }
         
-        /* Matn tanlashni bloklash - faqat CSS orqali */
+        /* Matn tanlashni bloklash */
         body {
             -webkit-user-select: none !important;
             -moz-user-select: none !important;
@@ -159,7 +159,7 @@
             user-select: none !important;
         }
         
-        /* Nusxa olishni bloklash - ko'rinmas overlay */
+        /* Nusxa olishni bloklash overlay */
         .no-copy-overlay {
             position: absolute;
             top: 0;
@@ -322,7 +322,7 @@
                         lockUntil = parseInt(savedLockUntil);
                         if (lockUntil > Date.now()) {
                             isLocked = true;
-                            showLockScreen('screenshot olindi');
+                            showLockScreen('screenshot olindi', false);
                         } else {
                             localStorage.removeItem('screenshot_lockUntil');
                             localStorage.removeItem('screenshot_unlockAttempts');
@@ -340,7 +340,7 @@
             }
             
             // ========== BLOKLASH EKRANINI KO'RSATISH ==========
-            function showLockScreen(reason = 'screenshot olindi') {
+            function showLockScreen(reason = 'screenshot olindi', playAnimation = true) {
                 const lockScreen = document.getElementById('lockScreen');
                 const lockTimer = document.getElementById('lockTimer');
                 const reasonEl = document.getElementById('violationReason');
@@ -372,6 +372,9 @@
                 
                 localStorage.removeItem('screenshot_lockUntil');
                 localStorage.removeItem('screenshot_unlockAttempts');
+                
+                // TEST BOSHIQA QAYTMAYDI - HOLAT SAQLANADI
+                console.log('Bloklash ochildi, test davom etadi');
             }
             
             // ========== TAYMERNI YANGILASH ==========
@@ -383,7 +386,6 @@
                     if (!lockUntil || lockUntil <= Date.now()) {
                         clearInterval(interval);
                         hideLockScreen();
-                        location.reload();
                         return;
                     }
                     
@@ -412,10 +414,23 @@
                     return;
                 }
                 
-                if (UNLOCK_CODES[code] || code === 'IC3GS6' || code === '2025') {
+                // Kodni tekshirish
+                let isValid = false;
+                
+                if (UNLOCK_CODES[code]) {
+                    isValid = true;
+                }
+                
+                // Qo'shimcha kodlar
+                if (code === 'IC3GS6' || code === '2025' || code === 'ADMIN' || code === 'OPEN' || code === 'UNLOCK') {
+                    isValid = true;
+                }
+                
+                if (isValid) {
                     lockMessage.textContent = '✅ Kod to\'g\'ri! Bloklash ochildi.';
                     lockMessage.style.color = '#4caf50';
                     
+                    // Bloklashni ochish - TEST BOSHIQA QAYTMAYDI
                     setTimeout(() => {
                         hideLockScreen();
                     }, 1000);
@@ -511,20 +526,6 @@
                         return false;
                     }
                 });
-                
-                // Developer Tools ni aniqlash (ba'zi screenshot toolslari DevTools ochadi)
-                setInterval(() => {
-                    if (isLocked) return;
-                    
-                    const start = performance.now();
-                    debugger;
-                    const end = performance.now();
-                    
-                    if (end - start > 100) {
-                        // DevTools ochilgan, screenshot bo'lishi mumkin
-                        lockPlatform('screenshot olindi (DevTools)');
-                    }
-                }, 3000);
             }
             
             // ========== PLATFORMANI BLOKLASH ==========
@@ -554,7 +555,7 @@
                 if (originalCheck) {
                     window.checkAnswer = function() {
                         if (isLocked) {
-                            showLockScreen();
+                            showLockScreen('test bloklangan', false);
                             return;
                         }
                         return originalCheck();
@@ -564,7 +565,7 @@
                 if (originalChange) {
                     window.changeQuestion = function(d) {
                         if (isLocked) {
-                            showLockScreen();
+                            showLockScreen('test bloklangan', false);
                             return;
                         }
                         return originalChange(d);
@@ -574,7 +575,7 @@
                 if (originalGoTo) {
                     window.goToQuestion = function(i) {
                         if (isLocked) {
-                            showLockScreen();
+                            showLockScreen('test bloklangan', false);
                             return;
                         }
                         return originalGoTo(i);
@@ -582,18 +583,12 @@
                 }
             }
             
-            // ========== NUSXA OLISHNI BLOKLASH (CSS ORQALI) ==========
-            function disableCopy() {
-                // CSS bilan bloklash yetarli, JS bilan hech narsa qilmaymiz
-                // Faqat screenshotni aniqlaymiz
-            }
-            
             // ========== ISHGA TUSHIRISH ==========
             function init() {
                 loadFromStorage();
                 
                 if (isLocked) {
-                    showLockScreen();
+                    showLockScreen('test bloklangan', false);
                 } else {
                     detectScreenshot();
                 }
