@@ -1,7 +1,7 @@
 window.questionsData = {
   level1: [
     {
-      id: 80,
+      id: 1,
       type: 1,
       question: "Which practice helps protect your computer and personal data?",
       options: [
@@ -11,28 +11,28 @@ window.questionsData = {
         "D. Downloading files from unknown websites.",
       ],
       correct: 1,
-      tr: 1,
+      tr: 80,
     },
     {
-      id: 77,
+      id: 2,
       type: 3,
       question:
         "For each item, select Yes if it is a valid Google search filter option, and No if it is not.",
       statements: ["Language", "File type", "Color", "Dates"],
       correct: [1, 1, 0, 1],
-      tr: 2,
+      tr: 77,
     },
     {
-      id: 54,
+      id: 3,
       type: 2,
       question:
         "Which two connections can be used to connect a monitor to a computer? (Choose two.)",
       options: ["A. HDMI", "B. Ethernet", "C. USB-C"],
       correct: [0, 2],
-      tr: 3,
+      tr: 54,
     },
     {
-      id: 58,
+      id: 4,
       type: 3,
       question:
         "For each statement about Creative Commons, select True or False.",
@@ -42,10 +42,10 @@ window.questionsData = {
         "Provides tools that allow creators to dedicate their works to the public domain",
       ],
       correct: [0, 1, 1],
-      tr: 4,
+      tr: 58,
     },
     {
-      id: 72,
+      id: 5,
       type: 1,
       question:
         "Which hardware component does a desktop computer use for long-term data storage?",
@@ -56,10 +56,10 @@ window.questionsData = {
         "D. Hard disk drive",
       ],
       correct: 3,
-      tr: 5,
+      tr: 72,
     },
     {
-      id: 74,
+      id: 6,
       type: 3,
       question:
         "For each statement about the differences between internet and intranet, select True or False.",
@@ -69,10 +69,10 @@ window.questionsData = {
         "An intranet has an unlimited number of users and can be accessed by anyone",
       ],
       correct: [0, 1, 0],
-      tr: 6,
+      tr: 74,
     },
     {
-      id: 73,
+      id: 7,
       type: 3,
       question:
         "You need to identify tools that help you to protect your digital privacy. For each statement, select Yes if the feature protects digital privacy and No if it does not.",
@@ -82,10 +82,10 @@ window.questionsData = {
         "Anti-tracking browser extension",
       ],
       correct: [0, 1, 1],
-      tr: 7,
+      tr: 73,
     },
     {
-      id: 70,
+      id: 8,
       type: 3,
       question:
         "For each physical health risk, select Yes if it is associated with prolonged computer use or No if it is not.",
@@ -96,10 +96,10 @@ window.questionsData = {
         "Frequent headaches",
       ],
       correct: [1, 0, 1, 1],
-      tr: 8,
+      tr: 70,
     },
     {
-      id: 59,
+      id: 9,
       type: 1,
       question: "Which option is the best way to create a secure password?",
       options: [
@@ -109,10 +109,10 @@ window.questionsData = {
         'D. Use something easy to remember, like "password" like "12345" or "p@ssword"',
       ],
       correct: 2,
-      tr: 9,
+      tr: 59,
     },
     {
-      id: 61,
+      id: 10,
       type: 3,
       question: "For each statement about copyright, select True or False.",
       statements: [
@@ -121,10 +121,10 @@ window.questionsData = {
         "Copyright laws protect only works of art, such as paintings and sculptures",
       ],
       correct: [0, 1, 0],
-      tr: 10,
+      tr: 61,
     },
     {
-      id: 68,
+      id: 11,
       type: 3,
       question:
         "For each statement about citation practices, select True or False.",
@@ -135,10 +135,10 @@ window.questionsData = {
         "You should place quotation marks around phrases that you quote from someone else's work",
       ],
       correct: [1, 1, 1, 1],
-      tr: 11,
+      tr: 68,
     },
     {
-      id: 65,
+      id: 12,
       type: 1,
       question:
         "You are making suggestions, corrections, and comments on a classmate's research paper. What process are you performing?",
@@ -149,10 +149,10 @@ window.questionsData = {
         "D. Fact checking",
       ],
       correct: 2,
-      tr: 12,
+      tr: 65,
     },
     {
-      id: 57,
+      id: 13,
       type: 2,
       question:
         "You need to ensure the security of your passwords. Which three guidelines should you follow? (Choose three.)",
@@ -165,10 +165,10 @@ window.questionsData = {
         "F. Use a different password for each account.",
       ],
       correct: [0, 2, 5],
-      tr: 13,
+      tr: 57,
     },
     {
-      id: 63,
+      id: 14,
       type: 3,
       question:
         "You are searching the web to gather information for a research paper. You need to identify webpages that are likely to contain accurate and unbiased information for your research. For each statement, select Yes if it indicates that a webpage meets the requirements or No if it does not.",
@@ -178,10 +178,10 @@ window.questionsData = {
         "The webpage includes a list of references",
       ],
       correct: [0, 1, 1],
-      tr: 14,
+      tr: 63,
     },
     {
-      id: 66,
+      id: 15,
       type: 1,
       question: 'What is a benefit of "in private" or "incognito" browsing?',
       options: [
@@ -191,10 +191,10 @@ window.questionsData = {
         "D. Your web browser blocks advertisements.",
       ],
       correct: 2,
-      tr: 15,
+      tr: 66,
     },
     {
-      id: 69,
+      id: 16,
       type: 1,
       question:
         "Your name is Sam Grey. You are updating a school project and want to save a new version. You need to choose a file name that clearly identifies the author, is easy to read, and supports web usability and cross-platform compatibility. Which file name should you use?",
@@ -205,10 +205,10 @@ window.questionsData = {
         "D. SamGreyProject1v3.docx",
       ],
       correct: 3,
-      tr: 16,
+      tr: 69,
     },
     {
-      id: 79,
+      id: 17,
       type: 1,
       question: "What is a computer virus?",
       options: [
@@ -218,10 +218,10 @@ window.questionsData = {
         "D. A program that can copy itself and spread to other computers",
       ],
       correct: 3,
-      tr: 17,
+      tr: 79,
     },
     {
-      id: 62,
+      id: 18,
       type: 1,
       question:
         "You are working on a research project. You locate a long online article that contains information related to your research topic. Which information can you locate on the webpage by using the browser's Find feature?",
@@ -232,10 +232,10 @@ window.questionsData = {
         "D. Related comments on social media sites",
       ],
       correct: 1,
-      tr: 18,
+      tr: 62,
     },
     {
-      id: 71,
+      id: 19,
       type: 2,
       question:
         "Which two methods should you use to avoid computer-related injuries? (Choose two.)",
@@ -246,10 +246,10 @@ window.questionsData = {
         "D. Take frequent short breaks during which you walk around",
       ],
       correct: [2, 3],
-      tr: 19,
+      tr: 71,
     },
     {
-      id: 60,
+      id: 20,
       type: 1,
       question: "Which statement about web-based applications is correct?",
       options: [
@@ -259,10 +259,10 @@ window.questionsData = {
         "D. You must have an internet connection to use a web application.",
       ],
       correct: 3,
-      tr: 20,
+      tr: 60,
     },
     {
-      id: 78,
+      id: 21,
       type: 2,
       question:
         "You are writing a research paper. You gather information from various sources that you want to include in your paper. You need to reference your source material in your paper. For which two reasons should you reference your source material? (Choose two.)",
@@ -273,10 +273,10 @@ window.questionsData = {
         "D. It provides financial payment to the people who performed the research.",
       ],
       correct: [0, 2],
-      tr: 21,
+      tr: 78,
     },
     {
-      id: 67,
+      id: 22,
       type: 3,
       question:
         "You need to add artwork to a presentation you're creating for your class. You do NOT have time to get permission to use the artwork. For each statement, select Yes if you may legally use the artwork without permission or No if you may not.",
@@ -286,10 +286,10 @@ window.questionsData = {
         "The copyright owner dedicated the artwork to the public domain (Владелец авторских прав передал произведение в общественное достояние)",
       ],
       correct: [0, 0, 1],
-      tr: 22,
+      tr: 67,
     },
     {
-      id: 64,
+      id: 23,
       type: 3,
       question:
         "As an ethical computer user, you have a responsibility to practice good netiquette at all times. You need to identify examples of good netiquette in an office work environment. For each statement, select Yes if it is an example of good netiquette or No if it is not.",
@@ -299,10 +299,10 @@ window.questionsData = {
         "Apply the same standards and values to online interactions that you do to face-to-face interactions",
       ],
       correct: [1, 1, 1],
-      tr: 23,
+      tr: 64,
     },
     {
-      id: 76,
+      id: 24,
       type: 3,
       question:
         "Online messaging apps simplify the process of communicating with other people, whether they are next door or in another country. For each statement, select True or False.",
@@ -312,10 +312,10 @@ window.questionsData = {
         "Culture is a constantly changing concept that may not completely reflect someone's identity",
       ],
       correct: [0, 0, 1],
-      tr: 24,
+      tr: 76,
     },
     {
-      id: 55,
+      id: 25,
       type: 1,
       question:
         "You see a post on social media that contains an article about a current event. You want to evaluate the credibility of the article. Which factor is most important?",
@@ -326,10 +326,10 @@ window.questionsData = {
         "D. The news outlet's reputation and trustworthiness",
       ],
       correct: 3,
-      tr: 25,
+      tr: 55,
     },
     {
-      id: 56,
+      id: 26,
       type: 1,
       question:
         "When assessing an online article's reliability, which is a critical step?",
@@ -340,19 +340,19 @@ window.questionsData = {
         "D. Confirming the author's popularity on social media",
       ],
       correct: 2,
-      tr: 26,
+      tr: 56,
     },
     {
-      id: 51,
+      id: 27,
       type: 1,
       question:
         "You need to collaborate with your peers and share your class journal. Which digital platform is appropriate for this classroom activity?",
       options: ["A. Google Docs", "B. Facebook", "C. Instagram", "D. Twitter"],
       correct: 0,
-      tr: 27,
+      tr: 51,
     },
     {
-      id: 52,
+      id: 28,
       type: 3,
       question: "Digital Privacy – True or False Statements",
       statements: [
@@ -362,10 +362,10 @@ window.questionsData = {
         "Companies with which you share personal data in exchange for apps and services are not allowed to give the data to anyone else",
       ],
       correct: [0, 0, 1, 0],
-      tr: 28,
+      tr: 52,
     },
     {
-      id: 47,
+      id: 29,
       type: 3,
       question:
         "For each statement about printing documents, select True or False.",
@@ -376,10 +376,10 @@ window.questionsData = {
         "To preserve file formatting when electronically distributing a document, print the document to a PDF file",
       ],
       correct: [0, 1, 0, 1],
-      tr: 29,
+      tr: 47,
     },
     {
-      id: 49,
+      id: 30,
       type: 1,
       question:
         "You and a partner are collaborating to create a science report. You create a shared document and save it to the cloud. You intend to work on the report at different times. What type of collaboration does this refer to?",
@@ -390,10 +390,10 @@ window.questionsData = {
         "D. Asynchronous",
       ],
       correct: 3,
-      tr: 30,
+      tr: 49,
     },
     {
-      id: 46,
+      id: 31,
       type: 1,
       question: "Which backup method offers the best protection for your data?",
       options: [
@@ -403,10 +403,10 @@ window.questionsData = {
         "D. Using both cloud storage and an external hard drive",
       ],
       correct: 3,
-      tr: 31,
+      tr: 46,
     },
     {
-      id: 53,
+      id: 32,
       type: 1,
       question:
         "Maddie uses social media to stay in touch with friends and family. She is planning to go on vacation next month. What is the safest way for Maddie to protect herself from online predators when posting information about her vacation activities?",
@@ -417,10 +417,10 @@ window.questionsData = {
         "D. Waiting until she returns home to post vacation photos",
       ],
       correct: 3,
-      tr: 32,
+      tr: 53,
     },
     {
-      id: 44,
+      id: 33,
       type: 2,
       question:
         "Which two technologies do websites use to track visitors' online browsing habits? (Choose two)",
@@ -431,10 +431,10 @@ window.questionsData = {
         "D. VPN tunneling",
       ],
       correct: [0, 1],
-      tr: 33,
+      tr: 44,
     },
     {
-      id: 48,
+      id: 34,
       type: 5,
       question:
         "Move each computer hardware element from the list on the left to the corresponding image on the right.",
@@ -452,10 +452,10 @@ window.questionsData = {
         "Hard disk drive (HDD)": "3-image",
         "Central processing unit (CPU)": "4-image",
       },
-      tr: 34,
+      tr: 48,
     },
     {
-      id: 50,
+      id: 35,
       type: 1,
       question:
         "You are working with other students on a science project. Your team will meet to discuss the project using the school's videoconferencing application. You act as the host. You need to ensure that each student can talk about the project without being interrupted by other students. What should each student do to meet this goal?",
@@ -466,10 +466,10 @@ window.questionsData = {
         "D. Introduce themselves by name when they speak",
       ],
       correct: 1,
-      tr: 35,
+      tr: 50,
     },
     {
-      id: 37,
+      id: 36,
       type: 5,
       question:
         "Move each cable from the list on the left to the best connection on the right.",
@@ -483,10 +483,10 @@ window.questionsData = {
         "Micro USB": "3",
       },
       note: "Match the cable heads to the port shapes shown (from images: left side cables to right side ports)",
-      tr: 36,
+      tr: 37,
     },
     {
-      id: 45,
+      id: 37,
       type: 3,
       question:
         "You are searching the web for information about how to grow your own vegetables. You scan through several pages of result. ... select Yes if the page is relevant ... or No if it is not.",
@@ -496,10 +496,10 @@ window.questionsData = {
         "An ad for a popular gardening blog",
       ],
       correct: [0, 1, 0],
-      tr: 37,
+      tr: 45,
     },
     {
-      id: 43,
+      id: 38,
       type: 1,
       question: "Which symptom is associated with prolonged computer use?",
       options: [
@@ -509,7 +509,7 @@ window.questionsData = {
         "D. Increased flexibility in joints",
       ],
       correct: 0,
-      tr: 38,
+      tr: 43,
     },
     {
       id: 39,
@@ -528,7 +528,7 @@ window.questionsData = {
       tr: 39,
     },
     {
-      id: 38,
+      id: 40,
       type: 3,
       question:
         "You need to identify the functions that are managed by a computer operating system (not by an app). For each task, select OS if it is managed by the operating system and App if it is not. App=true, OS=false",
@@ -539,10 +539,10 @@ window.questionsData = {
         "Communicates with peripheral devices",
       ],
       correct: [1, 1, 0, 0],
-      tr: 40,
+      tr: 38,
     },
     {
-      id: 40,
+      id: 41,
       type: 3,
       question:
         "You are writing a research paper. ... select YES if you must add a reference or NO if you do not.",
@@ -553,10 +553,10 @@ window.questionsData = {
         "You paraphrase content from a magazine article",
       ],
       correct: [1, 0, 1, 1],
-      tr: 41,
+      tr: 40,
     },
     {
-      id: 36,
+      id: 42,
       type: 2,
       question:
         "Which two options are benefits of digital collaboration? (Choose two.)",
@@ -567,10 +567,10 @@ window.questionsData = {
         "D. Confidential data is safer from theft and intrusion",
       ],
       correct: [1, 2],
-      tr: 42,
+      tr: 36,
     },
     {
-      id: 42,
+      id: 43,
       type: 1,
       question:
         "Juliana takes photos with her phone for the school yearbook. ... What should Juliana do?",
@@ -581,10 +581,10 @@ window.questionsData = {
         "D. Delete only the photos she doesn't want to use",
       ],
       correct: 2,
-      tr: 43,
+      tr: 42,
     },
     {
-      id: 32,
+      id: 44,
       type: 2,
       question:
         "Which two actions can you take to help maintain your digital privacy? (Choose two.)",
@@ -595,10 +595,10 @@ window.questionsData = {
         "D. Turn off GPS on your devices when you are not actively using it",
       ],
       correct: [0, 3],
-      tr: 44,
+      tr: 32,
     },
     {
-      id: 33,
+      id: 45,
       type: 3,
       question:
         "Online messaging apps simplify the process of communicating... select True or False.",
@@ -608,10 +608,10 @@ window.questionsData = {
         "Emojis are a constantly changing concept that may not universally reflect sources of study",
       ],
       correct: [0, 1, 1],
-      tr: 45,
+      tr: 33,
     },
     {
-      id: 34,
+      id: 46,
       type: 5,
       question:
         "Move each data storage device from the list on the left to the correct definition on the right.",
@@ -637,10 +637,10 @@ window.questionsData = {
         "An internal electromechanical data storage device that stores and retrieves data using a rapidly rotating platter":
           "Hard disk drive",
       },
-      tr: 46,
+      tr: 34,
     },
     {
-      id: 22,
+      id: 47,
       type: 1,
       question:
         "A paper you are writing for a course needs to be printed double-sided. What is another term for double-sided printing?",
@@ -651,10 +651,10 @@ window.questionsData = {
         "Printing with a gutter for binding books",
       ],
       correct: 2,
-      tr: 47,
+      tr: 22,
     },
     {
-      id: 9,
+      id: 48,
       type: 1,
       question:
         "The Windows operating system has a Taskbar that appears by default at the bottom of the screen. What is the purpose of the Windows operating system Taskbar?",
@@ -665,10 +665,10 @@ window.questionsData = {
         "Allows you to launch programs or view any program that is currently open",
       ],
       correct: 3,
-      tr: 48,
+      tr: 9,
     },
     {
-      id: 41,
+      id: 49,
       type: 2,
       question: "Which two are common print settings? (Choose two)",
       options: [
@@ -679,10 +679,10 @@ window.questionsData = {
         "Printing two lines at a time",
       ],
       correct: [2, 3],
-      tr: 49,
+      tr: 41,
     },
     {
-      id: 24,
+      id: 50,
       type: 1,
       question:
         "You are writing a research paper and have been instructed to include attributions and referencing. What is the purpose of attribution and referencing?",
@@ -693,10 +693,10 @@ window.questionsData = {
         "The more attributions and references an author or creator has, the more money they receive.",
       ],
       correct: 0,
-      tr: 50,
+      tr: 24,
     },
     {
-      id: 45,
+      id: 51,
       type: 1,
       question:
         "Why should you avoid posting demeaning photographs, harassing people, or advocating negative ideas like suicide or terrorism online?",
@@ -707,19 +707,19 @@ window.questionsData = {
         "It is illegal.",
       ],
       correct: 2,
-      tr: 51,
+      tr: 45,
     },
     {
-      id: 6,
+      id: 52,
       type: 5,
       question:
         "Rank each of the following computing devices from Most Powerful (#1) to Least Powerful (#4).",
       items: ["Smartphone", "Laptop", "Tablet", "Desktop Computer"],
       correct: ["Desktop Computer", "Laptop", "Tablet", "Smartphone"],
-      tr: 52,
+      tr: 6,
     },
     {
-      id: 44,
+      id: 53,
       type: 1,
       question:
         "A post on Facebook makes some statements that are being shared by numerous people. How can you determine whether the statements are true?",
@@ -730,10 +730,10 @@ window.questionsData = {
         "If lots of people are sharing and commenting, the information must be true.",
       ],
       correct: 2,
-      tr: 53,
+      tr: 44,
     },
     {
-      id: 4,
+      id: 54,
       type: 2,
       question:
         "You've been assigned to write a research paper. What three types of information are required for you to complete this task? (Choose three)",
@@ -746,10 +746,10 @@ window.questionsData = {
         "Establish a schedule",
       ],
       correct: [0, 1, 5],
-      tr: 54,
+      tr: 4,
     },
     {
-      id: 39,
+      id: 55,
       type: 1,
       question: "What is your digital footprint?",
       options: [
@@ -759,10 +759,10 @@ window.questionsData = {
         "Personal information about you, such as name, birth date, and phone number.",
       ],
       correct: 0,
-      tr: 55,
+      tr: 39,
     },
     {
-      id: 2,
+      id: 56,
       type: 3,
       question:
         "For each statement regarding file-naming conventions, select Yes if the statement is effective and No if the statement is ineffective.",
@@ -774,10 +774,10 @@ window.questionsData = {
         "Do not write the entire file name in all capital letters.",
       ],
       correct: [0, 1, 1, 0, 1],
-      tr: 56,
+      tr: 2,
     },
     {
-      id: 43,
+      id: 57,
       type: 1,
       question: "Which of the following is an example of cyberbullying?",
       options: [
@@ -787,10 +787,10 @@ window.questionsData = {
         "Helping a friend by posting researched articles about bullying to their blog.",
       ],
       correct: 1,
-      tr: 57,
+      tr: 43,
     },
     {
-      id: 19,
+      id: 58,
       type: 2,
       question:
         "You've joined a gaming forum that discusses a number of popular digital games. Before you can post in the forum, you must create a username. What are two appropriate reasons for using an alias online rather than your actual name? (Choose two)",
@@ -802,10 +802,10 @@ window.questionsData = {
         "You want to comment in a way which you normally wouldn't in person.",
       ],
       correct: [0, 2],
-      tr: 58,
+      tr: 19,
     },
     {
-      id: 10,
+      id: 59,
       type: 5,
       question:
         "You want to clear your browser settings on your computer: cache, cookies, and history. How do you clear the browser settings on most browsers? Place the steps in the correct order.",
@@ -821,10 +821,10 @@ window.questionsData = {
         "Select Privacy & Security.",
         "Choose which browser settings to clear.",
       ],
-      tr: 59,
+      tr: 10,
     },
     {
-      id: 7,
+      id: 60,
       type: 1,
       question:
         "You are participating in a virtual class meeting using a video technology. On the video, you can see your teacher and classmates, and they can all see you. Which of the following behaviors should you be careful about expressing?",
@@ -835,10 +835,10 @@ window.questionsData = {
         "Facial expressions and body language",
       ],
       correct: 3,
-      tr: 60,
+      tr: 7,
     },
     {
-      id: 8,
+      id: 61,
       type: 1,
       question:
         "You have been troubled by a lot of malware infecting your computer. After cleaning the malware off your computer, you want to better your digital privacy and increase your security. Which of the following will protect your digital privacy and increase your security when browsing websites?",
@@ -849,10 +849,10 @@ window.questionsData = {
         "Clearing your browser history",
       ],
       correct: 2,
-      tr: 61,
+      tr: 8,
     },
     {
-      id: 5,
+      id: 62,
       type: 5,
       question:
         "Match each digital interaction to the scenario that demonstrates its proper use.",
@@ -866,14 +866,14 @@ window.questionsData = {
       correct: {
         "Video Conferencing": "Team meeting of members in different locations",
         "Live chat": "Contacting online support for assistance",
-        Email:
+        "Email":
           "Delivering step-by-step instructions to a partner about a project",
         "Text message": "Notifying friends you will be a few minutes late",
       },
-      tr: 62,
+      tr: 5,
     },
     {
-      id: 21,
+      id: 63,
       type: 3,
       question:
         "For each statement regarding an Acceptable Use Policies for social media posting, select Yes if the statement is true and No if the statement is false.",
@@ -886,10 +886,10 @@ window.questionsData = {
         "Acceptable Use Policies cannot restrict you from posting whatever you want because you have 1st Amendment rights.",
       ],
       correct: [1, 1, 1, 1, 0, 0],
-      tr: 63,
+      tr: 21,
     },
     {
-      id: 3,
+      id: 64,
       type: 2,
       question:
         "You are writing a research paper and have been instructed to include attributions and referencing. Which are attributions and referencing? (Choose two)",
@@ -902,10 +902,10 @@ window.questionsData = {
         "Referencing is when the creator of a work specifies how they want you to give them credit for their work.",
       ],
       correct: [1, 4],
-      tr: 64,
+      tr: 3,
     },
     {
-      id: 1,
+      id: 65,
       type: 3,
       question:
         "You are searching the web to gather information for a slide show presentation... select Yes if it indicates that a web page is likely to contain accurate and unbiased information or No if it is likely to contain inaccurate and biased information.",
@@ -915,10 +915,10 @@ window.questionsData = {
         "The references on the web page go to similar websites of references instead of the original source of information.",
       ],
       correct: [0, 1, 0],
-      tr: 65,
+      tr: 1,
     },
     {
-      id: 42,
+      id: 66,
       type: 3,
       question:
         "Refer to the image. For each statement, select Yes if the hardware component matches the description or No if it does not.",
@@ -929,10 +929,10 @@ window.questionsData = {
         "Image C is a Central Processing Unit (CPU).",
       ],
       correct: [0, 1, 1],
-      tr: 66,
+      tr: 42,
     },
     {
-      id: 37,
+      id: 67,
       type: 5,
       question: "Match each operating system concept to its definition.",
       items: ["Access token", "Open Source", "Boot", "Driver", "Daemon"],
@@ -954,10 +954,10 @@ window.questionsData = {
         Daemon:
           "Starts at boot time and runs as a background process to support multitasking",
       },
-      tr: 67,
+      tr: 37,
     },
     {
-      id: 31,
+      id: 68,
       type: 1,
       question:
         "Which of the following would be a feature of a good network infrastructure for a school?",
@@ -968,10 +968,10 @@ window.questionsData = {
         "Supports anonymous logins",
       ],
       correct: 0,
-      tr: 68,
+      tr: 31,
     },
     {
-      id: 33,
+      id: 69,
       type: 2,
       question:
         "You take a lot of digital photos and need more storage space. You decide to expand the data storage on your computer. Which three are types of data storage? (Choose three)",
@@ -984,10 +984,10 @@ window.questionsData = {
         "RAM",
       ],
       correct: [0, 2, 3],
-      tr: 69,
+      tr: 33,
     },
     {
-      id: 36,
+      id: 70,
       type: 3,
       question:
         "Refer to the image. For each statement, select Yes if the type of USB matches the image or No if it does not.",
@@ -1000,10 +1000,10 @@ window.questionsData = {
         "Image E is a USB-C typically used on newer devices.",
       ],
       correct: [0, 1, 0, 1, 1],
-      tr: 70,
+      tr: 36,
     },
     {
-      id: 34,
+      id: 71,
       type: 3,
       question:
         "For each statement regarding the basic functions of web browsers, select Yes if the statement is true and No if the statement is false.",
@@ -1014,10 +1014,10 @@ window.questionsData = {
         "Web browsers use URLs to connect to resources such as web pages, images, and videos.",
       ],
       correct: [0, 0, 1, 1],
-      tr: 71,
+      tr: 34,
     },
     {
-      id: 32,
+      id: 72,
       type: 2,
       question:
         "When citing information published on the web, you should include a retrieval statement indicating when and where on the web you accessed the information. Which three items should you include in your citation retrieval statement? (Choose three)",
@@ -1030,19 +1030,19 @@ window.questionsData = {
         "Date you accessed the website",
       ],
       correct: [2, 3, 5],
-      tr: 72,
+      tr: 32,
     },
     {
-      id: 30,
+      id: 73,
       type: 1,
       question:
         "You have a smartphone. Your friends have discovered an app that can show on a map where the smartphone of each friend is located. They want you to download the same app so they can know your location at all times. What technology is used by an app that can map the location of your smartphone?",
       options: ["Navigation Tracking", "Spyware", "Social Media", "Mapping"],
       correct: 0,
-      tr: 73,
+      tr: 30,
     },
     {
-      id: 35,
+      id: 74,
       type: 3,
       question:
         "For each statement regarding proprietary vs. open source software, select Yes if the statement is true and No if the statement is false.",
@@ -1055,10 +1055,10 @@ window.questionsData = {
         "Open-source software usually has no technical support or is only supported by community forums.",
       ],
       correct: [1, 1, 0, 0, 1, 1],
-      tr: 74,
+      tr: 35,
     },
     {
-      id: 7,
+      id: 75,
       type: 2,
       question: "Which two are printing methods? (Choose two)",
       options: [
@@ -1069,10 +1069,10 @@ window.questionsData = {
         "Print to a DVD",
       ],
       correct: [0, 1],
-      tr: 75,
+      tr: 7,
     },
     {
-      id: 22,
+      id: 76,
       type: 1,
       question:
         "Which of the following demonstrates the use of inclusive language?",
@@ -1083,10 +1083,10 @@ window.questionsData = {
         "Hi, guys! Where are we meeting?",
       ],
       correct: 1,
-      tr: 76,
+      tr: 22,
     },
     {
-      id: 20,
+      id: 77,
       type: 1,
       question:
         "You're having difficulty sending and receiving information. How can you identify whether your device is connected to the Internet?",
@@ -1097,10 +1097,10 @@ window.questionsData = {
         "Try saving a file",
       ],
       correct: 0,
-      tr: 77,
+      tr: 20,
     },
     {
-      id: 29,
+      id: 78,
       type: 2,
       question:
         "Your teacher has cautioned you about protecting your online identity. Which three activities help define your digital identity? (Choose three)",
@@ -1113,10 +1113,10 @@ window.questionsData = {
         "Using Twitter and Snapchat instead of Facebook",
       ],
       correct: [1, 2, 4],
-      tr: 78,
+      tr: 29,
     },
     {
-      id: 24,
+      id: 79,
       type: 3,
       question:
         "In which circumstances must you cite references? For each scenario, select Yes if you must add a reference or No if you do not.",
@@ -1127,10 +1127,10 @@ window.questionsData = {
         "You quote lyrics from a song.",
       ],
       correct: [0, 1, 0, 1],
-      tr: 79,
+      tr: 24,
     },
     {
-      id: 3,
+      id: 80,
       type: 1,
       question:
         "What is the best way to locate online referencing and attribution sources?",
@@ -1141,20 +1141,20 @@ window.questionsData = {
         "Social media sites",
       ],
       correct: 2,
-      tr: 80,
+      tr: 3,
     },
     {
-      id: 28,
+      id: 81,
       type: 1,
       question:
         "You are editing a document that you previously wrote. Now you want to save your changes. Click on the feature that will save the changes you made to this document.",
       img: "img/e7.jpg",
       options: ["1", "2", "3", "4"],
       correct: 2,
-      tr: 81,
+      tr: 28,
     },
     {
-      id: 14,
+      id: 82,
       type: 5,
       question:
         "Match each concept about software applications to its definition.",
@@ -1177,10 +1177,10 @@ window.questionsData = {
         "Desktop Application":
           "Must be installed on the computer before it can run.",
       },
-      tr: 82,
+      tr: 14,
     },
     {
-      id: 11,
+      id: 83,
       type: 5,
       question:
         "You work in a school computer lab as an assistant to the network administrator. You arrive to the lab early before anyone else and notice you cannot access the Internet. You begin to troubleshoot the problem. Place the troubleshooting steps in the correct order.",
@@ -1189,31 +1189,32 @@ window.questionsData = {
         "Use ipconfig",
         "Use ping or tracert",
         "Perform a DNS check",
-        "Contact your ISP",
         "Check on virus and malware protection",
+        "Contact your ISP",
       ],
       correct: [
         "Check the hardware",
         "Use ipconfig",
         "Use ping or tracert",
         "Perform a DNS check",
+         "Contact your ISP",
         "Check on virus and malware protection",
-        "Contact your ISP",
+       
       ],
-      tr: 83,
+      tr: 11,
     },
     {
-      id: 25,
+      id: 84,
       type: 1,
       question:
         "You suspect that your favorite password has been compromised on one of your social media sites. You use the same password on multiple sites, including your banking site, so you want to reset your password. Click on the feature that will allow you to reset your password.",
       img: "img/e5.jpg",
       options: ["1", "2", "3", "4"],
       correct: 2,
-      tr: 84,
+      tr: 25,
     },
     {
-      id: 9,
+      id: 85,
       type: 1,
       question:
         "Which of the following is allowed with a CC-BY Creative Commons License?",
@@ -1224,10 +1225,10 @@ window.questionsData = {
         "Writing your own opinion and submitting it to a community blog.",
       ],
       correct: 2,
-      tr: 85,
+      tr: 9,
     },
     {
-      id: 27,
+      id: 86,
       type: 3,
       question:
         "For each statement about locating information in a file, select Yes if the statement is true and No if the statement is false.",
@@ -1237,10 +1238,10 @@ window.questionsData = {
         "Any user on the Internet can locate content information in a file stored on your computer.",
       ],
       correct: [1, 0, 0],
-      tr: 86,
+      tr: 27,
     },
     {
-      id: 8,
+      id: 87,
       type: 3,
       question:
         "For each statement regarding digital collaboration, select Yes if the statement is true and No if the statement is false.",
@@ -1251,10 +1252,10 @@ window.questionsData = {
         "Digital collaboration is less flexible than face-to-face meetings.",
       ],
       correct: [1, 0, 1, 0],
-      tr: 87,
+      tr: 8,
     },
     {
-      id: 23,
+      id: 88,
       type: 2,
       question:
         "There are three primary desktop computer operating systems: Windows, MacOS, and Linux. What are three main functions that all computer operating systems have in common? (Choose three)",
@@ -1267,10 +1268,10 @@ window.questionsData = {
         "Provide video gaming",
       ],
       correct: [0, 2, 3],
-      tr: 88,
+      tr: 23,
     },
     {
-      id: 18,
+      id: 89,
       type: 1,
       question:
         "It is the beginning of a new school year. You have been instructed to create a new password to use with your account on the school network. Which of the following should be included in your new password?",
@@ -1281,10 +1282,10 @@ window.questionsData = {
         "At least 8 characters of numbers, symbols, and a mix of uppercase and lowercase letters.",
       ],
       correct: 3,
-      tr: 89,
+      tr: 18,
     },
     {
-      id: 21,
+      id: 90,
       type: 1,
       question:
         "One of your teachers said you should change your browser settings to use private mode browsing. What are the benefits of private mode browsing?",
@@ -1295,10 +1296,10 @@ window.questionsData = {
         "Your name is kept private.",
       ],
       correct: 0,
-      tr: 90,
+      tr: 21,
     },
     {
-      id: 2,
+      id: 91,
       type: 3,
       question:
         "For each statement about copyright, select Yes if you may legally use the creative work without permission or No if you may not.",
@@ -1308,10 +1309,10 @@ window.questionsData = {
         "The lyrics to a song you want to use were not registered as a copyright.",
       ],
       correct: [0, 1, 0],
-      tr: 91,
+      tr: 2,
     },
     {
-      id: 15,
+      id: 92,
       type: 3,
       question:
         "For each statement regarding mobile device operating systems, select Yes if the statement is true and No if the statement is false.",
@@ -1322,10 +1323,10 @@ window.questionsData = {
         "The operating system on approximately 30% of the world's mobile devices is iOS.",
       ],
       correct: [1, 0, 1, 1],
-      tr: 92,
+      tr: 15,
     },
     {
-      id: 26,
+      id: 93,
       type: 2,
       question:
         "You have a smartphone. In class today, you and your friends learned about personal security issues associated with navigation tracking. Which two common online activities expose your personal security by navigation tracking? (Choose two)",
@@ -1337,10 +1338,10 @@ window.questionsData = {
         "Playing online games",
       ],
       correct: [1, 2],
-      tr: 93,
+      tr: 26,
     },
     {
-      id: 10,
+      id: 94,
       type: 2,
       question:
         "You just created an account on a new social media site. Which two statements must you consider before posting and sharing on a social media site? (Choose two)",
@@ -1352,10 +1353,10 @@ window.questionsData = {
         "Each social media site has its own guidelines you must follow.",
       ],
       correct: [1, 4],
-      tr: 94,
+      tr: 10,
     },
     {
-      id: 13,
+      id: 95,
       type: 3,
       question:
         "For each statement regarding where you can post or share in the digital world, select Yes if the statement is true and No if the statement is false.",
@@ -1368,10 +1369,10 @@ window.questionsData = {
         "You can only share on Pinterest if you upload an image.",
       ],
       correct: [1, 0, 0, 1, 1, 1],
-      tr: 95,
+      tr: 13,
     },
     {
-      id: 5,
+      id: 96,
       type: 5,
       question:
         "Match each email response option to the scenario that demonstrates its proper use.",
@@ -1394,10 +1395,10 @@ window.questionsData = {
         Reply: "Used when you respond only to the sender of an email",
         To: "Used when you compose an email and address it to a recipient",
       },
-      tr: 96,
+      tr: 5,
     },
     {
-      id: 6,
+      id: 97,
       type: 2,
       question:
         "You just signed up for an account on Google. Your new account uses Single Sign-On (SSO). Which three are benefits of Single Sign-On (SSO)? (Choose three)",
@@ -1410,10 +1411,10 @@ window.questionsData = {
         "SSO is government owned and operated.",
       ],
       correct: [0, 1, 2],
-      tr: 97,
+      tr: 6,
     },
     {
-      id: 17,
+      id: 98,
       type: 2,
       question:
         "You have just opened a Facebook account. One of your friends claims she recently had her identity stolen on a social media site, and you don't want that happening to you. Which three precautions should you take to protect your personal data online? (Choose three)",
@@ -1426,10 +1427,10 @@ window.questionsData = {
         "Use a fake name and location.",
       ],
       correct: [0, 3, 4],
-      tr: 98,
+      tr: 17,
     },
     {
-      id: 1,
+      id: 99,
       type: 5,
       question: "Match each digital security threat to its definition.",
       items: [
@@ -1461,10 +1462,10 @@ window.questionsData = {
         Phishing:
           "An attempt to deceive someone into sharing sensitive information like passwords and credit card numbers.",
       },
-      tr: 99,
+      tr: 1,
     },
     {
-      id: 35,
+      id: 100,
       type: 5,
       question:
         "Move each email address field from the list on the left to its purpose on the right.",
@@ -1488,10 +1489,10 @@ window.questionsData = {
         "To respond to a message sender and all other known message recipients":
           "Reply All",
       },
-      tr: 100,
+      tr: 35,
     },
     {
-      id: 31,
+      id: 101,
       type: 1,
       question: "What is spyware?",
       options: [
@@ -1501,10 +1502,10 @@ window.questionsData = {
         "D. A program that can copy itself and spread to other computers.",
       ],
       correct: 1,
-      tr: 101,
+      tr: 31,
     },
     {
-      id: 30,
+      id: 102,
       type: 1,
       question:
         "What is a constructive reason for choosing not to engage with online trolling?",
@@ -1515,10 +1516,10 @@ window.questionsData = {
         "D. It gives the troll an opportunity to explain their behavior?",
       ],
       correct: 2,
-      tr: 102,
+      tr: 30,
     },
     {
-      id: 29,
+      id: 103,
       type: 2,
       question:
         "Which two methods should you use to reduce eye strain while using a digital display? (Choose two.)",
@@ -1529,10 +1530,10 @@ window.questionsData = {
         "D. Adjust the screen resolution to set the text at a comfortable size.",
       ],
       correct: [0, 3],
-      tr: 103,
+      tr: 29,
     },
     {
-      id: 28,
+      id: 104,
       type: 1,
       question: "Which practice follows effective file-naming conventions?",
       options: [
@@ -1542,14 +1543,14 @@ window.questionsData = {
         "D. Including random letters and numbers for security",
       ],
       correct: 2,
-      tr: 104,
+      tr: 28,
     },
     {
-      id: 27,
+      id: 105,
       type: 2,
       question:
         "Which three devices output information when connected to a non-touchscreen computer? (Choose three.)",
-      img: "./img/e15.jpg",
+      img: "img/e15.jpg",
       options: [
         "Monitor (The screen)",
         "Keyboard",
@@ -1558,10 +1559,10 @@ window.questionsData = {
         "Headphones (The audio device)",
       ],
       correct: [0, 2, 4],
-      tr: 105,
+      tr: 27,
     },
     {
-      id: 26,
+      id: 106,
       type: 3,
       question:
         "Your teacher instructs you to research a poster, a poem, a dramatic work, and an image that are protected by any of the six Creative Commons licenses and are not dedicated to the public domain. For each type of content use, select Yes if the terms of the Creative Commons licenses allow the use of the work or No if they do not.",
@@ -1572,10 +1573,10 @@ window.questionsData = {
         "Display the image to other students as part of an in-class presentation",
       ],
       correct: [0, 1, 1, 1],
-      tr: 106,
+      tr: 26,
     },
     {
-      id: 25,
+      id: 107,
       type: 3,
       question:
         "For each statement about open source software, select True or False.",
@@ -1585,10 +1586,10 @@ window.questionsData = {
         "You must agree to an End User License Agreement before using open source software",
       ],
       correct: [0, 1, 0],
-      tr: 107,
+      tr: 25,
     },
     {
-      id: 24,
+      id: 108,
       type: 1,
       question:
         "You post a funny and embarrassing photo of your friend on social media. How long will the information stay on the internet?",
@@ -1599,10 +1600,10 @@ window.questionsData = {
         "D. Until your friend deletes it",
       ],
       correct: 0,
-      tr: 108,
+      tr: 24,
     },
     {
-      id: 23,
+      id: 109,
       type: 2,
       question:
         "You use a public computer at the library to check email and your bank account balance. You need to prevent other people who use the computer after you from accessing your email and bank accounts. Which two tasks should you complete before leaving the computer? (Choose two.)",
@@ -1613,10 +1614,10 @@ window.questionsData = {
         "D. Log out of the email and bank websites",
       ],
       correct: [0, 3],
-      tr: 109,
+      tr: 23,
     },
     {
-      id: 22,
+      id: 110,
       type: 3,
       question:
         "Your class is planning a field trip to visit college campuses. Your teacher schedules a video conference for the trip participants using software that displays each attendee on screen as shown. You need to follow appropriate digital etiquette standards during the video conference. For each statement, select Yes if it represents appropriate digital etiquette or No if it does not.",
@@ -1627,10 +1628,10 @@ window.questionsData = {
         "When it's your turn to speak, introduce yourself and look at the onscreen image of the person you're addressing",
       ],
       correct: [1, 1, 0, 1],
-      tr: 110,
+      tr: 22,
     },
     {
-      id: 21,
+      id: 111,
       type: 3,
       question:
         "For each statement about the benefits of a good network infrastructure, select True or False.",
@@ -1640,10 +1641,10 @@ window.questionsData = {
         "Supports the scaling of the school network without redesign as the student population increases",
       ],
       correct: [1, 0, 1],
-      tr: 111,
+      tr: 21,
     },
     {
-      id: 23,
+      id: 112,
       type: 2,
       question:
         "You like playing games on your computing devices. You especially like gaming on a computer you have at home and often play several hours a day. Which physical health threats are associated with prolonged computer and device usage? (Choose two)",
@@ -1655,10 +1656,10 @@ window.questionsData = {
         "E. Keyboard damage",
       ],
       correct: [0, 2],
-      tr: 112,
+      tr: 23,
     },
     {
-      id: 45,
+      id: 113,
       type: 1,
       question:
         "Why should you avoid posting demeaning photographs, harassing people, or advocating negative ideas like suicide or terrorism online?",
@@ -1669,10 +1670,10 @@ window.questionsData = {
         "D. It is illegal.",
       ],
       correct: 2,
-      tr: 113,
+      tr: 45,
     },
     {
-      id: 40,
+      id: 114,
       type: 2,
       question:
         "Which two statements about synchronous and asynchronous communication are true? (Choose two)",
@@ -1684,10 +1685,10 @@ window.questionsData = {
         "E. Synchronous communication is old technology and no longer used.",
       ],
       correct: [1, 3],
-      tr: 114,
+      tr: 40,
     },
     {
-      id: 38,
+      id: 115,
       type: 1,
       question:
         "A pandemic has temporarily closed your school, so your lessons are being taught online. Your teacher has scheduled classes using video software that displays each student on screen and allows the student to speak to the entire class. You are participating in these classroom sessions from your computing device at home. You must follow appropriate digital etiquette standards during these video classes. Which of the following demonstrates proper digital etiquette for visual collaboration?",
@@ -1698,10 +1699,10 @@ window.questionsData = {
         "D. When it is your turn to speak, introduce yourself and look at the onscreen image of the person you are addressing.",
       ],
       correct: 3,
-      tr: 115,
+      tr: 38,
     },
     {
-      id: 26,
+      id: 116,
       type: 2,
       question:
         "You have a smartphone. In class today, you and your friends learned about personal security issues associated with navigation tracking. Which two common online activities expose your personal security by navigation tracking? (Choose two)",
@@ -1713,10 +1714,10 @@ window.questionsData = {
         "E. Playing online games",
       ],
       correct: [1, 2],
-      tr: 116,
+      tr: 26,
     },
     {
-      id: 19,
+      id: 117,
       type: 1,
       question: "Which of the following is an example of textspeak?",
       options: [
@@ -1726,20 +1727,20 @@ window.questionsData = {
         "D. Speaking into your phone and letting it convert your speaking to text",
       ],
       correct: 1,
-      tr: 117,
+      tr: 19,
     },
     {
-      id: 12,
+      id: 118,
       type: 1,
       question:
         "You are doing research on the internet so you can write a paper about earthquakes. You find this great website that discusses earthquakes in Yellowstone National Park you want to some of this information in your paper. You have collected the information below from the web page for your citation, but it is missing some information. What else do you need to include at the end of the citation after website?",
       img: "./img/e14.jpg",
       options: ["1", "2", "3"],
       correct: 0,
-      tr: 118,
+      tr: 12,
     },
     {
-      id: 4,
+      id: 119,
       type: 2,
       question:
         "You just received a new smartphone and want to ensure that any personal files won't be lost if your phone becomes lost or damaged. You decide to enable auto backup using the cloud service that came with your phone. (Choose three)",
@@ -1752,11 +1753,11 @@ window.questionsData = {
         "F. Operating system",
       ],
       correct: [0, 2, 3],
-      tr: 119,
+      tr: 4,
     },
     {
-      tr: 120,
-      id: 23,
+      tr: 23,
+      id: 120,
       type: 2,
       question:
         "You like playing games on your computing devices. You especially like gaming on a computer you have at home and often play several hours a day. Which physical health threats are associated with prolonged computer and device usage? (Choose two)",
@@ -1785,6 +1786,7 @@ window.questionsData = {
         "You can only share on Pinterest if you upload an image.",
       ],
       correct: [1, 0, 0, 1, 1, 1],
+      tr: 13,
     },
   ],
   level3: [
@@ -1802,6 +1804,7 @@ window.questionsData = {
         "You can only share on Pinterest if you upload an image.",
       ],
       correct: [1, 0, 0, 1, 1, 1],
+      tr: 13,
     },
   ],
 };
