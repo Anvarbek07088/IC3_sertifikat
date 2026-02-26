@@ -1770,6 +1770,102 @@ window.questionsData = {
       ],
       correct: [0, 2],
     },
+
+
+
+  
+  // tr:121 – Savol 59 (Find feature in long document)
+  {
+    id: 121,
+    tr: 200121,
+    type: 3,
+    question: "You are researching information in a long document. For each statement, select Yes if you can use the Find feature to complete the task, or No if you cannot. Note: You will receive credit for each correct answer.",
+    statements: [
+      "Locate a keyword or phrase within the document",
+      "Change the format of all citations in your document",
+      "Identify pages that include references by a specific author"
+    ],
+    correct: [1, 0, 0]  // true, false, false
+  },
+
+  // tr:122 – Savol 57 (File extension for Windows)
+  {
+   id: 122,
+    tr: 200122,
+    type: 1,
+    question: "You need to download a file to use on your Windows computer. Which file extension will work directly on your computer?",
+    options: [
+      "A. .pkg",
+      "B. .dmg",
+      "C. .deb",
+      "D. .exe"
+    ],
+    correct: 3  // D. .exe — to'g'ri javob
+  },
+
+  // tr:123 – Savol 55 (Online search refining techniques)
+  {
+    id: 123,
+    tr: 200123,
+    type: 2,
+    question: "You are conducting online research. You need to refine your search to return results that are more relevant to your research subject. Which two techniques should you use? (Choose two.)",
+    options: [
+      "A. Enclose multi-word search terms in quotation marks",
+      "B. Search for generic terms",
+      "C. Capitalize important terms",
+      "D. Search for root words and exclude suffixes"
+    ],
+    correct: [0, 3]  // A va D — to'g'ri javoblar
+  },
+
+  // tr:124 – Savol 61 (Microsoft Word – numbered list from paragraph)
+  {
+    id: 124,
+    tr: 200124,
+    type: 1,
+    img:"img/e4.jpg",
+    question: "You enter a recipe into a Microsoft Word document as a single paragraph and convert it to a numbered list. You need to separate the paragraph into individual numbered list items. Which key (or key combination) should you press at the end of each sentence?",
+    options: [
+      "A. Shift+Tab",
+      "B. Tab",
+      "C. Shift+Enter",
+      "D. Enter"
+    ],
+    correct: 3  // D. Enter — to'g'ri javob
+  },
+
+  // tr:125 – Savol 63 (Smartphone security guidelines – choose three)
+  {
+    id: 125,
+    tr: 200125,
+    type: 2,
+    question: "You need to maintain the security of your smartphone. Which three guidelines should you follow? (Choose three.)",
+    options: [
+      "A. Disable Wi-Fi and Bluetooth when you're not using them",
+      "B. Do not leave your device unattended in public or in easily accessible areas",
+      "C. Use a USB 3.0 or newer connection cable when connected to a new computer",
+      "D. Always use a surge protector when charging the device",
+      "E. Update your smartphone operating system only if you need a new feature offered in the update",
+      "F. Avoid using public Wi-Fi networks"
+    ],
+    correct: [0, 1, 5]  // A, B, F — to'g'ri javoblar (eng keng tarqalgan va to'g'ri tanlovlar)
+  },
+
+  // tr:126 – Savol 38 (Video conference digital etiquette)
+  {
+    id: 126,
+    tr: 200126,
+    type: 1,
+    question: "A pandemic has temporarily closed your school, so your lessons are being taught online. Your teacher has scheduled classes using video software that displays each student on screen and allows the student to speak to the entire class. You are participating in these classroom sessions from your computing device at home. You must follow appropriate digital etiquette standards during these video classes. Which of the following demonstrates proper digital etiquette for visual collaboration?",
+    options: [
+      "Limit the use of emojis and emoticons.",
+      "Do not use textspeak.",
+      "Do not use all caps when it is your turn to speak because it is like shouting.",
+      "When it is your turn to speak, introduce yourself and look at the onscreen image of the person you are addressing."
+    ],
+    correct: 3  // Oxirgi variant — to'g'ri javob
+  }
+
   ],
   level2: [
     {
