@@ -1,5 +1,5 @@
 window.questionsData = {
-  level1: [
+  1: [
     {
       id: 1,
       type: 1,
@@ -1867,7 +1867,7 @@ window.questionsData = {
   }
 
   ],
-  level2: [
+  2: [
     
     // ==================== SAVOL 201 ====================
     {
@@ -3592,7 +3592,7 @@ window.questionsData = {
     }
   ],
  
-  level3: [
+  3: [
     {
       id: 13,
       type: 3,
