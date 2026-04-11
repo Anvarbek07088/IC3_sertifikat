@@ -866,7 +866,7 @@ window.questionsData = {
       correct: {
         "Video Conferencing": "Team meeting of members in different locations",
         "Live chat": "Contacting online support for assistance",
-        "Email":
+        Email:
           "Delivering step-by-step instructions to a partner about a project",
         "Text message": "Notifying friends you will be a few minutes late",
       },
@@ -1197,9 +1197,8 @@ window.questionsData = {
         "Use ipconfig",
         "Use ping or tracert",
         "Perform a DNS check",
-         "Contact your ISP",
+        "Contact your ISP",
         "Check on virus and malware protection",
-       
       ],
       tr: 11,
     },
@@ -1771,125 +1770,305 @@ window.questionsData = {
       correct: [0, 2],
     },
 
+    // tr:121 – Savol 59 (Find feature in long document)
+    {
+      id: 121,
+      tr: 200121,
+      type: 3,
+      question:
+        "You are researching information in a long document. For each statement, select Yes if you can use the Find feature to complete the task, or No if you cannot. Note: You will receive credit for each correct answer.",
+      statements: [
+        "Locate a keyword or phrase within the document",
+        "Change the format of all citations in your document",
+        "Identify pages that include references by a specific author",
+      ],
+      correct: [1, 0, 0], // true, false, false
+    },
 
+    // tr:122 – Savol 57 (File extension for Windows)
+    {
+      id: 122,
+      tr: 200122,
+      type: 1,
+      question:
+        "You need to download a file to use on your Windows computer. Which file extension will work directly on your computer?",
+      options: ["A. .pkg", "B. .dmg", "C. .deb", "D. .exe"],
+      correct: 3, // D. .exe — to'g'ri javob
+    },
 
-  
-  // tr:121 – Savol 59 (Find feature in long document)
-  {
-    id: 121,
-    tr: 200121,
-    type: 3,
-    question: "You are researching information in a long document. For each statement, select Yes if you can use the Find feature to complete the task, or No if you cannot. Note: You will receive credit for each correct answer.",
-    statements: [
-      "Locate a keyword or phrase within the document",
-      "Change the format of all citations in your document",
-      "Identify pages that include references by a specific author"
-    ],
-    correct: [1, 0, 0]  // true, false, false
-  },
+    // tr:123 – Savol 55 (Online search refining techniques)
+    {
+      id: 123,
+      tr: 200123,
+      type: 2,
+      question:
+        "You are conducting online research. You need to refine your search to return results that are more relevant to your research subject. Which two techniques should you use? (Choose two.)",
+      options: [
+        "A. Enclose multi-word search terms in quotation marks",
+        "B. Search for generic terms",
+        "C. Capitalize important terms",
+        "D. Search for root words and exclude suffixes",
+      ],
+      correct: [0, 3], // A va D — to'g'ri javoblar
+    },
 
-  // tr:122 – Savol 57 (File extension for Windows)
-  {
-   id: 122,
-    tr: 200122,
-    type: 1,
-    question: "You need to download a file to use on your Windows computer. Which file extension will work directly on your computer?",
-    options: [
-      "A. .pkg",
-      "B. .dmg",
-      "C. .deb",
-      "D. .exe"
-    ],
-    correct: 3  // D. .exe — to'g'ri javob
-  },
+    // tr:124 – Savol 61 (Microsoft Word – numbered list from paragraph)
+    {
+      id: 124,
+      tr: 200124,
+      type: 1,
+      img: "img/e4.jpg",
+      question:
+        "You enter a recipe into a Microsoft Word document as a single paragraph and convert it to a numbered list. You need to separate the paragraph into individual numbered list items. Which key (or key combination) should you press at the end of each sentence?",
+      options: ["A. Shift+Tab", "B. Tab", "C. Shift+Enter", "D. Enter"],
+      correct: 3, // D. Enter — to'g'ri javob
+    },
 
-  // tr:123 – Savol 55 (Online search refining techniques)
-  {
-    id: 123,
-    tr: 200123,
-    type: 2,
-    question: "You are conducting online research. You need to refine your search to return results that are more relevant to your research subject. Which two techniques should you use? (Choose two.)",
-    options: [
-      "A. Enclose multi-word search terms in quotation marks",
-      "B. Search for generic terms",
-      "C. Capitalize important terms",
-      "D. Search for root words and exclude suffixes"
-    ],
-    correct: [0, 3]  // A va D — to'g'ri javoblar
-  },
+    // tr:125 – Savol 63 (Smartphone security guidelines – choose three)
+    {
+      id: 125,
+      tr: 200125,
+      type: 2,
+      question:
+        "You need to maintain the security of your smartphone. Which three guidelines should you follow? (Choose three.)",
+      options: [
+        "A. Disable Wi-Fi and Bluetooth when you're not using them",
+        "B. Do not leave your device unattended in public or in easily accessible areas",
+        "C. Use a USB 3.0 or newer connection cable when connected to a new computer",
+        "D. Always use a surge protector when charging the device",
+        "E. Update your smartphone operating system only if you need a new feature offered in the update",
+        "F. Avoid using public Wi-Fi networks",
+      ],
+      correct: [0, 1, 5], // A, B, F — to'g'ri javoblar (eng keng tarqalgan va to'g'ri tanlovlar)
+    },
 
-  // tr:124 – Savol 61 (Microsoft Word – numbered list from paragraph)
-  {
-    id: 124,
-    tr: 200124,
-    type: 1,
-    img:"img/e4.jpg",
-    question: "You enter a recipe into a Microsoft Word document as a single paragraph and convert it to a numbered list. You need to separate the paragraph into individual numbered list items. Which key (or key combination) should you press at the end of each sentence?",
-    options: [
-      "A. Shift+Tab",
-      "B. Tab",
-      "C. Shift+Enter",
-      "D. Enter"
-    ],
-    correct: 3  // D. Enter — to'g'ri javob
-  },
+    // tr:126 – Savol 38 (Video conference digital etiquette)
+    {
+      id: 126,
+      tr: 200126,
+      type: 1,
+      question:
+        "A pandemic has temporarily closed your school, so your lessons are being taught online. Your teacher has scheduled classes using video software that displays each student on screen and allows the student to speak to the entire class. You are participating in these classroom sessions from your computing device at home. You must follow appropriate digital etiquette standards during these video classes. Which of the following demonstrates proper digital etiquette for visual collaboration?",
+      options: [
+        "Limit the use of emojis and emoticons.",
+        "Do not use textspeak.",
+        "Do not use all caps when it is your turn to speak because it is like shouting.",
+        "When it is your turn to speak, introduce yourself and look at the onscreen image of the person you are addressing.",
+      ],
+      correct: 3, // Oxirgi variant — to'g'ri javob
+    },
+    // ========== QO'SHIMCHA SAVOLLAR (127 dan boshlab) ==========
+    // Rasmlardagi savollar - id sifatida savol raqami ishlatiladi
 
-  // tr:125 – Savol 63 (Smartphone security guidelines – choose three)
-  {
-    id: 125,
-    tr: 200125,
-    type: 2,
-    question: "You need to maintain the security of your smartphone. Which three guidelines should you follow? (Choose three.)",
-    options: [
-      "A. Disable Wi-Fi and Bluetooth when you're not using them",
-      "B. Do not leave your device unattended in public or in easily accessible areas",
-      "C. Use a USB 3.0 or newer connection cable when connected to a new computer",
-      "D. Always use a surge protector when charging the device",
-      "E. Update your smartphone operating system only if you need a new feature offered in the update",
-      "F. Avoid using public Wi-Fi networks"
-    ],
-    correct: [0, 1, 5]  // A, B, F — to'g'ri javoblar (eng keng tarqalgan va to'g'ri tanlovlar)
-  },
+    // 1-savol (rasm: 76 - Online messaging apps)
+    {
+      id: 127,
+      type: 3,
+      question:
+        "Online messaging apps simplify the process of communicating with other people, whether they are in another country. For each statement, select True or False.",
+      statements: [
+        "People with similar heritages have the same beliefs and priorities",
+        "Respectful language conveys prejudices such as stereotypes, expectations and limitations",
+        "Culture is a constantly changing concept that may not completely reflect someone's identity",
+      ],
+      correct: [0, 0, 1],
+      note: "Madaniyat doimiy o'zgarib turadi va har bir shaxsning identifikatsiyasini to'liq aks ettirmasligi mumkin.",
+    },
 
-  // tr:126 – Savol 38 (Video conference digital etiquette)
-  {
-    id: 126,
-    tr: 200126,
-    type: 1,
-    question: "A pandemic has temporarily closed your school, so your lessons are being taught online. Your teacher has scheduled classes using video software that displays each student on screen and allows the student to speak to the entire class. You are participating in these classroom sessions from your computing device at home. You must follow appropriate digital etiquette standards during these video classes. Which of the following demonstrates proper digital etiquette for visual collaboration?",
-    options: [
-      "Limit the use of emojis and emoticons.",
-      "Do not use textspeak.",
-      "Do not use all caps when it is your turn to speak because it is like shouting.",
-      "When it is your turn to speak, introduce yourself and look at the onscreen image of the person you are addressing."
-    ],
-    correct: 3  // Oxirgi variant — to'g'ri javob
-  }
+    // 2-savol (rasm: 60 - Web-based applications)
+    {
+      id: 128,
+      type: 1,
+      question: "Which statement about web-based applications is correct?",
+      options: [
+        "A. Web applications process information locally on your computer",
+        "B. The web version of a desktop application has all the same features as the desktop version",
+        "C. Before you can use a web application, you must install it on your computer",
+        "D. You must have an internet connection to use a web application.",
+      ],
+      correct: 3,
+      note: "Veb-ilovalar ishlashi uchun internet ulanishi talab qilinadi.",
+    },
 
+    // 3-savol (rasm: 52 - AI terms)
+    {
+      id: 129,
+      type: 5,
+      question:
+        "Move each AI term from the list on the left to its definition on the right.",
+      items: [
+        "Focuses on using past data to make predictions and decisions without being explicitly programmed to perform",
+        "Programming computers to process and analyze large amounts of natural language data",
+        "Patterned after the human brain, consists of layers of interconnected nodes that process data",
+        "Focuses on visual perception and motor control, enabling machines to interact with the physical world",
+      ],
+      targets: [
+        "Machine Learning",
+        "Natural Language Processing",
+        "Neural Networks",
+        "Robotics",
+      ],
+      correct: {
+        "Focuses on using past data to make predictions and decisions without being explicitly programmed to perform":
+          "Machine Learning",
+        "Programming computers to process and analyze large amounts of natural language data":
+          "Natural Language Processing",
+        "Patterned after the human brain, consists of layers of interconnected nodes that process data":
+          "Neural Networks",
+        "Focuses on visual perception and motor control, enabling machines to interact with the physical world":
+          "Robotics",
+      },
+      note: "AI terminlarining to'g'ri ta'riflarini moslashtiring.",
+    },
+
+    // 4-savol (rasm: 65 - Derogatory meme)
+    {
+      id: 130,
+      type: 2,
+      question:
+        "What are two negative effects of posting a derogatory meme on social media? (Choose two)",
+      options: [
+        "A. It showcases your wit and digital artistry skills.",
+        "B. You can easily address a group of people who hold specific beliefs.",
+        "C. It remains traceable after the event that inspired you to post it.",
+        "D. Various viewers may interpret the meme differently.",
+      ],
+      correct: [2, 3],
+      note: "Kamsituvchi memlar ijtimoiy tarmoqlarda iz qoldiradi va turli xil talqin qilinishi mumkin.",
+    },
+
+    // 5-savol (rasm: 25 - Open source software)
+    {
+      id: 131,
+      type: 3,
+      question:
+        "For each statement about open source software, select True or False.",
+      statements: [
+        "All free software is open source software",
+        "Anyone can inspect, modify, and enhance the source code of open source software",
+        "You must agree to an End User License Agreement before using open source software",
+      ],
+      correct: [0, 1, 0],
+      note: "Open source dasturlarning manba kodi hamma uchun ochiq, lekin barcha bepul dasturlar open source emas.",
+    },
+
+    // 6-savol (rasm: 50 - Android)
+    {
+      id: 132,
+      type: 3,
+      question:
+        "For each statement about the Android operating system, select True or False.",
+      statements: [
+        "Android is open-source software",
+        "Android is a desktop operating system",
+        "Android requires the Google App Store",
+      ],
+      correct: [1, 0, 0],
+      note: "Android mobil qurilmalar uchun ochiq kodli operatsion tizim.",
+    },
+
+    // 7-savol (rasm: 48 - Mental health)
+    {
+      id: 133,
+      type: 1,
+      question:
+        "What mental health issue can excessive social media use potentially cause?",
+      options: [
+        "A. Improved social connections",
+        "B. Enhanced emotional resilience",
+        "C. Increased risk of mood swings",
+        "D. Heightened feelings of happiness",
+      ],
+      correct: 2,
+      note: "Haddan tashqari ijtimoiy tarmoqlardan foydalanish kayfiyat o'zgarishlariga olib kelishi mumkin.",
+    },
+
+    // 8-savol (rasm: 49 - Incognito browsing)
+    {
+      id: 134,
+      type: 1,
+      question: 'What is a benefit of "in private" or "incognito" browsing?',
+      options: [
+        "A. Your web browser allows you to change your IP address.",
+        "B. Your web browser permits visits to websites that are normally blocked in your country.",
+        "C. Your web browser blocks advertisements.",
+        "D. Your web browser hides activities from other people who use the same device.",
+      ],
+      correct: 3,
+      note: "Incognito rejimda brauzer tarixi va kukilalar saqlanmaydi, shuning uchun boshqa foydalanuvchilar faoliyatingizni ko'ra olmaydi.",
+    },
+
+    // 9-savol (rasm: 46 - Editing tools)
+    {
+      id: 135,
+      type: 2,
+      question:
+        "Your teacher instructs you to edit a classmate's research paper. Which two tools should be used?",
+      options: [
+        "A. Design mode",
+        "B. Spelling checker",
+        "C. Linked notes",
+        "D. Comments",
+      ],
+      correct: [1, 3],
+      note: "Imlo tekshiruvi va izohlar qo'shish hujjatni tahrirlashda eng foydali vositalardir.",
+    },
+
+    // 10-savol (rasm: 47 - Acceptable Use Policy)
+    {
+      id: 136,
+      type: 2,
+      question:
+        "When using an app, network, or service, you may be required to agree to an Acceptable Use Policy. Which two types of information does an Acceptable Use Policy describe? (Choose two.)",
+      options: [
+        "A. The consequences of violating the policy",
+        "B. Unacceptable uses of the app, network, or service",
+        "C. How to copyright data that you submit to the app, network, or service",
+        "D. How to monetize information through the app, network, or service",
+      ],
+      correct: [0, 1],
+      note: "Foydalanish siyosati (AUP) qoidabuzarlik oqibatlari va ruxsat etilmagan foydalanish holatlarini tavsiflaydi.",
+    },
+
+    // 11-savol (rasm: 75 - Basic presentations)
+    {
+      id: 137,
+      type: 3,
+      question:
+        "For each statement about creating basic presentations, select True or False.",
+      statements: [
+        "You should minimize text content in presentations",
+        "You can only create Microsoft PowerPoint presentations on Windows computers",
+        "You can access Apple Keynote presentations from Windows computers through iCloud",
+      ],
+      correct: [1, 0, 1],
+      note: "Taqdimotlarda matn miqdorini kamaytirish, PowerPoint faqat Windowsda emas, Keynote esa iCloud orqali Windowsda ham ishlaydi.",
+    },
   ],
   2: [
-    
     // ==================== SAVOL 201 ====================
     {
       id: 201,
       tr: 201,
       type: 5,
-      question: "Move each description from the list on the left to the Boolean search string on the right.",
+      question:
+        "Move each description from the list on the left to the Boolean search string on the right.",
       items: [
         "Returns results for either word in another word is included",
         "Returns results excluding one word",
-        "Returns results for either word"
+        "Returns results for either word",
       ],
       targets: [
         "(fish OR turtles) AND pacific ocean",
         "buffalo NOT bison",
-        "lions OR tigers"
+        "lions OR tigers",
       ],
       correct: {
-        "Returns results for either word in another word is included": "(fish OR turtles) AND pacific ocean",
+        "Returns results for either word in another word is included":
+          "(fish OR turtles) AND pacific ocean",
         "Returns results excluding one word": "buffalo NOT bison",
-        "Returns results for either word": "lions OR tigers"
-      }
+        "Returns results for either word": "lions OR tigers",
+      },
     },
 
     // ==================== SAVOL 202 ====================
@@ -1897,13 +2076,14 @@ window.questionsData = {
       id: 202,
       tr: 202,
       type: 3,
-      question: "For each statement about portable media devices, select True or False.",
+      question:
+        "For each statement about portable media devices, select True or False.",
       statements: [
         "You should disable the Autorun and Autoplay features for all removable media devices.",
         "You should keep your work and personal files on separate media devices and never plug a personal device into a work computer or vice versa.",
-        "If you find a media storage device and don't know who it belongs to, plug the device into your computer to find information about its owner."
+        "If you find a media storage device and don't know who it belongs to, plug the device into your computer to find information about its owner.",
       ],
-      correct: [1, 1, 0]
+      correct: [1, 1, 0],
     },
 
     // ==================== SAVOL 203 ====================
@@ -1911,14 +2091,15 @@ window.questionsData = {
       id: 203,
       tr: 203,
       type: 2,
-      question: "You and your classmates are reading each other's documents. The document you are reading is well written, but you notice a factual error. You need to respectfully indicate the error to the author in a document comment. Which two actions should you take? (Choose two.)",
+      question:
+        "You and your classmates are reading each other's documents. The document you are reading is well written, but you notice a factual error. You need to respectfully indicate the error to the author in a document comment. Which two actions should you take? (Choose two.)",
       options: [
         "Write the correction in capital letters to ensure that the author will see it",
         "Point out the error without explanation",
         "Provide the correct information in your comment if you have it",
-        "Keep the tone of your correction positive"
+        "Keep the tone of your correction positive",
       ],
-      correct: [2, 3]
+      correct: [2, 3],
     },
 
     // ==================== SAVOL 204 ====================
@@ -1931,15 +2112,17 @@ window.questionsData = {
         "A file that contains ready-made styles",
         "A special effect used to introduce slides",
         "A visual effect that moves placeholders, text, and images on and off slides",
-        "A slide that controls the design of the associated slide layouts"
+        "A slide that controls the design of the associated slide layouts",
       ],
       targets: ["Template", "Transition", "Animation", "Master"],
       correct: {
         "A file that contains ready-made styles": "Template",
         "A special effect used to introduce slides": "Transition",
-        "A visual effect that moves placeholders, text, and images on and off slides": "Animation",
-        "A slide that controls the design of the associated slide layouts": "Master"
-      }
+        "A visual effect that moves placeholders, text, and images on and off slides":
+          "Animation",
+        "A slide that controls the design of the associated slide layouts":
+          "Master",
+      },
     },
 
     // ==================== SAVOL 205 ====================
@@ -1947,10 +2130,11 @@ window.questionsData = {
       id: 205,
       tr: 205,
       type: 1,
-      question: "You need to create a calendar event for a regular meeting that will happen every Wednesday. Which option should you choose?",
+      question:
+        "You need to create a calendar event for a regular meeting that will happen every Wednesday. Which option should you choose?",
       img: "img/l21.jpg",
       options: ["1", "2", "4", "3"],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 206 ====================
@@ -1958,20 +2142,30 @@ window.questionsData = {
       id: 206,
       tr: 206,
       type: 5,
-      question: "Match each AI-related ethical concern to its correct description.",
+      question:
+        "Match each AI-related ethical concern to its correct description.",
       items: [
         "AI can create manipulated media, which may defame individuals and spread misinformation",
         "AI's limited comprehension of social norms and cultural aspects can result in producing inappropriate content",
         "AI-generated content may perpetuate stereotypes or discriminatory views, influencing public opinion",
-        "AI may exhibit limited openness, which can potentially mislead the audience regarding the origin of information"
+        "AI may exhibit limited openness, which can potentially mislead the audience regarding the origin of information",
       ],
-      targets: ["Deepfake development", "Lack of contextual understanding", "Promotion of harmful biased views", "Deceptive transparency"],
+      targets: [
+        "Deepfake development",
+        "Lack of contextual understanding",
+        "Promotion of harmful biased views",
+        "Deceptive transparency",
+      ],
       correct: {
-        "AI can create manipulated media, which may defame individuals and spread misinformation": "Deepfake development",
-        "AI's limited comprehension of social norms and cultural aspects can result in producing inappropriate content": "Lack of contextual understanding",
-        "AI-generated content may perpetuate stereotypes or discriminatory views, influencing public opinion": "Promotion of harmful biased views",
-        "AI may exhibit limited openness, which can potentially mislead the audience regarding the origin of information": "Deceptive transparency"
-      }
+        "AI can create manipulated media, which may defame individuals and spread misinformation":
+          "Deepfake development",
+        "AI's limited comprehension of social norms and cultural aspects can result in producing inappropriate content":
+          "Lack of contextual understanding",
+        "AI-generated content may perpetuate stereotypes or discriminatory views, influencing public opinion":
+          "Promotion of harmful biased views",
+        "AI may exhibit limited openness, which can potentially mislead the audience regarding the origin of information":
+          "Deceptive transparency",
+      },
     },
 
     // ==================== SAVOL 207 ====================
@@ -1979,14 +2173,15 @@ window.questionsData = {
       id: 207,
       tr: 207,
       type: 2,
-      question: "How can you confirm that you have a successful printer connection? (Choose two.)",
+      question:
+        "How can you confirm that you have a successful printer connection? (Choose two.)",
       options: [
         "For a network printer, ping the print device",
         "For a local printer, make sure the printer cable is plugged into your computer",
         "For a network printer, reconnect the Ethernet cable",
-        "For a local printer, confirm the ready status in the operating system's print queue"
+        "For a local printer, confirm the ready status in the operating system's print queue",
       ],
-      correct: [0, 3]
+      correct: [0, 3],
     },
 
     // ==================== SAVOL 208 ====================
@@ -1994,9 +2189,15 @@ window.questionsData = {
       id: 208,
       tr: 208,
       type: 1,
-      question: "What is the name of the technology in which large servers are networked to allow the following? Sharing of data-processing tasks, Centralized data storage, Online access to computer services or resources",
-      options: ["Cloud computing", "Virtual machine (VM)", "Cloud data storage", "Virtual private network (VPN)"],
-      correct: 0
+      question:
+        "What is the name of the technology in which large servers are networked to allow the following? Sharing of data-processing tasks, Centralized data storage, Online access to computer services or resources",
+      options: [
+        "Cloud computing",
+        "Virtual machine (VM)",
+        "Cloud data storage",
+        "Virtual private network (VPN)",
+      ],
+      correct: 0,
     },
 
     // ==================== SAVOL 209 ====================
@@ -2004,19 +2205,20 @@ window.questionsData = {
       id: 209,
       tr: 209,
       type: 5,
-      question: "You are creating a project proposal document with a partner on the other side of the country. As you and your partner add content to the document, you both need to work collaboratively to revise the proposal. Arrange the actions in the correct order.",
+      question:
+        "You are creating a project proposal document with a partner on the other side of the country. As you and your partner add content to the document, you both need to work collaboratively to revise the proposal. Arrange the actions in the correct order.",
       items: [
         "Create a new document and upload it to cloud storage",
         "Add comments and track changes in the document",
         "Review and accept or reject comments and changes",
-        "Share a link to the document"
+        "Share a link to the document",
       ],
       correct: [
         "Create a new document and upload it to cloud storage",
         "Share a link to the document",
         "Add comments and track changes in the document",
-        "Review and accept or reject comments and changes"
-      ]
+        "Review and accept or reject comments and changes",
+      ],
     },
 
     // ==================== SAVOL 210 ====================
@@ -2024,14 +2226,15 @@ window.questionsData = {
       id: 210,
       tr: 210,
       type: 2,
-      question: "Bryce is experiencing anxiety and depression due to FOMO (Fear Of Missing Out). What are two symptoms or effects of his FOMO? (Choose two.)",
+      question:
+        "Bryce is experiencing anxiety and depression due to FOMO (Fear Of Missing Out). What are two symptoms or effects of his FOMO? (Choose two.)",
       options: [
         "Whenever he enjoys an activity, he must immediately update his status online",
         "He becomes nervous when giving a class presentation",
         "He needs to understand all the 'in jokes' his friends post on social media",
-        "He worries that his grades will suffer if he does not complete his homework"
+        "He worries that his grades will suffer if he does not complete his homework",
       ],
-      correct: [0, 2]
+      correct: [0, 2],
     },
 
     // ==================== SAVOL 211 ====================
@@ -2044,9 +2247,9 @@ window.questionsData = {
         "Use reply all to make responses faster",
         "BCC your friend on important emails",
         "Reply immediately if you are busy",
-        "Take your time to provide a thoughtful response"
+        "Take your time to provide a thoughtful response",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 212 ====================
@@ -2054,14 +2257,15 @@ window.questionsData = {
       id: 212,
       tr: 212,
       type: 2,
-      question: "You are designing a poster for a client. As you work on new versions of your file to keep track of your changes and design ideas, which two groups of files demonstrate good file naming conventions? (Choose two.)",
+      question:
+        "You are designing a poster for a client. As you work on new versions of your file to keep track of your changes and design ideas, which two groups of files demonstrate good file naming conventions? (Choose two.)",
       options: [
         "myposter.psd, newposter.psd, poster.psd",
         "poster.psd, poster copy.psd, poster copy 2.psd",
         "poster original.psd, poster cropped.psd, poster_greyscale.psd",
-        "poster draft1.psd, poster draft2.psd, poster FINAL.psd"
+        "poster draft1.psd, poster draft2.psd, poster FINAL.psd",
       ],
-      correct: [2, 3]
+      correct: [2, 3],
     },
 
     // ==================== SAVOL 213 ====================
@@ -2069,9 +2273,15 @@ window.questionsData = {
       id: 213,
       tr: 213,
       type: 3,
-      question: "You are doing research for a school project on AI. For each resource, select Yes if it is helpful or No if it is not.",
-      statements: ["Asking teachers and friends", "Searching in an online forum", "Asking classmates", "Performing an internet search"],
-      correct: [1, 1, 0, 1]
+      question:
+        "You are doing research for a school project on AI. For each resource, select Yes if it is helpful or No if it is not.",
+      statements: [
+        "Asking teachers and friends",
+        "Searching in an online forum",
+        "Asking classmates",
+        "Performing an internet search",
+      ],
+      correct: [1, 1, 0, 1],
     },
 
     // ==================== SAVOL 214 ====================
@@ -2079,9 +2289,10 @@ window.questionsData = {
       id: 214,
       tr: 214,
       type: 1,
-      question: "A student is going to miss an appointment for an interview. He sends the following email message: 'Dear Ms. Smith, I will be bizzy during my interview time so I need to reschedule I HOPE THIS IS OKAY!!!!! Thnx!!!!' Which element of the email message displays appropriate email etiquette?",
+      question:
+        "A student is going to miss an appointment for an interview. He sends the following email message: 'Dear Ms. Smith, I will be bizzy during my interview time so I need to reschedule I HOPE THIS IS OKAY!!!!! Thnx!!!!' Which element of the email message displays appropriate email etiquette?",
       options: ["Grammar", "Capitalization", "Punctuation", "Greeting"],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 215 ====================
@@ -2089,16 +2300,17 @@ window.questionsData = {
       id: 215,
       tr: 215,
       type: 2,
-      question: "Select the option that allows you to secure Windows from unauthorized access. Choose the settings you want for this folder.",
+      question:
+        "Select the option that allows you to secure Windows from unauthorized access. Choose the settings you want for this folder.",
       options: [
         "File attributes",
         "Compress or Encrypt attributes",
         "Allow this file to have contents indexed in addition to file properties",
         "Compress contents to save disk space",
         "File is ready for archiving",
-        "Encrypt contents to secure data"
+        "Encrypt contents to secure data",
       ],
-      correct: [1, 5]
+      correct: [1, 5],
     },
 
     // ==================== SAVOL 216 ====================
@@ -2106,9 +2318,10 @@ window.questionsData = {
       id: 216,
       tr: 216,
       type: 2,
-      question: "Which three services are audio streaming services? (Choose three.)",
+      question:
+        "Which three services are audio streaming services? (Choose three.)",
       options: ["Vevo", "Pandora", "Hulu", "Spotify", "UHF", "SiriusXM"],
-      correct: [1, 3, 5]
+      correct: [1, 3, 5],
     },
 
     // ==================== SAVOL 217 ====================
@@ -2116,15 +2329,21 @@ window.questionsData = {
       id: 217,
       tr: 217,
       type: 5,
-      question: "Internet commerce providers sell various goods. Move each item to the correct column.",
-      items: ["Software subscription", "Services", "Cloud storage", "Bluetooth headset"],
+      question:
+        "Internet commerce providers sell various goods. Move each item to the correct column.",
+      items: [
+        "Software subscription",
+        "Services",
+        "Cloud storage",
+        "Bluetooth headset",
+      ],
       targets: ["Digital goods", "Physical goods"],
       correct: {
         "Software subscription": "Digital goods",
-        "Services": "Digital goods",
+        Services: "Digital goods",
         "Cloud storage": "Digital goods",
-        "Bluetooth headset": "Physical goods"
-      }
+        "Bluetooth headset": "Physical goods",
+      },
     },
 
     // ==================== SAVOL 218 ====================
@@ -2133,8 +2352,13 @@ window.questionsData = {
       tr: 218,
       type: 1,
       question: "What is the primary advantage of using file compression?",
-      options: ["Increased file size", "Decreased file security", "Improved file readability", "Faster data transfer"],
-      correct: 3
+      options: [
+        "Increased file size",
+        "Decreased file security",
+        "Improved file readability",
+        "Faster data transfer",
+      ],
+      correct: 3,
     },
 
     // ==================== SAVOL 219 ====================
@@ -2142,14 +2366,15 @@ window.questionsData = {
       id: 219,
       tr: 219,
       type: 1,
-      question: "To create an effective presentation, which method should be used for slide content?",
+      question:
+        "To create an effective presentation, which method should be used for slide content?",
       options: [
         "Animate only text elements, leaving images static",
         "Avoid using transitions and animations altogether",
         "Use slide transitions that complement the presentation's theme",
-        "Apply animations to all elements to keep audience engaged"
+        "Apply animations to all elements to keep audience engaged",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 220 ====================
@@ -2157,10 +2382,11 @@ window.questionsData = {
       id: 220,
       tr: 220,
       type: 1,
-      question: "You write an essay. A classmate reviews the essay with corrections. You need to permanently implement the corrections in your document. Which button should you select?",
+      question:
+        "You write an essay. A classmate reviews the essay with corrections. You need to permanently implement the corrections in your document. Which button should you select?",
       img: "img/l22.jpg",
       options: ["1", "2", "3", "4"],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 221 ====================
@@ -2173,9 +2399,9 @@ window.questionsData = {
         "To change the font size for visual differentiation",
         "To create structure and enable a table of contents",
         "To highlight important keywords throughout the document",
-        "To add color for emphasis in the text"
+        "To add color for emphasis in the text",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 222 ====================
@@ -2183,14 +2409,15 @@ window.questionsData = {
       id: 222,
       tr: 222,
       type: 1,
-      question: "You are applying for a job in your chosen career. Employers will access your professional online profile. What should you do to support your professional online profile?",
+      question:
+        "You are applying for a job in your chosen career. Employers will access your professional online profile. What should you do to support your professional online profile?",
       options: [
         "Restrict access to the profile to maintain privacy",
         "Update the profile regularly to showcase your skills",
         "Include your salary history and expectations",
-        "Include information about personal activities to demonstrate balance"
+        "Include information about personal activities to demonstrate balance",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 223 ====================
@@ -2198,14 +2425,15 @@ window.questionsData = {
       id: 223,
       tr: 223,
       type: 1,
-      question: "A school principal is composing an email message about the importance of all students arriving at school on time. He needs to use the most appropriate and effective method of communication. What should the principal do?",
+      question:
+        "A school principal is composing an email message about the importance of all students arriving at school on time. He needs to use the most appropriate and effective method of communication. What should the principal do?",
       options: [
         "Send one message to a contact group that includes only the students' email addresses",
         "Send a message to the parent of each student who has been tardy",
         "Send one message to all parents using the Cc field",
-        "Send one message to all parents using the Bcc field"
+        "Send one message to all parents using the Bcc field",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 224 ====================
@@ -2218,9 +2446,9 @@ window.questionsData = {
         "You typically upgrade a laptop GPU by replacing the display",
         "Some CPUs have a built-in GPU and don't rely on a graphics card",
         "Many modern computers and game systems have only a GPU and not a CPU",
-        "Modern GPUs run increasingly complex workloads, including deep learning and artificial intelligence"
+        "Modern GPUs run increasingly complex workloads, including deep learning and artificial intelligence",
       ],
-      correct: [0, 1, 0, 1]
+      correct: [0, 1, 0, 1],
     },
 
     // ==================== SAVOL 225 ====================
@@ -2228,14 +2456,15 @@ window.questionsData = {
       id: 225,
       tr: 225,
       type: 1,
-      question: "You need to send several high-resolution photos as attachments, but the file size is too large. What action will make the files easier to share?",
+      question:
+        "You need to send several high-resolution photos as attachments, but the file size is too large. What action will make the files easier to share?",
       options: [
         "Increase the resolution of each photo",
         "Change the file format of each photo to svg",
         "Compress the files into a zip folder",
-        "Add the photos to a document file"
+        "Add the photos to a document file",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 226 ====================
@@ -2243,14 +2472,15 @@ window.questionsData = {
       id: 226,
       tr: 226,
       type: 3,
-      question: "Your company wants to improve the design of a ride-on vehicle it manufactures. You need to survey retail customers who purchased the vehicle and provide usable feedback. For each question, select Yes if it would provide usable feedback or No if it would not.",
+      question:
+        "Your company wants to improve the design of a ride-on vehicle it manufactures. You need to survey retail customers who purchased the vehicle and provide usable feedback. For each question, select Yes if it would provide usable feedback or No if it would not.",
       statements: [
         "Do you like the vehicle?",
         "What would make the vehicle better?",
         "What are the most important features of the vehicle?",
-        "Would you recommend this ride-on vehicle to a friend?"
+        "Would you recommend this ride-on vehicle to a friend?",
       ],
-      correct: [0, 1, 1, 0]
+      correct: [0, 1, 1, 0],
     },
 
     // ==================== SAVOL 227 ====================
@@ -2258,14 +2488,15 @@ window.questionsData = {
       id: 227,
       tr: 227,
       type: 3,
-      question: "You are using a new software program. You need to use a function that you are unfamiliar with. For each resource, select Yes if you could use it to find help or No if you could not.",
+      question:
+        "You are using a new software program. You need to use a function that you are unfamiliar with. For each resource, select Yes if you could use it to find help or No if you could not.",
       statements: [
         "The Help feature within the program",
         "The software installation instructions",
         "An online forum dedicated to the software",
-        "The LinkedIn page for the software company"
+        "The LinkedIn page for the software company",
       ],
-      correct: [1, 0, 1, 0]
+      correct: [1, 0, 1, 0],
     },
 
     // ==================== SAVOL 228 ====================
@@ -2273,14 +2504,15 @@ window.questionsData = {
       id: 228,
       tr: 228,
       type: 3,
-      question: "You need to research the impacts of online learning. For each statement, select Yes if the search result is relevant to your topic or No if it is not.",
+      question:
+        "You need to research the impacts of online learning. For each statement, select Yes if the search result is relevant to your topic or No if it is not.",
       statements: [
         "An article about the benefits of education",
         "A website offering educational resources for sale",
         "A graph comparing test scores of students in online and in-person educational systems",
-        "An article in an educational magazine about teachers' online teaching experiences"
+        "An article in an educational magazine about teachers' online teaching experiences",
       ],
-      correct: [0, 0, 1, 1]
+      correct: [0, 0, 1, 1],
     },
 
     // ==================== SAVOL 229 ====================
@@ -2288,14 +2520,15 @@ window.questionsData = {
       id: 229,
       tr: 229,
       type: 1,
-      question: "You take a video of a friend doing a silly dance at a party. You want to share the video with your mutual friends. You need to determine how to share the video in a way that demonstrates good digital etiquette. What should you do?",
+      question:
+        "You take a video of a friend doing a silly dance at a party. You want to share the video with your mutual friends. You need to determine how to share the video in a way that demonstrates good digital etiquette. What should you do?",
       options: [
         "Share the video to social media, under privacy settings that allow only your followers to see it",
         "Share the video to social media with public viewing access",
         "Send the video only to the people who attended the party and ask them not to share it with anyone else",
-        "Send the video directly to the friend who was dancing and allow them to share it with others"
+        "Send the video directly to the friend who was dancing and allow them to share it with others",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 230 ====================
@@ -2308,9 +2541,9 @@ window.questionsData = {
         "Add page numbers in a sidebar next to the content",
         "Use the header or footer to automatically add page numbers",
         "Type the page number manually on each page",
-        "Only add page numbers to the first and last page"
+        "Only add page numbers to the first and last page",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 231 ====================
@@ -2323,9 +2556,9 @@ window.questionsData = {
         "Sharing files with friends using email",
         "Storing files on a USB drive that you can share with others",
         "Saving files with a service that allows access from any device",
-        "Saving files on your computer's hard drive"
+        "Saving files on your computer's hard drive",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 232 ====================
@@ -2333,14 +2566,15 @@ window.questionsData = {
       id: 232,
       tr: 232,
       type: 3,
-      question: "A middle school student joins a social media community. For each statement, select Yes if it would be an appropriate way to interact with the online community or No if it would not.",
+      question:
+        "A middle school student joins a social media community. For each statement, select Yes if it would be an appropriate way to interact with the online community or No if it would not.",
       statements: [
         "Expect other community members to treat the information he shares as private",
         "Introduce himself to the community members and provide his personal email address",
         "Reply to a comment on a thread stating that he disagrees, in a respectful tone",
-        "Share a comment from the community with another group without stating who created the comment"
+        "Share a comment from the community with another group without stating who created the comment",
       ],
-      correct: [0, 0, 1, 0]
+      correct: [0, 0, 1, 0],
     },
 
     // ==================== SAVOL 233 ====================
@@ -2348,14 +2582,15 @@ window.questionsData = {
       id: 233,
       tr: 233,
       type: 1,
-      question: "You have separate Google accounts for school and home use. You are logged into your personal account. You need to access a file that was shared with you through your school account's Google Drive. What should you do?",
+      question:
+        "You have separate Google accounts for school and home use. You are logged into your personal account. You need to access a file that was shared with you through your school account's Google Drive. What should you do?",
       options: [
         "Link your personal account and school account Google Drives",
         "Configure both accounts to use the same password",
         "Switch from your personal Google account to your school account",
-        "In your personal Google account settings, unblock your school account"
+        "In your personal Google account settings, unblock your school account",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 234 ====================
@@ -2368,15 +2603,20 @@ window.questionsData = {
         "Subscribe to a video streaming service",
         "Unlock a special feature in a video game",
         "Purchase gems or coins for mobile games",
-        "Rent an online movie through a streaming service"
+        "Rent an online movie through a streaming service",
       ],
-      targets: ["Consumable", "Non-consumable", "Auto-renewable", "Non-renewable"],
+      targets: [
+        "Consumable",
+        "Non-consumable",
+        "Auto-renewable",
+        "Non-renewable",
+      ],
       correct: {
         "Subscribe to a video streaming service": "Auto-renewable",
         "Unlock a special feature in a video game": "Non-consumable",
         "Purchase gems or coins for mobile games": "Consumable",
-        "Rent an online movie through a streaming service": "Non-renewable"
-      }
+        "Rent an online movie through a streaming service": "Non-renewable",
+      },
     },
 
     // ==================== SAVOL 235 ====================
@@ -2384,13 +2624,14 @@ window.questionsData = {
       id: 235,
       tr: 235,
       type: 3,
-      question: "For each statement about web browsers, select Yes if you can perform the action or No if you cannot.",
+      question:
+        "For each statement about web browsers, select Yes if you can perform the action or No if you cannot.",
       statements: [
         "Customize browser buttons, menus, or toolbars",
         "Change the preprogrammed browser home page",
-        "Add plug-ins and extensions to a browser for additional functionality"
+        "Add plug-ins and extensions to a browser for additional functionality",
       ],
-      correct: [1, 1, 1]
+      correct: [1, 1, 1],
     },
 
     // ==================== SAVOL 236 ====================
@@ -2398,20 +2639,23 @@ window.questionsData = {
       id: 236,
       tr: 236,
       type: 5,
-      question: "Move each file access permission type from the left to its correct definition on the right.",
+      question:
+        "Move each file access permission type from the left to its correct definition on the right.",
       items: [
         "View or access the file content",
         "Add data to the file and read or change its attributes",
         "View the file content, add data to the file, and delete the file",
-        "View or access the file content and run the file if it is a program"
+        "View or access the file content and run the file if it is a program",
       ],
       targets: ["Read", "Write", "Modify", "Read & Execute"],
       correct: {
         "View or access the file content": "Read",
         "Add data to the file and read or change its attributes": "Write",
-        "View the file content, add data to the file, and delete the file": "Modify",
-        "View or access the file content and run the file if it is a program": "Read & Execute"
-      }
+        "View the file content, add data to the file, and delete the file":
+          "Modify",
+        "View or access the file content and run the file if it is a program":
+          "Read & Execute",
+      },
     },
 
     // ==================== SAVOL 237 ====================
@@ -2419,9 +2663,10 @@ window.questionsData = {
       id: 237,
       tr: 237,
       type: 1,
-      question: "You are electronically reviewing a report written by a classmate. Which method should you use in the document to provide constructive feedback to your classmate?",
+      question:
+        "You are electronically reviewing a report written by a classmate. Which method should you use in the document to provide constructive feedback to your classmate?",
       options: ["Footnotes", "Comments", "Citations", "Text boxes"],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 238 ====================
@@ -2429,15 +2674,11 @@ window.questionsData = {
       id: 238,
       tr: 238,
       type: 1,
-      question: "You need to add next month's Student Government calendar events. Which two elements can you select to open the event dialog box? (Choose two.)",
+      question:
+        "You need to add next month's Student Government calendar events. Which two elements can you select to open the event dialog box? (Choose two.)",
       img: "img/l23.jpg",
-      options: [
-        "1 3",
-        "3 2",
-        "1 4",
-        "3 5"
-      ],
-      correct: 2
+      options: ["1 3", "3 2", "1 4", "3 5"],
+      correct: 2,
     },
 
     // ==================== SAVOL 239 ====================
@@ -2445,13 +2686,14 @@ window.questionsData = {
       id: 239,
       tr: 239,
       type: 3,
-      question: "For each statement about central processing unit (CPU), select True or False.",
+      question:
+        "For each statement about central processing unit (CPU), select True or False.",
       statements: [
         "Most modern CPUs are built to support 64-bit systems",
         "When properly used, CPUs typically have an attached air cooler or liquid cooler",
-        "The CPU speed affects the frames per second (fps) rendered in a 3D game"
+        "The CPU speed affects the frames per second (fps) rendered in a 3D game",
       ],
-      correct: [1, 1, 1]
+      correct: [1, 1, 1],
     },
 
     // ==================== SAVOL 240 ====================
@@ -2459,14 +2701,15 @@ window.questionsData = {
       id: 240,
       tr: 240,
       type: 1,
-      question: "You are creating a digital slideshow presentation for your club. You search online for a song to remix and add to your presentation. Which Creative Commons license allows you to remix the song for your presentation?",
+      question:
+        "You are creating a digital slideshow presentation for your club. You search online for a song to remix and add to your presentation. Which Creative Commons license allows you to remix the song for your presentation?",
       options: [
         "CC BY (Attribution)",
         "CC BY-ND (Attribution-NoDerivs)",
         "CC BY-SA (Attribution-ShareAlike)",
-        "CC BY-NC (Attribution-NonCommercial)"
+        "CC BY-NC (Attribution-NonCommercial)",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 241 ====================
@@ -2474,15 +2717,21 @@ window.questionsData = {
       id: 241,
       tr: 241,
       type: 5,
-      question: "You received a zero on the assignment you turned in. You need to send an email to your teacher and a copy of the email to your parent. Use the method that allows your teacher to easily respond to both you and your parent.",
+      question:
+        "You received a zero on the assignment you turned in. You need to send an email to your teacher and a copy of the email to your parent. Use the method that allows your teacher to easily respond to both you and your parent.",
       items: ["From:", "To:", "Cc:", "Bcc:"],
-      targets: ["me@myschool.com", "teacher@myschool.com", "parent@myhome.com", "classmate@myschool.com"],
+      targets: [
+        "me@myschool.com",
+        "teacher@myschool.com",
+        "parent@myhome.com",
+        "classmate@myschool.com",
+      ],
       correct: {
         "From:": "me@myschool.com",
         "To:": "teacher@myschool.com",
         "Cc:": "parent@myhome.com",
-        "Bcc:": "classmate@myschool.com"
-      }
+        "Bcc:": "classmate@myschool.com",
+      },
     },
 
     // ==================== SAVOL 242 ====================
@@ -2495,9 +2744,9 @@ window.questionsData = {
         "Only reply if you agree with the comment",
         "Delete comments that you don't agree with",
         "Respond with respect, even if you disagree",
-        "Ignore all comments, even if they are aggressive"
+        "Ignore all comments, even if they are aggressive",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 243 ====================
@@ -2507,7 +2756,7 @@ window.questionsData = {
       type: 1,
       question: "A digital subscriber line (DSL) transmits data over:",
       options: ["DSL", "Reply", "Source", "Open"],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 244 ====================
@@ -2515,9 +2764,15 @@ window.questionsData = {
       id: 244,
       tr: 244,
       type: 1,
-      question: "A way to access websites on the internet without storing history, cookies, or temporary files:",
-      options: ["Desktop Interface", "Private Browsing", "Trojan Horse", "Repetitive Stress Injuries"],
-      correct: 1
+      question:
+        "A way to access websites on the internet without storing history, cookies, or temporary files:",
+      options: [
+        "Desktop Interface",
+        "Private Browsing",
+        "Trojan Horse",
+        "Repetitive Stress Injuries",
+      ],
+      correct: 1,
     },
 
     // ==================== SAVOL 245 ====================
@@ -2525,9 +2780,10 @@ window.questionsData = {
       id: 245,
       tr: 245,
       type: 2,
-      question: "Which three services are audio streaming services? (Choose three.)",
+      question:
+        "Which three services are audio streaming services? (Choose three.)",
       options: ["Spotify", "Pandora", "UHF", "Hulu", "Vevo", "SiriusXM"],
-      correct: [0, 1, 5]
+      correct: [0, 1, 5],
     },
 
     // ==================== SAVOL 246 ====================
@@ -2535,9 +2791,10 @@ window.questionsData = {
       id: 246,
       tr: 246,
       type: 1,
-      question: "A teenage neighbor creates a social media account and pretends to be a 40 year-old man. She connects to neighbors and parents, then sponsors an online fundraiser for her own benefit. What is your neighbor doing?",
+      question:
+        "A teenage neighbor creates a social media account and pretends to be a 40 year-old man. She connects to neighbors and parents, then sponsors an online fundraiser for her own benefit. What is your neighbor doing?",
       options: ["Cyberhacking", "Catfishing", "Phishing", "Trolling"],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 247 ====================
@@ -2545,14 +2802,15 @@ window.questionsData = {
       id: 247,
       tr: 247,
       type: 2,
-      question: "You are offered an unpaid summer internship at a local technology firm. What are two reasons to accept the internship? (Choose two.)",
+      question:
+        "You are offered an unpaid summer internship at a local technology firm. What are two reasons to accept the internship? (Choose two.)",
       options: [
         "To learn new IT skills",
         "To learn to supervise other IT workers",
         "To apply your IT knowledge in a professional setting",
-        "To teach IT skills to the firm's employees"
+        "To teach IT skills to the firm's employees",
       ],
-      correct: [0, 2]
+      correct: [0, 2],
     },
 
     // ==================== SAVOL 248 ====================
@@ -2560,9 +2818,10 @@ window.questionsData = {
       id: 248,
       tr: 248,
       type: 1,
-      question: "Which term represents the main concepts you are searching for in a search engine?",
+      question:
+        "Which term represents the main concepts you are searching for in a search engine?",
       options: ["Filters", "Keywords", "Context", "Coverage"],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 249 ====================
@@ -2570,22 +2829,34 @@ window.questionsData = {
       id: 249,
       tr: 249,
       type: 5,
-      question: "Move each term from the list on the left to its correct definition on the right.",
+      question:
+        "Move each term from the list on the left to its correct definition on the right.",
       items: [
         "A file that can be viewed and modified by users with the appropriate permissions",
         "A security feature that restricts file access to users who enter the correct access code",
         "The process of encoding data to prevent unauthorized access",
         "Settings that determine who can read, write, or execute a file",
-        "The ability to view the contents of a file but not modify it"
+        "The ability to view the contents of a file but not modify it",
       ],
-      targets: ["Read-Write File", "Password Protection", "Encryption", "File Permission", "Read-Only File"],
+      targets: [
+        "Read-Write File",
+        "Password Protection",
+        "Encryption",
+        "File Permission",
+        "Read-Only File",
+      ],
       correct: {
-        "A file that can be viewed and modified by users with the appropriate permissions": "Read-Write File",
-        "A security feature that restricts file access to users who enter the correct access code": "Password Protection",
-        "The process of encoding data to prevent unauthorized access": "Encryption",
-        "Settings that determine who can read, write, or execute a file": "File Permission",
-        "The ability to view the contents of a file but not modify it": "Read-Only File"
-      }
+        "A file that can be viewed and modified by users with the appropriate permissions":
+          "Read-Write File",
+        "A security feature that restricts file access to users who enter the correct access code":
+          "Password Protection",
+        "The process of encoding data to prevent unauthorized access":
+          "Encryption",
+        "Settings that determine who can read, write, or execute a file":
+          "File Permission",
+        "The ability to view the contents of a file but not modify it":
+          "Read-Only File",
+      },
     },
 
     // ==================== SAVOL 250 ====================
@@ -2593,14 +2864,15 @@ window.questionsData = {
       id: 250,
       tr: 250,
       type: 3,
-      question: "For each statement about digital feedback, select Yes if the behavior follows digital etiquette standards or No if it does not.",
+      question:
+        "For each statement about digital feedback, select Yes if the behavior follows digital etiquette standards or No if it does not.",
       statements: [
         "Correct other people whenever their opinions and ideas are wrong",
         "Give fair criticism and constructive feedback, but phrase it respectfully",
         "Use abbreviations, slang, and emojis to give your comments more personality",
-        "Use good grammar and spelling so your comments are clear and easy to understand"
+        "Use good grammar and spelling so your comments are clear and easy to understand",
       ],
-      correct: [0, 1, 0, 1]
+      correct: [0, 1, 0, 1],
     },
 
     // ==================== SAVOL 251 ====================
@@ -2608,14 +2880,15 @@ window.questionsData = {
       id: 251,
       tr: 251,
       type: 3,
-      question: "Your job requires you to work at a computer for 5 hours each day. You are concerned that you will develop eye strain. For each action, select Yes if it will prevent eye strain or No if it will not.",
+      question:
+        "Your job requires you to work at a computer for 5 hours each day. You are concerned that you will develop eye strain. For each action, select Yes if it will prevent eye strain or No if it will not.",
       statements: [
         "Blink often",
         "Work in a very dark room",
         "Frequently change your focus from the computer screen to something at least six meters away",
-        "Position your monitor so it is an arm's length away and the top of the screen is at your eye level"
+        "Position your monitor so it is an arm's length away and the top of the screen is at your eye level",
       ],
-      correct: [1, 0, 1, 1]
+      correct: [1, 0, 1, 1],
     },
 
     // ==================== SAVOL 252 ====================
@@ -2623,14 +2896,15 @@ window.questionsData = {
       id: 252,
       tr: 252,
       type: 2,
-      question: "What are two signs that an article presents a biased view? (Choose two.)",
+      question:
+        "What are two signs that an article presents a biased view? (Choose two.)",
       options: [
         "The author includes arguments to address the opposing point of view",
         "The author supports the ideas in the article by presenting interesting stories instead of statistics",
         "The article is published in a small newspaper, not a well-known academic journal",
-        "The author states that authors of an opposing article are radical and therefore not able to understand the topic"
+        "The author states that authors of an opposing article are radical and therefore not able to understand the topic",
       ],
-      correct: [1, 3]
+      correct: [1, 3],
     },
 
     // ==================== SAVOL 253 ====================
@@ -2642,18 +2916,21 @@ window.questionsData = {
       items: [
         "A personal situation that you would like your supervisor's opinion on",
         "A general work related question that does not require an immediate answer",
-        "An emergency situation that your supervisor needs to be aware of immediately"
+        "An emergency situation that your supervisor needs to be aware of immediately",
       ],
       targets: [
         "Speak to your supervisor in person during a break the next day",
         "Send an email to your supervisor and schedule its delivery for 9:00 the next morning",
-        "Call or text your supervisor on their cell phone"
+        "Call or text your supervisor on their cell phone",
       ],
       correct: {
-        "A personal situation that you would like your supervisor's opinion on": "Speak to your supervisor in person during a break the next day",
-        "A general work related question that does not require an immediate answer": "Send an email to your supervisor and schedule its delivery for 9:00 the next morning",
-        "An emergency situation that your supervisor needs to be aware of immediately": "Call or text your supervisor on their cell phone"
-      }
+        "A personal situation that you would like your supervisor's opinion on":
+          "Speak to your supervisor in person during a break the next day",
+        "A general work related question that does not require an immediate answer":
+          "Send an email to your supervisor and schedule its delivery for 9:00 the next morning",
+        "An emergency situation that your supervisor needs to be aware of immediately":
+          "Call or text your supervisor on their cell phone",
+      },
     },
 
     // ==================== SAVOL 254 ====================
@@ -2661,14 +2938,15 @@ window.questionsData = {
       id: 254,
       tr: 254,
       type: 2,
-      question: "What are two universal design principles for computer hardware? (Choose two.)",
+      question:
+        "What are two universal design principles for computer hardware? (Choose two.)",
       options: [
         "Tolerance for error: Minimize hazards and the adverse consequences of accidental or unintended actions",
         "Internet of Things connected: Implement online functionality whenever possible to improve the user experience",
         "Keep costs low: Use less expensive parts whenever possible to reduce build costs",
-        "Equitable use: The design is useful and marketable to people with diverse abilities"
+        "Equitable use: The design is useful and marketable to people with diverse abilities",
       ],
-      correct: [0, 3]
+      correct: [0, 3],
     },
 
     // ==================== SAVOL 255 ====================
@@ -2676,14 +2954,15 @@ window.questionsData = {
       id: 255,
       tr: 255,
       type: 2,
-      question: "You maintain personal and professional social media accounts. Which two items should you post to your professional social media account? (Choose two.)",
+      question:
+        "You maintain personal and professional social media accounts. Which two items should you post to your professional social media account? (Choose two.)",
       options: [
         "A picture of your family playing a game",
         "Your formal profile picture",
         "A complaint about a current coworker",
-        "A technical certification that you possess"
+        "A technical certification that you possess",
       ],
-      correct: [1, 3]
+      correct: [1, 3],
     },
 
     // ==================== SAVOL 256 ====================
@@ -2691,20 +2970,21 @@ window.questionsData = {
       id: 256,
       tr: 256,
       type: 5,
-      question: "Match each basic video editing technique to its correct definition.",
+      question:
+        "Match each basic video editing technique to its correct definition.",
       items: [
         "Join two video clips together",
         "Cut a video clip into two segments",
         "Hide portions of a video frame",
-        "Remove the beginning and end of the clip"
+        "Remove the beginning and end of the clip",
       ],
       targets: ["Trim", "Split", "Crop", "Merge"],
       correct: {
         "Join two video clips together": "Merge",
         "Cut a video clip into two segments": "Split",
         "Hide portions of a video frame": "Crop",
-        "Remove the beginning and end of the clip": "Trim"
-      }
+        "Remove the beginning and end of the clip": "Trim",
+      },
     },
 
     // ==================== SAVOL 257 ====================
@@ -2712,14 +2992,15 @@ window.questionsData = {
       id: 257,
       tr: 257,
       type: 2,
-      question: "Which two statements distinguish between Read-only and Read-Write files? (Choose two.)",
+      question:
+        "Which two statements distinguish between Read-only and Read-Write files? (Choose two.)",
       options: [
         "Files are set to Read-only by default",
         "A file set to Read-Write can be changed by other users",
         "A file set to Read-only can be viewed but not modified",
-        "A file set to Read-only is protected from being copied"
+        "A file set to Read-only is protected from being copied",
       ],
-      correct: [1, 2]
+      correct: [1, 2],
     },
 
     // ==================== SAVOL 258 ====================
@@ -2732,15 +3013,17 @@ window.questionsData = {
         "A text file that supports formatted text and graphics",
         "A text file that supports only plain text in a linear format",
         "A highly compressed raster image file that supports the inclusion of multiple images in one file",
-        "A raster image file with lossless compression that supports transparent, color-mapped, and 48-bit true-color images"
+        "A raster image file with lossless compression that supports transparent, color-mapped, and 48-bit true-color images",
       ],
       targets: ["rtf", "txt", "gif", "png"],
       correct: {
         "A text file that supports formatted text and graphics": "rtf",
         "A text file that supports only plain text in a linear format": "txt",
-        "A highly compressed raster image file that supports the inclusion of multiple images in one file": "gif",
-        "A raster image file with lossless compression that supports transparent, color-mapped, and 48-bit true-color images": "png"
-      }
+        "A highly compressed raster image file that supports the inclusion of multiple images in one file":
+          "gif",
+        "A raster image file with lossless compression that supports transparent, color-mapped, and 48-bit true-color images":
+          "png",
+      },
     },
 
     // ==================== SAVOL 259 ====================
@@ -2748,14 +3031,15 @@ window.questionsData = {
       id: 259,
       tr: 259,
       type: 2,
-      question: "In which two situations should you disable the camera on your online device? (Choose two.)",
+      question:
+        "In which two situations should you disable the camera on your online device? (Choose two.)",
       options: [
         "When exchanging messages with distant relatives",
         "When watching a virtual college tour with hundreds of participants",
         "When participating in a distance learning class session",
-        "When chatting with other players during a public online gaming session"
+        "When chatting with other players during a public online gaming session",
       ],
-      correct: [1, 3]
+      correct: [1, 3],
     },
 
     // ==================== SAVOL 260 ====================
@@ -2768,15 +3052,16 @@ window.questionsData = {
         "Area where you enter data and equations",
         "Sheet tab",
         "Area that displays information about the worksheet, worksheet content, and program",
-        "Vertical series of cells, labeled with a letter"
+        "Vertical series of cells, labeled with a letter",
       ],
       targets: ["Formula bar", "Sheet tab", "Status bar", "Column"],
       correct: {
         "Area where you enter data and equations": "Formula bar",
         "Sheet tab": "Sheet tab",
-        "Area that displays information about the worksheet, worksheet content, and program": "Status bar",
-        "Vertical series of cells, labeled with a letter": "Column"
-      }
+        "Area that displays information about the worksheet, worksheet content, and program":
+          "Status bar",
+        "Vertical series of cells, labeled with a letter": "Column",
+      },
     },
 
     // ==================== SAVOL 261 ====================
@@ -2784,14 +3069,15 @@ window.questionsData = {
       id: 261,
       tr: 261,
       type: 1,
-      question: "Who owns the copyright to content that is generated by Artificial Intelligence (AI)?",
+      question:
+        "Who owns the copyright to content that is generated by Artificial Intelligence (AI)?",
       options: [
         "The company that publishes and maintains the AI model servers",
         "No one - all AI-generated content is automatically in the public domain",
         "The developer who wrote the code for the AI model that generated the content",
-        "The person who wrote the prompt used to generate the content"
+        "The person who wrote the prompt used to generate the content",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 262 ====================
@@ -2799,9 +3085,15 @@ window.questionsData = {
       id: 262,
       tr: 262,
       type: 2,
-      question: "Which two communication methods are asynchronous? (Choose two.)",
-      options: ["Emailing", "Videoconferencing", "Telephoning", "Text messaging"],
-      correct: [0, 3]
+      question:
+        "Which two communication methods are asynchronous? (Choose two.)",
+      options: [
+        "Emailing",
+        "Videoconferencing",
+        "Telephoning",
+        "Text messaging",
+      ],
+      correct: [0, 3],
     },
 
     // ==================== SAVOL 263 ====================
@@ -2814,9 +3106,9 @@ window.questionsData = {
         "To automatically fix errors in data",
         "To make files easier to access",
         "To protect data from unauthorized access",
-        "To improve the speed of data transfer between devices"
+        "To improve the speed of data transfer between devices",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 264 ====================
@@ -2824,9 +3116,10 @@ window.questionsData = {
       id: 264,
       tr: 264,
       type: 1,
-      question: "The dark areas of the screen are too dark, and the bright areas are too bright. Which monitor setting should you adjust?",
+      question:
+        "The dark areas of the screen are too dark, and the bright areas are too bright. Which monitor setting should you adjust?",
       options: ["Contrast", "Sharpness", "Brightness", "Input Source"],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 265 ====================
@@ -2834,14 +3127,15 @@ window.questionsData = {
       id: 265,
       tr: 265,
       type: 1,
-      question: "Sound comes through computer speakers instead of headphones. What should you do?",
+      question:
+        "Sound comes through computer speakers instead of headphones. What should you do?",
       options: [
         "Mute your computer speakers",
         "Manage output devices",
         "Configure Ease of Access audio settings",
-        "Manage input devices"
+        "Manage input devices",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 266 ====================
@@ -2849,9 +3143,15 @@ window.questionsData = {
       id: 266,
       tr: 266,
       type: 1,
-      question: "A group of commands recorded or written in code as a single command:",
-      options: ["Macro", "Instant Messaging", "Naming Convention", "Ethernet Cable"],
-      correct: 0
+      question:
+        "A group of commands recorded or written in code as a single command:",
+      options: [
+        "Macro",
+        "Instant Messaging",
+        "Naming Convention",
+        "Ethernet Cable",
+      ],
+      correct: 0,
     },
 
     // ==================== SAVOL 267 ====================
@@ -2859,9 +3159,15 @@ window.questionsData = {
       id: 267,
       tr: 267,
       type: 1,
-      question: "For what purpose can you use all the following tools? Collaboration, Content creation, File storage, Video chat",
-      options: ["Cloud computing", "Social media", "Operating system", "Web browser"],
-      correct: 0
+      question:
+        "For what purpose can you use all the following tools? Collaboration, Content creation, File storage, Video chat",
+      options: [
+        "Cloud computing",
+        "Social media",
+        "Operating system",
+        "Web browser",
+      ],
+      correct: 0,
     },
 
     // ==================== SAVOL 268 ====================
@@ -2869,13 +3175,14 @@ window.questionsData = {
       id: 268,
       tr: 268,
       type: 3,
-      question: "Identify password protection file options. For each statement, select Yes if it is true or No if it is not.",
+      question:
+        "Identify password protection file options. For each statement, select Yes if it is true or No if it is not.",
       statements: [
         "In Microsoft Excel, you have choices to password protect just sections of a workbook or the entire workbook",
         "In Adobe, you can password protect opening a .pdf document",
-        "In Windows 10 and later versions, you can protect individual files and folders with a password"
+        "In Windows 10 and later versions, you can protect individual files and folders with a password",
       ],
-      correct: [1, 1, 0]
+      correct: [1, 1, 0],
     },
 
     // ==================== SAVOL 269 ====================
@@ -2883,9 +3190,10 @@ window.questionsData = {
       id: 269,
       tr: 269,
       type: 1,
-      question: "Software used to search a database using keyword phrases entered by the user:",
+      question:
+        "Software used to search a database using keyword phrases entered by the user:",
       options: ["Macro", "Email", "Ethernet Cable", "Search Engine"],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 270 ====================
@@ -2893,9 +3201,10 @@ window.questionsData = {
       id: 270,
       tr: 270,
       type: 2,
-      question: "You are searching for clip art of a rabbit you can use on a website without permission. Which two filters will narrow your search results? (Choose two.)",
+      question:
+        "You are searching for clip art of a rabbit you can use on a website without permission. Which two filters will narrow your search results? (Choose two.)",
       options: ["Time", "Usage Rights", "Type", "Color"],
-      correct: [1, 2]
+      correct: [1, 2],
     },
 
     // ==================== SAVOL 271 ====================
@@ -2903,9 +3212,10 @@ window.questionsData = {
       id: 271,
       tr: 271,
       type: 2,
-      question: "Which two settings should you change to make devices easier to see for someone with poor vision? (Choose two.)",
+      question:
+        "Which two settings should you change to make devices easier to see for someone with poor vision? (Choose two.)",
       options: ["Colors", "Ring tones", "Font size", "Volume"],
-      correct: [0, 2]
+      correct: [0, 2],
     },
 
     // ==================== SAVOL 272 ====================
@@ -2913,14 +3223,15 @@ window.questionsData = {
       id: 272,
       tr: 272,
       type: 1,
-      question: "What is the first step toward customizing information for an audience?",
+      question:
+        "What is the first step toward customizing information for an audience?",
       options: [
         "Prepare an introduction and a conclusion",
         "Identify your target audience",
         "Establish communication goals",
-        "Personalize your messaging"
+        "Personalize your messaging",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 273 ====================
@@ -2928,9 +3239,10 @@ window.questionsData = {
       id: 273,
       tr: 273,
       type: 1,
-      question: "A graphics processing unit (GPU) manages the performance of videos and graphics within a computer.",
+      question:
+        "A graphics processing unit (GPU) manages the performance of videos and graphics within a computer.",
       options: ["GPU", "Naming Convention", "Reply All", "FOMO"],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 274 ====================
@@ -2938,10 +3250,11 @@ window.questionsData = {
       id: 274,
       tr: 274,
       type: 1,
-      question: "You need to change the speed of the mouse cursor across your computer screen. Which option should you choose?",
+      question:
+        "You need to change the speed of the mouse cursor across your computer screen. Which option should you choose?",
       img: "img/l24.jpg",
       options: ["1", "2", "3", "4"],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 275 ====================
@@ -2949,13 +3262,14 @@ window.questionsData = {
       id: 275,
       tr: 275,
       type: 3,
-      question: "You need to determine whether a study is credible. For each statement, select Yes if you should consider it when determining credibility or No if you should not.",
+      question:
+        "You need to determine whether a study is credible. For each statement, select Yes if you should consider it when determining credibility or No if you should not.",
       statements: [
         "The popularity of the study",
         "The organization that funded the study",
-        "The entity that published the study results"
+        "The entity that published the study results",
       ],
-      correct: [0, 1, 1]
+      correct: [0, 1, 1],
     },
 
     // ==================== SAVOL 276 ====================
@@ -2963,14 +3277,15 @@ window.questionsData = {
       id: 276,
       tr: 276,
       type: 2,
-      question: "What are two benefits of working collaboratively? (Choose two.)",
+      question:
+        "What are two benefits of working collaboratively? (Choose two.)",
       options: [
         "It enforces a unified working style for all team members",
         "It isn't affected by the failure of a single team member to perform",
         "It develops interpersonal relationships among peers",
-        "It promotes a more complete understanding of the topic"
+        "It promotes a more complete understanding of the topic",
       ],
-      correct: [2, 3]
+      correct: [2, 3],
     },
 
     // ==================== SAVOL 277 ====================
@@ -2978,9 +3293,10 @@ window.questionsData = {
       id: 277,
       tr: 277,
       type: 1,
-      question: "You are working on your laptop computer. You need to minimize eyestrain. Which monitor setting should you adjust?",
+      question:
+        "You are working on your laptop computer. You need to minimize eyestrain. Which monitor setting should you adjust?",
       options: ["Contrast", "Brightness", "Scale", "Sharpness"],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 278 ====================
@@ -2988,9 +3304,10 @@ window.questionsData = {
       id: 278,
       tr: 278,
       type: 1,
-      question: "What feature in photo editing will cut out unwanted portions of an image?",
+      question:
+        "What feature in photo editing will cut out unwanted portions of an image?",
       options: ["Erase", "Trim", "Cut", "Crop"],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 279 ====================
@@ -3003,9 +3320,9 @@ window.questionsData = {
         "Always include the names of everyone in the photo to give proper credit",
         "Share photos on your public account of your friends and family",
         "Always tag everyone in the photo to make sure they see it",
-        "Add captions that provide context to the photos"
+        "Add captions that provide context to the photos",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 280 ====================
@@ -3013,13 +3330,14 @@ window.questionsData = {
       id: 280,
       tr: 280,
       type: 3,
-      question: "For each statement about FOMO, select Yes if the statement is true or No if it is false.",
+      question:
+        "For each statement about FOMO, select Yes if the statement is true or No if it is false.",
       statements: [
         "FOMO is a disorder caused by wearing a face mask while using social media",
         "FOMO is the 'Feeling of Missing Out'",
-        "Although FOMO isn't considered a mental health disorder, it is caused by a very real set of emotions and carries real effects"
+        "Although FOMO isn't considered a mental health disorder, it is caused by a very real set of emotions and carries real effects",
       ],
-      correct: [0, 1, 1]
+      correct: [0, 1, 1],
     },
 
     // ==================== SAVOL 281 ====================
@@ -3027,9 +3345,10 @@ window.questionsData = {
       id: 281,
       tr: 281,
       type: 2,
-      question: "Which two are community resources that could help with a feature in a software program? (Choose two.)",
+      question:
+        "Which two are community resources that could help with a feature in a software program? (Choose two.)",
       options: ["Wikipedia", "Forums", "Installation instructions", "Blogs"],
-      correct: [1, 3]
+      correct: [1, 3],
     },
 
     // ==================== SAVOL 282 ====================
@@ -3041,14 +3360,17 @@ window.questionsData = {
       items: [
         "A compressed video that is optimal for devices with limited storage space",
         "A digital audio container for storing compressed or uncompressed audio data, often used for CD audio",
-        "A compressed audio file that is optimal for devices such as tablets and smartphones"
+        "A compressed audio file that is optimal for devices such as tablets and smartphones",
       ],
       targets: ["MP4", "WAV", "MP3"],
       correct: {
-        "A compressed video that is optimal for devices with limited storage space": "MP4",
-        "A digital audio container for storing compressed or uncompressed audio data, often used for CD audio": "WAV",
-        "A compressed audio file that is optimal for devices such as tablets and smartphones": "MP3"
-      }
+        "A compressed video that is optimal for devices with limited storage space":
+          "MP4",
+        "A digital audio container for storing compressed or uncompressed audio data, often used for CD audio":
+          "WAV",
+        "A compressed audio file that is optimal for devices such as tablets and smartphones":
+          "MP3",
+      },
     },
 
     // ==================== SAVOL 283 ====================
@@ -3056,14 +3378,15 @@ window.questionsData = {
       id: 283,
       tr: 283,
       type: 3,
-      question: "You find a social media post that shares inaccurate medical information. For each response, select Yes if it is an appropriate way to respond or No if it is not.",
+      question:
+        "You find a social media post that shares inaccurate medical information. For each response, select Yes if it is an appropriate way to respond or No if it is not.",
       statements: [
         "WRONG! Did you do ANY RESEARCH before posting this?",
         "Many doctors, including Jane Smith of Harvard Medical School, disagree",
         "It can be difficult to research everything, but there are many different sources to look at concerning this issue",
-        "This is just wrong and makes you look foolish! Obviously you didn't look at the research from Harvard Medical School!"
+        "This is just wrong and makes you look foolish! Obviously you didn't look at the research from Harvard Medical School!",
       ],
-      correct: [0, 1, 1, 0]
+      correct: [0, 1, 1, 0],
     },
 
     // ==================== SAVOL 284 ====================
@@ -3071,9 +3394,10 @@ window.questionsData = {
       id: 284,
       tr: 284,
       type: 3,
-      question: "For each physical symptom, select Yes if it is a symptom of Repetitive Strain Injury (RSI) or No if it is not.",
+      question:
+        "For each physical symptom, select Yes if it is a symptom of Repetitive Strain Injury (RSI) or No if it is not.",
       statements: ["Pain", "Itching", "Tingling", "Weakness"],
-      correct: [1, 0, 1, 1]
+      correct: [1, 0, 1, 1],
     },
 
     // ==================== SAVOL 285 ====================
@@ -3081,12 +3405,13 @@ window.questionsData = {
       id: 285,
       tr: 285,
       type: 3,
-      question: "For each statement about webcam security, select True or False.",
+      question:
+        "For each statement about webcam security, select True or False.",
       statements: [
         "All webcams include a recording light that cannot be disabled through software",
-        "Disabling a webcam in your computer settings protects against any unauthorized access"
+        "Disabling a webcam in your computer settings protects against any unauthorized access",
       ],
-      correct: [0, 0]
+      correct: [0, 0],
     },
 
     // ==================== SAVOL 286 ====================
@@ -3094,14 +3419,15 @@ window.questionsData = {
       id: 286,
       tr: 286,
       type: 2,
-      question: "Which two visual unity guidelines should you tell your friend to follow? (Choose two.)",
+      question:
+        "Which two visual unity guidelines should you tell your friend to follow? (Choose two.)",
       options: [
         "Use a wide variety of fonts, colors, and backgrounds on each slide",
         "Center the text and visual elements on each slide",
         "Maintain consistency across all presentation elements",
-        "Apply the design principles of repetition, alignment, and proximity"
+        "Apply the design principles of repetition, alignment, and proximity",
       ],
-      correct: [2, 3]
+      correct: [2, 3],
     },
 
     // ==================== SAVOL 287 ====================
@@ -3109,13 +3435,14 @@ window.questionsData = {
       id: 287,
       tr: 287,
       type: 3,
-      question: "For each statement about cloud computing, select True or False.",
+      question:
+        "For each statement about cloud computing, select True or False.",
       statements: [
         "Cloud-based applications must be manually updated",
         "Cloud-based storage and applications have no possibility of service outage",
-        "You can access files in cloud storage from anywhere if you are connected to the internet"
+        "You can access files in cloud storage from anywhere if you are connected to the internet",
       ],
-      correct: [0, 0, 1]
+      correct: [0, 0, 1],
     },
 
     // ==================== SAVOL 288 ====================
@@ -3123,14 +3450,15 @@ window.questionsData = {
       id: 288,
       tr: 288,
       type: 3,
-      question: "You need to research whether a snake is a good pet. For each search result, select Yes if it is a credible source or No if it is not.",
+      question:
+        "You need to research whether a snake is a good pet. For each search result, select Yes if it is a credible source or No if it is not.",
       statements: [
         "11 Best Pet Snakes for Beginners - www.petchronics.com",
         "Snakes as Pets - www.petshop.com",
         "How to Choose the Best Pet Snake For You - www.vetmed.famu.edu",
-        "Do Snakes Make Good Pets? - www.snakerights.org"
+        "Do Snakes Make Good Pets? - www.snakerights.org",
       ],
-      correct: [0, 0, 1, 0]
+      correct: [0, 0, 1, 0],
     },
 
     // ==================== SAVOL 289 ====================
@@ -3138,14 +3466,15 @@ window.questionsData = {
       id: 289,
       tr: 289,
       type: 2,
-      question: "What are two universal design principles for computer hardware? (Choose two.)",
+      question:
+        "What are two universal design principles for computer hardware? (Choose two.)",
       options: [
         "Equitable use: The design is useful and marketable to people with diverse abilities",
         "Internet of Things connected: The design implements online functionality whenever possible",
         "Easy to keep clean: The design minimizes the use of lighter colors to avoid showing dirt and stains",
-        "Size and space for approach and use: The design provides space for approach, reach, manipulation, and use regardless of user's size, posture, or mobility"
+        "Size and space for approach and use: The design provides space for approach, reach, manipulation, and use regardless of user's size, posture, or mobility",
       ],
-      correct: [0, 3]
+      correct: [0, 3],
     },
 
     // ==================== SAVOL 290 ====================
@@ -3153,13 +3482,14 @@ window.questionsData = {
       id: 290,
       tr: 290,
       type: 3,
-      question: "For each statement about printer connection, select True if it is a correct troubleshooting step or False if it is not.",
+      question:
+        "For each statement about printer connection, select True if it is a correct troubleshooting step or False if it is not.",
       statements: [
         "For a direct-connected printer, replace the connection cable with a CAT6 cable",
         "Check the status of the printer connection in the Printers & Scanners setting window",
-        "For an Ethernet-connected printer, ensure that the Ethernet cable is connected directly to the computer instead of through a switch or router"
+        "For an Ethernet-connected printer, ensure that the Ethernet cable is connected directly to the computer instead of through a switch or router",
       ],
-      correct: [0, 1, 0]
+      correct: [0, 1, 0],
     },
 
     // ==================== SAVOL 291 ====================
@@ -3167,18 +3497,22 @@ window.questionsData = {
       id: 291,
       tr: 291,
       type: 5,
-      question: "Match each digital collaboration tool to its correct description.",
+      question:
+        "Match each digital collaboration tool to its correct description.",
       items: [
         "Collaborators can edit files at the same time and automatically save their changes",
         "Collaborators can simultaneously brainstorm, review, and edit visual information by writing, drawing",
-        "Collaborators participate in learning activities and immediately share reactions, interpretations, and ideas"
+        "Collaborators participate in learning activities and immediately share reactions, interpretations, and ideas",
       ],
       targets: ["Cloud file sharing", "Online whiteboard", "Webinar"],
       correct: {
-        "Collaborators can edit files at the same time and automatically save their changes": "Cloud file sharing",
-        "Collaborators can simultaneously brainstorm, review, and edit visual information by writing, drawing": "Online whiteboard",
-        "Collaborators participate in learning activities and immediately share reactions, interpretations, and ideas": "Webinar"
-      }
+        "Collaborators can edit files at the same time and automatically save their changes":
+          "Cloud file sharing",
+        "Collaborators can simultaneously brainstorm, review, and edit visual information by writing, drawing":
+          "Online whiteboard",
+        "Collaborators participate in learning activities and immediately share reactions, interpretations, and ideas":
+          "Webinar",
+      },
     },
 
     // ==================== SAVOL 292 ====================
@@ -3186,9 +3520,10 @@ window.questionsData = {
       id: 292,
       tr: 292,
       type: 1,
-      question: "As Mrs. Wilkins types the letter 'Y,' the word 'Yes' appears in the cell. Which feature caused this change?",
+      question:
+        "As Mrs. Wilkins types the letter 'Y,' the word 'Yes' appears in the cell. Which feature caused this change?",
       options: ["AutoComplete", "AutoFill", "AutoFormat", "AutoFit"],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 293 ====================
@@ -3200,9 +3535,9 @@ window.questionsData = {
       options: [
         "They may contain viruses",
         "They can automatically update your software",
-        "They are often too slow for most devices"
+        "They are often too slow for most devices",
       ],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 294 ====================
@@ -3215,9 +3550,9 @@ window.questionsData = {
         "To identify the file as a non-final release, or draft",
         "To identify the date the file was created",
         "To enable users to recover earlier copies of the file",
-        "To enable multiple users to collaborate on the file content"
+        "To enable multiple users to collaborate on the file content",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 295 ====================
@@ -3225,13 +3560,14 @@ window.questionsData = {
       id: 295,
       tr: 295,
       type: 2,
-      question: "What are two ways students can improve their ability to use assigned software features? (Choose two.)",
+      question:
+        "What are two ways students can improve their ability to use assigned software features? (Choose two.)",
       options: [
         "Read an online review of a similar application",
         "Teach someone else to use it",
-        "Consult the application Help resources"
+        "Consult the application Help resources",
       ],
-      correct: [1, 2]
+      correct: [1, 2],
     },
 
     // ==================== SAVOL 296 ====================
@@ -3239,14 +3575,15 @@ window.questionsData = {
       id: 296,
       tr: 296,
       type: 1,
-      question: "What is an advantage of using a digital wallet such as Google Pay?",
+      question:
+        "What is an advantage of using a digital wallet such as Google Pay?",
       options: [
         "Builds your credit history",
         "Encourages you to shop around for the best price",
         "Gives you free access to Apple TV or YouTube Premium",
-        "Requires you to authorize every transaction"
+        "Requires you to authorize every transaction",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 297 ====================
@@ -3254,14 +3591,15 @@ window.questionsData = {
       id: 297,
       tr: 297,
       type: 3,
-      question: "You are doing research for a school project on AI. For each resource, select Yes if it is helpful or No if it is not.",
+      question:
+        "You are doing research for a school project on AI. For each resource, select Yes if it is helpful or No if it is not.",
       statements: [
         "Asking teachers and friends",
         "Searching in an online forum",
         "Asking classmates",
-        "Performing an internet search"
+        "Performing an internet search",
       ],
-      correct: [1, 1, 0, 1]
+      correct: [1, 1, 0, 1],
     },
 
     // ==================== SAVOL 298 ====================
@@ -3269,14 +3607,15 @@ window.questionsData = {
       id: 298,
       tr: 298,
       type: 1,
-      question: "How can AI potentially help content creators achieve their goals?",
+      question:
+        "How can AI potentially help content creators achieve their goals?",
       options: [
         "By analyzing competitors' content and replicating their style to be consistent with popular trends",
         "By replacing human creativity and unique writing styles with standardized and formulaic AI-generated content",
         "By providing biased data inputs, resulting in content focused on only specific perspectives",
-        "By analyzing data and generating insights to help make content"
+        "By analyzing data and generating insights to help make content",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 299 ====================
@@ -3284,10 +3623,11 @@ window.questionsData = {
       id: 299,
       tr: 299,
       type: 2,
-      question: "You need to: Remove the figure from the left side of the image. Change the image from color to monochrome. Which two photo editing tools should you use? (Choose two.)",
+      question:
+        "You need to: Remove the figure from the left side of the image. Change the image from color to monochrome. Which two photo editing tools should you use? (Choose two.)",
       img: "img/l25.jpg",
       options: ["Exposure", "Trim", "Crop", "Filter"],
-      correct: [2, 3]
+      correct: [2, 3],
     },
 
     // ==================== SAVOL 300 ====================
@@ -3295,20 +3635,21 @@ window.questionsData = {
       id: 300,
       tr: 300,
       type: 5,
-      question: "Identify the advantages of inkjet printers. Move each advantage to the corresponding printer type.",
+      question:
+        "Identify the advantages of inkjet printers. Move each advantage to the corresponding printer type.",
       items: [
         "Environmentally friendly",
         "Good for printing high-quality photographs",
         "Suitable for mass-printing documents at a low cost",
-        "Documents are dry to the touch when printed"
+        "Documents are dry to the touch when printed",
       ],
       targets: ["Laser Printer", "Inkjet Printer"],
       correct: {
         "Environmentally friendly": "Laser Printer",
         "Good for printing high-quality photographs": "Inkjet Printer",
         "Suitable for mass-printing documents at a low cost": "Laser Printer",
-        "Documents are dry to the touch when printed": "Laser Printer"
-      }
+        "Documents are dry to the touch when printed": "Laser Printer",
+      },
     },
 
     // ==================== SAVOL 301 ====================
@@ -3321,9 +3662,9 @@ window.questionsData = {
         "To provide space for important images related to the content",
         "To display recurring information such as page numbers or the document title",
         "To offer a summary of the document's main points on each page",
-        "To incorporate decorative elements that enhance the design"
+        "To incorporate decorative elements that enhance the design",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 302 ====================
@@ -3331,16 +3672,17 @@ window.questionsData = {
       id: 302,
       tr: 302,
       type: 2,
-      question: "You plan to attend a live webinar. You need to be respectful and polite toward the presenter and other participants. Which three actions should you take? (Choose three.)",
+      question:
+        "You plan to attend a live webinar. You need to be respectful and polite toward the presenter and other participants. Which three actions should you take? (Choose three.)",
       options: [
         "Have your cellphone handy to message with other participants",
         "Log in early to ensure that the webinar application is working",
         "Keep your camera on so the presenter knows who is attending",
         "Mute your audio unless the presenter calls on you to speak",
         "Express critical opinions of the content in the public chat area",
-        "Open other browser tabs so you can multitask for other purposes"
+        "Open other browser tabs so you can multitask for other purposes",
       ],
-      correct: [1, 2, 3]
+      correct: [1, 2, 3],
     },
 
     // ==================== SAVOL 303 ====================
@@ -3353,9 +3695,9 @@ window.questionsData = {
         "Use a different color for every edit",
         "Turn on Track Changes before you start editing the document",
         "Keep a separate document to note all changes made",
-        "Manually highlight all changes after editing"
+        "Manually highlight all changes after editing",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 304 ====================
@@ -3365,7 +3707,7 @@ window.questionsData = {
       type: 1,
       question: "Which is a method commonly used to compress data?",
       options: ["Encrypting", "Zipping", "Downloading", "Replicating"],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 305 ====================
@@ -3378,9 +3720,9 @@ window.questionsData = {
         "Use all capital letters for emphasis",
         "Write a clear subject line",
         "Use informal language",
-        "Replace words with emojis"
+        "Replace words with emojis",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 306 ====================
@@ -3393,9 +3735,9 @@ window.questionsData = {
         "To indicate that the message is personal",
         "To keep multiple recipients' email addresses private from each other",
         "To collect information about someone without them knowing",
-        "To indicate that a reply is optional"
+        "To indicate that a reply is optional",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 307 ====================
@@ -3403,14 +3745,15 @@ window.questionsData = {
       id: 307,
       tr: 307,
       type: 3,
-      question: "For each statement about filling out online forms, select True or False.",
+      question:
+        "For each statement about filling out online forms, select True or False.",
       statements: [
         "Microsoft Forms can be filled out by people outside of the creator's organization",
         "Filling out an online PDF form requires an Adobe Acrobat license",
         "Filling out Microsoft Forms requires an Office 365 license",
-        "Google Forms always require that you provide an email address"
+        "Google Forms always require that you provide an email address",
       ],
-      correct: [1, 0, 0, 0]
+      correct: [1, 0, 0, 0],
     },
 
     // ==================== SAVOL 308 ====================
@@ -3418,10 +3761,11 @@ window.questionsData = {
       id: 308,
       tr: 308,
       type: 1,
-      question: "You need to filter your search results to display only articles published in the past year. Which button can you select to achieve the goal?",
+      question:
+        "You need to filter your search results to display only articles published in the past year. Which button can you select to achieve the goal?",
       img: "img/l26.jpg",
       options: ["1", "2", "3", "4"],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 309 ====================
@@ -3429,14 +3773,15 @@ window.questionsData = {
       id: 309,
       tr: 309,
       type: 2,
-      question: "You plan to host a remote meeting using a videoconferencing tool. You need to demonstrate good digital etiquette. Which two actions should you take? (Choose two.)",
+      question:
+        "You plan to host a remote meeting using a videoconferencing tool. You need to demonstrate good digital etiquette. Which two actions should you take? (Choose two.)",
       options: [
         "Ask a team member with a strong accent to respond through the chat box so they can be clearly understood",
         "Keep the team focused and avoid conflicts by limiting discussion to a list of only your own ideas",
         "Privately offer to help a team member with no videoconferencing experience become familiar with the controls before the meeting",
-        "Use features such as Raise Hand to provide opportunities for all team members to participate"
+        "Use features such as Raise Hand to provide opportunities for all team members to participate",
       ],
-      correct: [2, 3]
+      correct: [2, 3],
     },
 
     // ==================== SAVOL 310 ====================
@@ -3444,22 +3789,25 @@ window.questionsData = {
       id: 310,
       tr: 310,
       type: 5,
-      question: "Move each positive or negative aspect of AI to its correct impact.",
+      question:
+        "Move each positive or negative aspect of AI to its correct impact.",
       items: [
         "Creates specific content improving user engagement",
         "Automation of repetitive tasks",
         "Reproduces biases that exist in the data it analyzes",
         "Frees up time for computer users to focus on more strategic actions",
-        "Personalization of content"
+        "Personalization of content",
       ],
       targets: ["Positive Impact", "Ethical Concerns"],
       correct: {
         "Creates specific content improving user engagement": "Positive Impact",
         "Automation of repetitive tasks": "Positive Impact",
-        "Reproduces biases that exist in the data it analyzes": "Ethical Concerns",
-        "Frees up time for computer users to focus on more strategic actions": "Positive Impact",
-        "Personalization of content": "Positive Impact"
-      }
+        "Reproduces biases that exist in the data it analyzes":
+          "Ethical Concerns",
+        "Frees up time for computer users to focus on more strategic actions":
+          "Positive Impact",
+        "Personalization of content": "Positive Impact",
+      },
     },
 
     // ==================== SAVOL 311 ====================
@@ -3467,9 +3815,10 @@ window.questionsData = {
       id: 311,
       tr: 311,
       type: 1,
-      question: "What is the process of converting data into an unusable form that requires the use of a key to return the data to plain text?",
+      question:
+        "What is the process of converting data into an unusable form that requires the use of a key to return the data to plain text?",
       options: ["Encoding", "Compression", "Encryption", "Hashing"],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 312 ====================
@@ -3482,9 +3831,9 @@ window.questionsData = {
         "They automatically correct spelling errors",
         "They provide cloud storage services",
         "They automate repetitive tasks",
-        "They store files online automatically"
+        "They store files online automatically",
       ],
-      correct: 2
+      correct: 2,
     },
 
     // ==================== SAVOL 313 ====================
@@ -3492,14 +3841,15 @@ window.questionsData = {
       id: 313,
       tr: 313,
       type: 2,
-      question: "You insert a title at the beginning of each section. For which two reasons should you format the section titles with heading styles? (Choose two.)",
+      question:
+        "You insert a title at the beginning of each section. For which two reasons should you format the section titles with heading styles? (Choose two.)",
       options: [
         "To enable unique permissions for each section",
         "So that you can automatically generate a table of contents for the document",
         "To apply consistent formatting to each level of heading text",
-        "So that you can include the same information (such as a page number) on every page"
+        "So that you can include the same information (such as a page number) on every page",
       ],
-      correct: [1, 2]
+      correct: [1, 2],
     },
 
     // ==================== SAVOL 314 ====================
@@ -3512,9 +3862,9 @@ window.questionsData = {
         "With permission, or if posted publicly",
         "Anytime, because it's already online",
         "If it has already been shared by others",
-        "When it is a positive message"
+        "When it is a positive message",
       ],
-      correct: 0
+      correct: 0,
     },
 
     // ==================== SAVOL 315 ====================
@@ -3522,13 +3872,14 @@ window.questionsData = {
       id: 315,
       tr: 315,
       type: 3,
-      question: "For each statement about file encryption, select True or False.",
+      question:
+        "For each statement about file encryption, select True or False.",
       statements: [
         "Encrypting files decreases file access speed",
         "All files in cloud storage are encrypted by default",
-        "You can open an encrypted file only on the computer on which it was encrypted"
+        "You can open an encrypted file only on the computer on which it was encrypted",
       ],
-      correct: [1, 0, 0]
+      correct: [1, 0, 0],
     },
 
     // ==================== SAVOL 316 ====================
@@ -3536,14 +3887,15 @@ window.questionsData = {
       id: 316,
       tr: 316,
       type: 3,
-      question: "For each statement about file extensions, select True or False.",
+      question:
+        "For each statement about file extensions, select True or False.",
       statements: [
         ".txt files retain formatting when copied",
         "Animated images have the .jpg file extension",
         "Files with the .pdf extension look exactly like the original file but cannot be edited",
-        "An appropriate file extension for a logo with a transparent background would be .png"
+        "An appropriate file extension for a logo with a transparent background would be .png",
       ],
-      correct: [0, 0, 1, 1]
+      correct: [0, 0, 1, 1],
     },
 
     // ==================== SAVOL 317 ====================
@@ -3556,9 +3908,9 @@ window.questionsData = {
         "Digital payments are like an I.O.U",
         "Digital payments are similar to an electronic check",
         "Digital payments require a co-signer",
-        "Digital payments require a link to either a bank account or credit card"
+        "Digital payments require a link to either a bank account or credit card",
       ],
-      correct: 3
+      correct: 3,
     },
 
     // ==================== SAVOL 318 ====================
@@ -3571,9 +3923,9 @@ window.questionsData = {
         "Children having access to smartphones",
         "App developers stealing credit card information",
         "Goods will not be shipped to the correct address",
-        "There are no security concerns"
+        "There are no security concerns",
       ],
-      correct: 1
+      correct: 1,
     },
 
     // ==================== SAVOL 319 ====================
@@ -3586,12 +3938,12 @@ window.questionsData = {
         "Pretending to be another person on social media",
         "Circulating jokes and funny memes online",
         "Creating a fictitious profile on a dating site",
-        "Baiting users into an argument on social media sites"
+        "Baiting users into an argument on social media sites",
       ],
-      correct: [0, 2]
-    }
+      correct: [0, 2],
+    },
   ],
- 
+
   3: [
     {
       id: 13,

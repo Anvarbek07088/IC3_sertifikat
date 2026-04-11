@@ -1,8 +1,8 @@
 // ========== LEVEL CREDENTIALS ==========
 const LEVEL_CREDENTIALS = {
-    level1: { login: "student1", password: "level123", name: "🌟 Level 1 - Boshlang'ich" },
-    level2: { login: "student2", password: "level456", name: "⚡ Level 2 - O'rta" },
-    level3: { login: "student3", password: "level789", name: "🏆 Level 3 - Yuqori" }
+    level1: { login: "student1", password: "IC3-GS6-l1", name: "🌟 Level 1 - Boshlang'ich" },
+    level2: { login: "student2", password: "IC3-GS6-L22", name: "⚡ Level 2 - O'rta" },
+    level3: { login: "student3", password: "IC3-GS6-L333", name: "🏆 Level 3 - Yuqori" }
 };
 
 const LEVEL_TO_KEY = {
@@ -1090,8 +1090,7 @@ function authenticate() {
         if (errorDiv) {
             errorDiv.innerHTML = `❌ Noto'g'ri login yoki parol!<br><br>
             <small>${selectedLevelForLogin.toUpperCase()} uchun:<br>
-            👤 Login: ${credentials.login}<br>
-            🔑 Parol: ${credentials.password}</small>`;
+           </small>`;
             errorDiv.style.display = 'block';
         }
     }
