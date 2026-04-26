@@ -2340,7 +2340,7 @@ window.questionsData = {
       targets: ["Digital goods", "Physical goods"],
       correct: {
         "Software subscription": "Digital goods",
-        Services: "Digital goods",
+        "Services": "Digital goods",
         "Cloud storage": "Digital goods",
         "Bluetooth headset": "Physical goods",
       },
@@ -3643,7 +3643,7 @@ window.questionsData = {
         "Suitable for mass-printing documents at a low cost",
         "Documents are dry to the touch when printed",
       ],
-      targets: ["Laser Printer", "Inkjet Printer"],
+      targets: ["Laser Printer", "Inkjet Printer","Laser Printer","Laser Printer"],
       correct: {
         "Environmentally friendly": "Laser Printer",
         "Good for printing high-quality photographs": "Inkjet Printer",
